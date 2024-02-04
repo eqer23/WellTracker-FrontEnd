@@ -40,7 +40,10 @@ const LoginForm = () => {
                 {/* will link to a redister page */}
                 <div className="register-link">
                     <p>
-                        Don't have an account? <a href="#"> Register</a>
+                        Don't have an account? {/* <a href="#"> Register</a> */}
+                        <Link to="/register" className="button">
+                            Register
+                        </Link>
                     </p>
                 </div>
             </form>
