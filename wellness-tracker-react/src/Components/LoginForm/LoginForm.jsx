@@ -30,6 +30,9 @@ const LoginForm = () => {
                         Don't have an account? <a href="#"> Register</a>
                     </p>
                 </div>
+                <a class="button" href="Dashboard.jsx">
+                    Dashboard
+                </a>
             </form>
         </div>
     );

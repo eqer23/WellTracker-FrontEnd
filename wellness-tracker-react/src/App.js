@@ -1,13 +1,30 @@
 //import logo from "./logo.svg";
 //import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import LoginForm from "./Components/LoginForm/LoginForm";
-//import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Dashboard/Dashboard";
+
+// function App() {
+//     return (
+//         <div className="App">
+//             <LoginForm />
+//             <Dashboard />
+//         </div>
+//     );
+// }
 
 function App() {
     return (
-        <div className="App">
-            <LoginForm />
-        </div>
+        <Router>
+            <div className="App">
+                {/* Define routes using Switch and Route */}
+                <Routes>
+                    <Route path="/" element={<LoginForm />} exact />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
