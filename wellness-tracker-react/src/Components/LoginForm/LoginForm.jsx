@@ -24,15 +24,15 @@ const LoginForm = () => {
                 </div>
 
                 <button type="submit">Login</button>
+                {/* <a class="button" href="Dashboard.jsx">
+                    Login
+                </a> */}
 
                 <div className="register-link">
                     <p>
                         Don't have an account? <a href="#"> Register</a>
                     </p>
                 </div>
-                <a class="button" href="Dashboard.jsx">
-                    Dashboard
-                </a>
             </form>
         </div>
     );
