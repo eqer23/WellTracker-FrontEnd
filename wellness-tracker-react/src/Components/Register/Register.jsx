@@ -18,11 +18,11 @@
 // export default Register;
 
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import "./Register.css";
 
 const Register = () => {
-    const history = useHistory();
+    const navigate = useNavigate(); // Use useNavigate instead of useHistory
     const [selectedUserRole, setSelectedUserRole] = useState("");
 
     const handleUserRoleChange = (event) => {
@@ -36,13 +36,13 @@ const Register = () => {
         // For now, let's navigate to a different page based on the selected user role
         switch (selectedUserRole) {
             case "client":
-                history.push("/client-registration");
+                navigate("/client-registration");
                 break;
             case "professional":
-                history.push("/professional-registration");
+                navigate("/professional-registration");
                 break;
             case "admin":
-                history.push("/admin-registration");
+                navigate("/admin-registration");
                 break;
             default:
                 // Handle default case or show an error
@@ -69,7 +69,7 @@ const Register = () => {
                     <label>
                         <input
                             type="radio"
-                            value="professional "
+                            value="professional"
                             checked={selectedUserRole === "professional"}
                             onChange={handleUserRoleChange}
                         />
