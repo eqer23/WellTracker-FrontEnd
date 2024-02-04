@@ -24,9 +24,9 @@ const LoginForm = () => {
                 </div>
 
                 <button type="submit">Login</button>
-                {/* <a class="button" href="Dashboard.jsx">
+                <a class="button" href="Dashboard.jsx">
                     Login
-                </a> */}
+                </a>
 
                 <div className="register-link">
                     <p>
