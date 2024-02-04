@@ -1,22 +1,4 @@
 // import React from "react";
-// import "./Register.css";
-
-// const Register = () => {
-//     return (
-//         <div className="wrapper">
-//             <form>
-//                 <h1>Register</h1>
-
-//                 <div className="user-roles">
-
-//                 </div>
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default Register;
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import "./Register.css";
@@ -29,11 +11,11 @@ const Register = () => {
         setSelectedUserRole(event.target.value);
     };
 
+    // when the user clicks submit, we go into this loop?
     const handleRegisterSubmit = (event) => {
         event.preventDefault();
 
-        // Here you can perform any additional registration logic
-        // For now, let's navigate to a different page based on the selected user role
+        // will link pages here based on what the user selected
         switch (selectedUserRole) {
             case "client":
                 navigate("/client-registration");
@@ -55,6 +37,7 @@ const Register = () => {
             <form onSubmit={handleRegisterSubmit}>
                 <h1>Register</h1>
 
+                {/* client button */}
                 <div className="user-roles">
                     <label>
                         <input
@@ -66,6 +49,7 @@ const Register = () => {
                         Client
                     </label>
 
+                    {/* fitness professional button */}
                     <label>
                         <input
                             type="radio"
@@ -76,6 +60,7 @@ const Register = () => {
                         Fitness Professional
                     </label>
 
+                    {/* admin button - may need to add some hidden feature so not just anyone can say they are an admin */}
                     <label>
                         <input
                             type="radio"
@@ -87,6 +72,7 @@ const Register = () => {
                     </label>
                 </div>
 
+                {/* submit button */}
                 <button type="submit">Submit</button>
             </form>
         </div>
