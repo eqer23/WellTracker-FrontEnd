@@ -1,6 +1,7 @@
 import React from "react";
 import "./LoginForm.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
     return (
@@ -20,13 +21,16 @@ const LoginForm = () => {
                     <label>
                         <input type="checkbox" /> Remember me
                     </label>
-                    <a href="#"> Forgot Passowrd?</a>
+                    <a href="#"> Forgot Password?</a>
                 </div>
 
                 <button type="submit">Login</button>
-                <a class="button" href="Dashboard.jsx">
+                {/* <a class="button" href="Dashboard.jsx">
                     Login
-                </a>
+                </a> */}
+                <Link to="/dashboard" className="button">
+                    Ckick to dashbord page
+                </Link>
 
                 <div className="register-link">
                     <p>
