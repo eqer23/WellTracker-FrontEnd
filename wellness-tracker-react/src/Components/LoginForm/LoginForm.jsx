@@ -8,15 +8,20 @@ const LoginForm = () => {
         <div className="wrapper">
             <form>
                 <h1>Login</h1>
+
+                {/* username input textbox */}
                 <div className="input-box">
                     <input type="text" placeholder="Username" required />
                     <FaUserAlt className="icon" />
                 </div>
+
+                {/* password input textbox */}
                 <div className="input-box">
                     <input type="password" placeholder="Password" required />
                     <FaLock className="icon" />
                 </div>
 
+                {/* forgot password check box and text */}
                 <div className="remember-forgot">
                     <label>
                         <input type="checkbox" /> Remember me
@@ -24,14 +29,15 @@ const LoginForm = () => {
                     <a href="#"> Forgot Password?</a>
                 </div>
 
+                {/* login button */}
                 <button type="submit">Login</button>
-                {/* <a class="button" href="Dashboard.jsx">
-                    Login
-                </a> */}
+
+                {/* temporary dashboard link -- will eventuallly want to connect to the login button*/}
                 <Link to="/dashboard" className="button">
                     Ckick to dashbord page
                 </Link>
 
+                {/* will link to a redister page */}
                 <div className="register-link">
                     <p>
                         Don't have an account? <a href="#"> Register</a>

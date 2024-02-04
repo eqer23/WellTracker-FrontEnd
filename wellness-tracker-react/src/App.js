@@ -5,15 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
 
-// function App() {
-//     return (
-//         <div className="App">
-//             <LoginForm />
-//             <Dashboard />
-//         </div>
-//     );
-// }
-
+// links all pages together through Routes
 function App() {
     return (
         <Router>
@@ -29,6 +21,17 @@ function App() {
 }
 
 export default App;
+
+// starter code
+
+// function App() {
+//     return (
+//         <div className="App">
+//             <LoginForm />
+//             <Dashboard />
+//         </div>
+//     );
+// }
 
 /* <header className="App-header">
     <img src={logo} className="App-logo" alt="logo" />
