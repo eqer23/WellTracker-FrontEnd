@@ -3,12 +3,12 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="wrapper">
             <header>
                 <h1>Dashboard</h1>
             </header>
             <main>
-                <p>this is the dashboard</p>
+                <p>this is the dashboard/ homepage</p>
             </main>
         </div>
     );

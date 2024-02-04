@@ -10,7 +10,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {/* Define routes using Switch and Route */}
                 <Routes>
                     <Route path="/" element={<LoginForm />} exact />
                     <Route path="/dashboard" element={<Dashboard />} />
