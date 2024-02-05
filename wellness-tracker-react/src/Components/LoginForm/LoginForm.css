@@ -1,4 +1,5 @@
 .wrapper {
+    /* creates a background/border around the login info */
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -15,6 +16,7 @@
 }
 
 .wrapper .input-box {
+    /* alligns the input boxes within the wrapper (flex) */
     position: relative;
     width: 100%;
     height: 50px;
@@ -22,6 +24,7 @@
 }
 
 .input-box input {
+    /* styles the input box (username and password) */
     width: 100%;
     height: 100%;
     background: transparent;
@@ -38,6 +41,7 @@
 }
 
 .input-box .icon {
+    /* positions the user and lock icons */
     position: absolute;
     right: 20px;
     top: 50%;
