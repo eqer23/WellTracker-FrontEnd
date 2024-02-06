@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LoginForm from "./Components/LoginForm/LoginForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import Register from "./Components/Register/Register";
+import Role from "./Components/Role/Role";
 
 // links all pages together through Routes
 function App() {
@@ -14,7 +14,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LoginForm />} exact />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/Register" element={<Register />} />
+                    <Route path="/Role" element={<Role />} />
                 </Routes>
             </div>
         </Router>

@@ -1,7 +1,7 @@
 // import React from "react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import "./Register.css";
+import "./Role.css";
 
 const Register = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
@@ -22,9 +22,6 @@ const Register = () => {
                 break;
             case "professional":
                 navigate("/professional-registration");
-                break;
-            case "admin":
-                navigate("/admin-registration");
                 break;
             default:
                 // Handle default case or show an error
@@ -58,17 +55,6 @@ const Register = () => {
                             onChange={handleUserRoleChange}
                         />
                         Fitness Professional
-                    </label>
-
-                    {/* admin button - may need to add some hidden feature so not just anyone can say they are an admin */}
-                    <label>
-                        <input
-                            type="radio"
-                            value="admin"
-                            checked={selectedUserRole === "admin"}
-                            onChange={handleUserRoleChange}
-                        />
-                        Admin Team
                     </label>
                 </div>
 
