@@ -1,11 +1,11 @@
 import React from "react";
 import "./ClientRegistration.css";
 
-const ClientRegisteration = () => {
+const ClientRegistration = () => {
     return (
         <div className="wrapper">
             <form>
-                <h1>Client Registeration</h1>
+                <h1>Client Registration</h1>
 
                 <div className="client-name">
                     <input type="text" placeholder="First Name" required />
@@ -14,7 +14,7 @@ const ClientRegisteration = () => {
 
                 <div className="other-info">
                     <imput type="text" placeholder="Gender" />
-                    <input type="number" placeholder="Age" />
+                    <input type="number" placeholder="Age" required />
                     {/* may be incorrect syntax */}
                 </div>
             </form>
@@ -22,4 +22,4 @@ const ClientRegisteration = () => {
     );
 };
 
-export default ClientRegisteration;
+export default ClientRegistration;

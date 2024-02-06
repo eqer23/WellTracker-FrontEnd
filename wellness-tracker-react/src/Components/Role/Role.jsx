@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import "./Role.css";
 
-const Register = () => {
+const Role = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
     const [selectedUserRole, setSelectedUserRole] = useState("");
 
@@ -18,7 +18,7 @@ const Register = () => {
         // will link pages here based on what the user selected
         switch (selectedUserRole) {
             case "client":
-                navigate("/ClientRegisteration");
+                navigate("/ClientRegistration");
                 break;
             case "professional":
                 navigate("/ProfessionalRegistration");
@@ -65,4 +65,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Role;
