@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Role from "./Components/Role/Role";
+import ClientRegisteration from "./Components/ClientRegistration/ClientRegistration";
 
 // links all pages together through Routes
 function App() {
@@ -15,6 +16,10 @@ function App() {
                     <Route path="/" element={<LoginForm />} exact />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/Role" element={<Role />} />
+                    <Route
+                        path="/ClientRegistration"
+                        element={<ClientRegisteration />}
+                    />
                 </Routes>
             </div>
         </Router>

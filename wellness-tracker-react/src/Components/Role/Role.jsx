@@ -18,10 +18,10 @@ const Register = () => {
         // will link pages here based on what the user selected
         switch (selectedUserRole) {
             case "client":
-                navigate("/client-registration");
+                navigate("/ClientRegisteration");
                 break;
             case "professional":
-                navigate("/professional-registration");
+                navigate("/ProfessionalRegistration");
                 break;
             default:
                 // Handle default case or show an error
