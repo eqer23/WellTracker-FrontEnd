@@ -33,7 +33,7 @@ const LoginForm = () => {
                 <button type="submit">Login</button>
 
                 {/* temporary dashboard link -- will eventuallly want to connect to the login button*/}
-                <Link to="/dashboard" className="button">
+                <Link to="/Dashboard" className="button">
                     Ckick to dashbord page
                 </Link>
 
@@ -41,7 +41,7 @@ const LoginForm = () => {
                 <div className="register-link">
                     <p>
                         Don't have an account? {/* <a href="#"> Register</a> */}
-                        <Link to="/register" className="button">
+                        <Link to="/Role" className="button">
                             Register
                         </Link>
                     </p>
