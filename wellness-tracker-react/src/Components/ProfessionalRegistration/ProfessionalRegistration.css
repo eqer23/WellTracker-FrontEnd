@@ -30,12 +30,12 @@
     font-weight: 700;
 }
 
-.wrapper .client-name {
+.wrapper .professional-name .other-info {
     display: flex;
     flex-direction: column; /* change flex direction to column so each new element stars atop one another */
 }
 
-.wrapper .client-name label {
+.wrapper .client-name .other-info label {
     display: flex;
     align-items: center; /* centers the buttons */
     margin-bottom: 10px; /* add space between radio buttons */

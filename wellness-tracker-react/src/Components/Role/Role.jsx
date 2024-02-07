@@ -24,7 +24,7 @@ const Role = () => {
                 navigate("/ProfessionalRegistration");
                 break;
             default:
-                // Handle default case or show an error
+                // handle default case or show an error
                 break;
         }
     };
