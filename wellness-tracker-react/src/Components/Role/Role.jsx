@@ -1,9 +1,9 @@
 // import React from "react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import "./Register.css";
+import "./Role.css";
 
-const Register = () => {
+const Role = () => {
     const navigate = useNavigate(); // Use useNavigate instead of useHistory
     const [selectedUserRole, setSelectedUserRole] = useState("");
 
@@ -18,16 +18,13 @@ const Register = () => {
         // will link pages here based on what the user selected
         switch (selectedUserRole) {
             case "client":
-                navigate("/client-registration");
+                navigate("/ClientRegistration");
                 break;
             case "professional":
-                navigate("/professional-registration");
-                break;
-            case "admin":
-                navigate("/admin-registration");
+                navigate("/ProfessionalRegistration");
                 break;
             default:
-                // Handle default case or show an error
+                // handle default case or show an error
                 break;
         }
     };
@@ -59,17 +56,6 @@ const Register = () => {
                         />
                         Fitness Professional
                     </label>
-
-                    {/* admin button - may need to add some hidden feature so not just anyone can say they are an admin */}
-                    <label>
-                        <input
-                            type="radio"
-                            value="admin"
-                            checked={selectedUserRole === "admin"}
-                            onChange={handleUserRoleChange}
-                        />
-                        Admin Team
-                    </label>
                 </div>
 
                 {/* submit button */}
@@ -79,4 +65,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Role;
