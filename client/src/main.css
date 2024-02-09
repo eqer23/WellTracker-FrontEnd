@@ -18,7 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("./Components/Assets/AdobeStock_197600642.jpeg") no-repeat;
+    background: url("./components/Assets/AdobeStock_197600642.jpeg") no-repeat;
     background-size: cover;
     background-position: center;
 }
