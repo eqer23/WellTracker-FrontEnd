@@ -99,3 +99,7 @@
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.form-group {
+    margin: 1em;
+}
