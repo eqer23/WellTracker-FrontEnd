@@ -9,14 +9,14 @@ import axios from 'axios'
 const LoginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('admin')
+    const [role, setRole] = useState('user')
     const navigate = useNavigate()
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
         axios.post('http://localhost:3001/auth/login',{username, password, role})
         .then(res => {
-            if (res.data.login &&  res.data.role === 'admin') {
+            if (res.data.login &&  res.data.role === 'user') {
                 console.log(res)
                 navigate('/dashboard')
             }
@@ -43,7 +43,7 @@ const LoginForm = () => {
                 <div className='form-group'>
                     <label htmlFor='role'>Role:</label>
                     <select name='role' id='role' onChange={(e) => setRole(e.target.value)}>
-                        <option value='admin'>Admin</option>
+                        <option value='user'>User</option>
                         <option value='client'>Client</option>
                     </select>
                 </div> <br/>
