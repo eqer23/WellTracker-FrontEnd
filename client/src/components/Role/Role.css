@@ -86,10 +86,36 @@
     font-size: 20px;
 }
 
-.dropdown {
-    /* padding: 20px 0 0 0; */
+/* .dropdown {
+    /* padding: 20px 0 0 0; 
     display: flex;
     justify-content: center;
     width: 175px;
     height: 30px;
+} 
+*/
+.form-group label {
+    padding-right: 10px;
+}
+
+.dropdown {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    padding: 0 10px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    outline: none; /* Remove default outline */
+}
+
+.dropdown:focus {
+    border-color: #4d90fe; /* Example color for focus */
+}
+
+.dropdown option {
+    background: transparent;
+    color: #333; /* Text color of dropdown options */
 }

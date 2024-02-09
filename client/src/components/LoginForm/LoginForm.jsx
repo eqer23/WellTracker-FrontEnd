@@ -64,6 +64,7 @@ const LoginForm = () => {
                     >
                         <option value="admin">Admin</option>
                         <option value="client">Client</option>
+                        <option value="professional">Professional</option>
                     </select>
                 </div>
 
