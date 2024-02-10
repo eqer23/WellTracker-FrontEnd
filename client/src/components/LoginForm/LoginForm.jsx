@@ -4,23 +4,25 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+let LOGIN_URL = "http://localhost:3001/login";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
+        event.preventDefault();
         axios
-            .post("http://localhost:3001/auth/login", {
+            .post(LOGIN_URL, {
                 username,
                 password,
                 role,
             })
             .then((res) => {
-                if (res.data.login && res.data.role === "admin") {
+                if (res.data.role === "user") {
                     console.log(res);
                     navigate("/dashboard");
                 }
