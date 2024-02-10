@@ -8,7 +8,9 @@ let REGISTER_URL = "http://localhost:3001/register";
 const Role = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
+
     const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
@@ -23,38 +25,13 @@ const Role = () => {
                 })
                 .then((res) => {
                     if (res.data.role === "user") {
-                        console.log(res);
+                        console.log(res); // check if error is thrown because username already exists - 409 error (make message)
                         navigate("/dashboard");
                     }
                 })
                 .catch((err) => console.log(err));
         }
     };
-
-    // const navigate = useNavigate(); // Use useNavigate instead of useHistory
-    // const [selectedUserRole, setSelectedUserRole] = useState("");
-
-    // const handleUserRoleChange = (event) => {
-    //     setSelectedUserRole(event.target.value);
-    // };
-
-    // when the user clicks submit, we go into this loop?
-    // const handleRegisterSubmit = (event) => {
-    //     event.preventDefault();
-
-    //     // will link pages here based on what the user selected
-    //     switch (selectedUserRole) {
-    //         case "client":
-    //             navigate("/cregistration");
-    //             break;
-    //         case "professional":
-    //             navigate("/pregistration");
-    //             break;
-    //         default:
-    //             // handle default case or show an error
-    //             break;
-    //     }
-    // };
 
     return (
         <div className="wrapper">
@@ -65,11 +42,18 @@ const Role = () => {
                 <div className="input-box-reg">
                     <input
                         type="text"
-                        placeholder="Name"
+                        placeholder="First Name"
                         required
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setFirstName(e.target.value)}
                     />
-                    {/* <FaUserAlt className="icon" /> */}
+                </div>
+                <div className="input-box-reg">
+                    <input
+                        type="text"
+                        placeholder="Last Name"
+                        required
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
                 </div>
 
                 <div className="input-box-reg">
@@ -79,7 +63,6 @@ const Role = () => {
                         required
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    {/* <FaUserAlt className="icon" /> */}
                 </div>
 
                 <div className="input-box-reg">
@@ -89,7 +72,6 @@ const Role = () => {
                         required
                         // onChange={(e) => setPassword(e.target.value)}
                     />
-                    {/* <FaLock className="icon" /> */}
                 </div>
 
                 <div className="input-box-reg">
@@ -99,32 +81,11 @@ const Role = () => {
                         required
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {/* <FaLock className="icon" /> */}
                 </div>
 
-                {/* client button */}
-                {/* <div className="user-roles">
-                    <label>
-                        <input
-                            type="radio"
-                            value="client"
-                            checked={selectedUserRole === "client"}
-                            onChange={handleUserRoleChange}
-                        />
-                        Client
-                    </label>
+                {/* add age and gender here - do we want it to look differernt?? */}
 
-                    {/* fitness professional button 
-                    <label>
-                        <input
-                            type="radio"
-                            value="professional"
-                            checked={selectedUserRole === "professional"}
-                            onChange={handleUserRoleChange}
-                        />
-                        Fitness Professional
-                    </label>
-                </div> */}
+                {/* role selection dropdown */}
                 <div className="form-group">
                     <label htmlFor="role">Role:</label>
                     <select

@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-import "./Home.css"; // Import your custom CSS file for the Home component
+import NavbarHome from "../Navbar/NavbarHome";
+import "./Home.css";
 
 const Home = () => {
     return (
         <div className="home">
-            <Navbar />
+            <NavbarHome />
             <div className="wrapper">
                 <h1>Home</h1>
             </div>

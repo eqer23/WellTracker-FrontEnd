@@ -9,26 +9,29 @@ let LOGIN_URL = "http://localhost:3001/login";
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        event.preventDefault();
-        axios
-            .post(LOGIN_URL, {
-                username,
-                password,
-                role,
-            })
-            .then((res) => {
-                if (res.data.login) {
-                    console.log(res);
-                    navigate("/dashboard");
-                }
-            })
-            .catch((err) => console.log(err));
-
+        if (username && password && role) {
+            event.preventDefault();
+            axios
+                .post(LOGIN_URL, {
+                    username,
+                    password,
+                    role,
+                })
+                .then((res) => {
+                    if (res.data.login) {
+                        console.log(res);
+                        navigate("/dashboard");
+                    }
+                })
+                .catch((err) => console.log(err));
+        } else {
+            alert("please enter your email, password, and role.");
+        }
     };
 
     return (
@@ -58,7 +61,6 @@ const LoginForm = () => {
                     <FaLock className="icon" />
                 </div>
 
-
                 <div className="form-group">
                     <label htmlFor="role">Role:</label>
                     <select
@@ -70,7 +72,6 @@ const LoginForm = () => {
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
                         <option value="admin">Admin</option>
-
                     </select>
                 </div>
 
@@ -96,7 +97,7 @@ const LoginForm = () => {
                 <div className="register-link">
                     <p>
                         Don't have an account? {/* <a href="#"> Register</a> */}
-                        <Link to="/Role" className="button">
+                        <Link to="/register" className="button">
                             Register
                         </Link>
                     </p>

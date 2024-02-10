@@ -2,23 +2,20 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const NavbarHome = () => {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                <NavLink to="/dashboard">
+                <NavLink to="/">
                     <h1>LOGO</h1>
                 </NavLink>
             </div>
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <NavLink to="/plans">Fitness Plans</NavLink>
+                    <NavLink to="/about">About</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/nutrition">Nutrition</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/rec">Recommendations</NavLink>
+                    <NavLink to="/team">Our Team</NavLink>
                 </li>
             </ul>
 
@@ -35,4 +32,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavbarHome;

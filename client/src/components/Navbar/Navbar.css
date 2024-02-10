@@ -3,10 +3,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff; /* Add your desired background color */
+    background-color: #fff7ddfd;
     z-index: 1000; /* Adjust the z-index as needed */
-    padding: 10px 20px; /* Adjust padding as needed */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual effect */
+    padding: 10px 25px; /* Adjust padding as needed */
+    /* box-shadow: 0 2px 5px rgba(238, 233, 226, 0.3);  */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    /* backdrop-filter: blur(30px); */
 
     display: flex;
     flex-direction: row;
@@ -28,7 +30,7 @@
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 15px 15px 15px 30px;
 }
 
 .nav-item {
@@ -48,7 +50,8 @@
 }
 
 .navbar-btn li {
-    padding: 0 10px 0 5px;
-    color: #333333; /* Add your desired font color */
+    /* padding: 0 10px 0 5px; */
+    color: #2f2a31; /* Add your desired font color */
     font-weight: bold;
+    padding: 15px 0px 15px 0px;
 }
