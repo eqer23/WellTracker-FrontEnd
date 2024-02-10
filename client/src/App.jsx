@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+// import Navbar from "./components/Navbar/Navbar";
 import Register from "./components/ClientRegistration/ClientRegistration";
 import Role from "./components/Role/Role";
 import Login from "./components/LoginForm/LoginForm";
@@ -11,7 +11,7 @@ import ProfessionalRegistration from "./components/ProfessionalRegistration/Prof
 function App() {
     return (
         <BrowserRouter>
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>

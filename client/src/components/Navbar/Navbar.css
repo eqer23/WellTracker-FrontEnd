@@ -1,0 +1,46 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Add your desired background color */
+    z-index: 1000; /* Adjust the z-index as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual effect */
+
+    display: flex;
+    flex-direction: row;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -ms-align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Adjust font size as needed */
+    color: #333333; /* Add your desired font color */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-right: 20px; /* Adjust spacing between nav items */
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333333; /* Add your desired font color */
+    font-weight: bold; /* Add font weight if needed */
+}
+
+.navbar-btn {
+    margin-left: auto; /* Push the login button to the right */
+}
