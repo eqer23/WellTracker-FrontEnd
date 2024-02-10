@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom";
 import "./Role.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-let REGISTER_URL = "http://localhost:3001/cregister"
-
+let REGISTER_URL = "http://localhost:3001/cregister";
 
 const Role = () => {
     const [username, setUsername] = useState("");
@@ -23,9 +22,9 @@ const Role = () => {
                     role,
                 })
                 .then((res) => {
-                    if (res.data.role === 'user') {
-                        console.log(res)
-                        navigate('/dashboard')
+                    if (res.data.role === "user") {
+                        console.log(res);
+                        navigate("/dashboard");
                     }
                 })
                 .catch((err) => console.log(err));
@@ -40,22 +39,22 @@ const Role = () => {
     // };
 
     // when the user clicks submit, we go into this loop?
-    const handleRegisterSubmit = (event) => {
-        event.preventDefault();
+    // const handleRegisterSubmit = (event) => {
+    //     event.preventDefault();
 
-        // will link pages here based on what the user selected
-        switch (selectedUserRole) {
-            case "client":
-                navigate("/cregistration");
-                break;
-            case "professional":
-                navigate("/pregistration");
-                break;
-            default:
-                // handle default case or show an error
-                break;
-        }
-    };
+    //     // will link pages here based on what the user selected
+    //     switch (selectedUserRole) {
+    //         case "client":
+    //             navigate("/cregistration");
+    //             break;
+    //         case "professional":
+    //             navigate("/pregistration");
+    //             break;
+    //         default:
+    //             // handle default case or show an error
+    //             break;
+    //     }
+    // };
 
     return (
         <div className="wrapper">
@@ -134,14 +133,16 @@ const Role = () => {
                         id="role"
                         onChange={(e) => setRole(e.target.value)}
                     >
-                        <option value="admin">Admin</option>
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
 
                 {/* submit button */}
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button type="submit" onClick={handleSubmit}>
+                    Submit
+                </button>
             </form>
         </div>
     );
