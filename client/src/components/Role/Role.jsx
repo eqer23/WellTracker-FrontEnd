@@ -1,32 +1,35 @@
-// import React from "react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import "./Role.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+let REGISTER_URL = "http://localhost:3001/cregister"
+
 
 const Role = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
-    axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        axios
-            .post("http://localhost:3001/auth/login", {
-                username,
-                password,
-                role,
-            })
-            .then((res) => {
-                if (res.data.login && res.data.role === "admin") {
-                    console.log(res);
-                    navigate("/dashboard");
-                }
-            })
-            .catch((err) => console.log(err));
+        if (username && password && role) {
+            event.preventDefault();
+            axios
+                .post(REGISTER_URL, {
+                    username,
+                    password,
+                    role,
+                })
+                .then((res) => {
+                    if (res.data.role === 'user') {
+                        console.log(res)
+                        navigate('/dashboard')
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
     };
 
     // const navigate = useNavigate(); // Use useNavigate instead of useHistory
@@ -56,7 +59,7 @@ const Role = () => {
 
     return (
         <div className="wrapper">
-            <form onSubmit={handleRegisterSubmit}>
+            <form>
                 <h1>Register</h1>
 
                 {/* users name email and password creation */}
@@ -132,13 +135,13 @@ const Role = () => {
                         onChange={(e) => setRole(e.target.value)}
                     >
                         <option value="admin">Admin</option>
-                        <option value="client">Client</option>
+                        <option value="user">Client</option>
                         <option value="professional">Professional</option>
                     </select>
                 </div>
 
                 {/* submit button */}
-                <button type="submit">Submit</button>
+                <button type="submit" onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     );
