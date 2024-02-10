@@ -14,13 +14,13 @@ const LoginForm = () => {
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
         axios
-            .post("http://localhost:3001/auth/login", {
+            .post("http://localhost:3001/login", {
                 username,
                 password,
                 role,
             })
             .then((res) => {
-                if (res.data.login && res.data.role === "admin") {
+                if (res.data.login && res.data.role === "user") {
                     console.log(res);
                     navigate("/dashboard");
                 }
@@ -64,7 +64,7 @@ const LoginForm = () => {
                         onChange={(e) => setRole(e.target.value)}
                     >
                         <option value="admin">Admin</option>
-                        <option value="client">Client</option>
+                        <option value="user">Client</option>
                         <option value="professional">Professional</option>
                     </select>
                 </div>
