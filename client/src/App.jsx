@@ -4,7 +4,6 @@ import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
 import Login from "./components/LoginForm/LoginForm";
 import Dashboard from "./components/Dashboard/Dashboard";
-import ClientRegistration from "./components/ClientRegistration/ClientRegistration";
 import ProfessionalRegistration from "./components/ProfessionalRegistration/ProfessionalRegistration";
 
 function App() {
@@ -16,10 +15,6 @@ function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
-                <Route
-                    path="/cregistration"
-                    element={<ClientRegistration />}
-                ></Route>
                 <Route
                     path="/pregistration"
                     element={<ProfessionalRegistration />}
