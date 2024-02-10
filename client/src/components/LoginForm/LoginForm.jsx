@@ -28,6 +28,7 @@ const LoginForm = () => {
                 }
             })
             .catch((err) => console.log(err));
+
     };
 
     return (
@@ -57,6 +58,7 @@ const LoginForm = () => {
                     <FaLock className="icon" />
                 </div>
 
+
                 <div className="form-group">
                     <label htmlFor="role">Role:</label>
                     <select
@@ -68,6 +70,7 @@ const LoginForm = () => {
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
                         <option value="admin">Admin</option>
+
                     </select>
                 </div>
 
