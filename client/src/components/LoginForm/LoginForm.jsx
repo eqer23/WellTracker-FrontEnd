@@ -54,6 +54,7 @@ const LoginForm = () => {
                     />
                     <FaLock className="icon" />
                 </div>
+
                 <div className="form-group">
                     <label htmlFor="role">Role:</label>
                     <select
@@ -81,10 +82,10 @@ const LoginForm = () => {
                     Login
                 </button>
 
-                {/* temporary dashboard link -- will eventuallly want to connect to the login button*/}
+                {/* temporary dashboard link -- will eventuallly want to connect to the login button
                 <Link to="/Dashboard" className="button">
                     Click to dashboard page
-                </Link>
+                </Link> */}
 
                 {/* will link to a redister page */}
                 <div className="register-link">
