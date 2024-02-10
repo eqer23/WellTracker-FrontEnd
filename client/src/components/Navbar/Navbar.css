@@ -43,4 +43,12 @@
 
 .navbar-btn {
     margin-left: auto; /* Push the login button to the right */
+    display: flex;
+    list-style: none;
+}
+
+.navbar-btn li {
+    padding: 0 10px 0 5px;
+    color: #333333; /* Add your desired font color */
+    font-weight: bold;
 }
