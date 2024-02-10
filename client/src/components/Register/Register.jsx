@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate instead of
 import "./Register.css";
 import axios from "axios";
 let REGISTER_URL = "http://localhost:3001/register"
+let LOGIN_URL = "http://localhost:3001/login"
+
 
 
 const Role = () => {
@@ -14,6 +16,7 @@ const Role = () => {
 
     const handleSubmit = () => {
         if (username && password && role) {
+            
             event.preventDefault();
             axios
                 .post(REGISTER_URL, {

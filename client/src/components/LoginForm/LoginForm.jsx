@@ -14,20 +14,22 @@ const LoginForm = () => {
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        event.preventDefault();
-        axios
-            .post(LOGIN_URL, {
-                username,
-                password,
-                role,
-            })
-            .then((res) => {
-                if (res.data.login && res.data.role === "user") {
-                    console.log(res);
-                    navigate("/dashboard");
-                }
-            })
-            .catch((err) => console.log(err));
+        if (username && password && role) {
+            event.preventDefault();
+            axios
+                .post(LOGIN_URL, {
+                    username,
+                    password,
+                    role,
+                })
+                .then((res) => {
+                    if (res.data.login && res.data.role === "user" || res.data.role === 'professional') {
+                        console.log(res);
+                        navigate("/dashboard");
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
     };
 
     return (
@@ -73,9 +75,7 @@ const LoginForm = () => {
 
                 {/* forgot password check box and text */}
                 <div className="remember-forgot">
-                    <label>
-                        <input type="checkbox" /> Remember me
-                    </label>
+                    
                     <a href="#"> Forgot Password?</a>
                 </div>
 
