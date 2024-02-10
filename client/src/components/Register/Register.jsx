@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+import EmailVerification from "../EmailVerification/EmailVerification";
 import { Link } from "react-router-dom";
 import axios from "axios";
 let REGISTER_URL = "http://localhost:3001/register";
 
-const Role = () => {
-    const [username, setUsername] = useState("");
+const Register = () => {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
@@ -15,17 +16,17 @@ const Role = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        if (username && password && role) {
+        if (email && password && role) {
             event.preventDefault();
             axios
                 .post(REGISTER_URL, {
-                    username,
+                    email,
                     password,
                     role,
                 })
                 .then((res) => {
                     if (res.data.role === "user") {
-                        console.log(res); // check if error is thrown because username already exists - 409 error (make message)
+                        console.log(res); // check if error is thrown because emil already used - 409 error (make message)
                         navigate("/dashboard");
                     }
                 })
@@ -56,57 +57,70 @@ const Role = () => {
                     />
                 </div>
 
-                <div className="input-box-reg">
-                    <input
+                <div className="loginInfo">
+                    <div className="input-box-reg">
+                        {/* <input
                         type="text"
                         placeholder="Email"
                         required
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </div>
+                        onChange={(e) => setEmail(e.target.value)}
+                    /> */}
+                        <EmailVerification setEmail={setEmail} />
+                    </div>
 
-                <div className="input-box-reg">
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        required
-                        // onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
+                    <div className="input-box-reg">
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            required
+                            // onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
-                <div className="input-box-reg">
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
+                    <div className="input-box-reg">
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
-                {/* add age and gender here - do we want it to look differernt?? */}
+                    {/* add age and gender here - do we want it to look differernt?? */}
 
-                {/* role selection dropdown */}
-                <div className="form-group">
-                    <label htmlFor="role">Role:</label>
-                    <select
-                        className="dropdown"
-                        name="role"
-                        id="role"
-                        onChange={(e) => setRole(e.target.value)}
-                    >
-                        <option value="user">Client</option>
-                        <option value="professional">Professional</option>
-                        <option value="admin">Admin</option>
-                    </select>
+                    {/* role selection dropdown */}
+                    <div className="form-group">
+                        <label htmlFor="role">Role:</label>
+                        <select
+                            className="dropdown"
+                            name="role"
+                            id="role"
+                            onChange={(e) => setRole(e.target.value)}
+                        >
+                            <option value="user">Client</option>
+                            <option value="professional">Professional</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
                 </div>
 
                 {/* submit button */}
                 <button type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
+
+                {/* will link to a redister page */}
+                <div className="login-link">
+                    <p>
+                        Already have an account?
+                        <Link to="/login" className="button">
+                            Login
+                        </Link>
+                    </p>
+                </div>
             </form>
         </div>
     );
 };
 
-export default Role;
+export default Register;
