@@ -2,13 +2,13 @@ import "./ClientRegistration.css";
 import React, { useState } from "react";
 // import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
-let REGISTER_URL = "http://localhost:3001/cregister"
+let REGISTER_URL = "http://localhost:3001/register"
 
 
 const ClientRegistration = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('user')
+    const [role, setRole] = useState('')
     // const navigate = useNavigate()
 
     const handleSubmit = () => {
