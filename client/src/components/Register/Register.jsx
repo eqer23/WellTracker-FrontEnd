@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Role.css";
+import "./Register.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-let REGISTER_URL = "http://localhost:3001/cregister";
+let REGISTER_URL = "http://localhost:3001/register";
 
 const Role = () => {
     const [username, setUsername] = useState("");

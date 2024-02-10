@@ -2,7 +2,7 @@ import "./ClientRegistration.css";
 import React, { useState } from "react";
 // import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
-let REGISTER_URL = "http://localhost:3001/cregister"
+let REGISTER_URL = "http://localhost:3001/register"
 
 
 const ClientRegistration = () => {

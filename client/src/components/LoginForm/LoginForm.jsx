@@ -9,7 +9,7 @@ let LOGIN_URL = "http://localhost:3001/login";
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
@@ -22,7 +22,7 @@ const LoginForm = () => {
                 role,
             })
             .then((res) => {
-                if (res.data.login && res.data.role === "user") {
+                if (res.data.login) {
                     console.log(res);
                     navigate("/dashboard");
                 }
