@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const NavbarHome = () => {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                <NavLink to="/dashboard">
+                <NavLink to="/">
                     <h1>LOGO</h1>
                 </NavLink>
             </div>
@@ -32,4 +32,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavbarHome;
