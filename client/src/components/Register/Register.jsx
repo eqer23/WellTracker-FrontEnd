@@ -11,8 +11,8 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
+    const [role, setRole] = useState("");
 
-    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
     const handleSubmit = () => {
@@ -25,7 +25,7 @@ const Register = () => {
                     role,
                 })
                 .then((res) => {
-                    if (res.data.role === "user") {
+                    if (res.status == 200) {
                         console.log(res); // check if error is thrown because emil already used - 409 error (make message)
                         navigate("/dashboard");
                     }
@@ -44,7 +44,7 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="First Name"
-                        required
+                        // required
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                 </div>
@@ -52,20 +52,20 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="Last Name"
-                        required
+                        // required
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
 
                 <div className="loginInfo">
                     <div className="input-box-reg">
-                        {/* <input
+                        <input
                         type="text"
                         placeholder="Email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
-                    /> */}
-                        <EmailVerification setEmail={setEmail} />
+                    />
+                        {/* <EmailVerification setEmail={setEmail} /> */}
                     </div>
 
                     <div className="input-box-reg">

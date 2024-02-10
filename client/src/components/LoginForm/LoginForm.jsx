@@ -15,7 +15,7 @@ const LoginForm = () => {
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        if (email && password && role) {
+        if (email && password) {
             event.preventDefault();
             axios
                 .post(LOGIN_URL, {
@@ -42,14 +42,14 @@ const LoginForm = () => {
 
                 {/* email input textbox */}
                 <div className="input-box">
-                    {/* <input
+                    <input
                         type="text"
                         placeholder="Email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
-                    /> */}
+                    />
 
-                    <EmailVerification setEmail={setEmail} />
+                    {/* <EmailVerification setEmail={setEmail} /> */}
                     <FaUserAlt className="icon" />
                 </div>
 
