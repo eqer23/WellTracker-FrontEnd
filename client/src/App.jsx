@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 // import Navbar from "./components/Navbar/Navbar";
-import Register from "./components/ClientRegistration/ClientRegistration";
-import Role from "./components/Role/Role";
+import Register from "./components/Register/Register";
 import Login from "./components/LoginForm/LoginForm";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ClientRegistration from "./components/ClientRegistration/ClientRegistration";
@@ -17,7 +16,6 @@ function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
-                <Route path="/role" element={<Role />}></Route>
                 <Route
                     path="/cregistration"
                     element={<ClientRegistration />}
