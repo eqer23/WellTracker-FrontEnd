@@ -7,6 +7,15 @@
     z-index: 1000; /* Adjust the z-index as needed */
     padding: 10px 20px; /* Adjust padding as needed */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual effect */
+
+    display: flex;
+    flex-direction: row;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -ms-align-items: flex-start;
+    -ms-flex-align: start;
+    -webkit-box-align: start;
+    align-items: flex-start;
 }
 
 .navbar-brand {

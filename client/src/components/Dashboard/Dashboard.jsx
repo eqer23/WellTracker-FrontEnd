@@ -4,14 +4,14 @@ import Navbar from "../Navbar/Navbar";
 
 const Dashboard = () => {
     return (
-        <div className="wrapper">
+        <div className="home">
             <Navbar />
-            <header>
+            <div className="wrapper">
                 <h1>Dashboard</h1>
-            </header>
-            <main>
-                <p>this is the dashboard/ homepage</p>
-            </main>
+                <main>
+                    <p>this is the dashboard/ homepage</p>
+                </main>
+            </div>
         </div>
     );
 };
