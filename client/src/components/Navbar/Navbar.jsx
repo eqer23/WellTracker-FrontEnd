@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import "../Search/SearchBar"
+import { SearchBar } from "../Search/SearchBar";
+import { SearchResultsList } from "../Search/SearchResultsList";
 
 const Navbar = () => {
+    // variables for searchBar
+    const [results, setResults] = useState([]);
     return (
         <nav className="navbar">
             <div className="navbar-brand">
@@ -23,12 +28,18 @@ const Navbar = () => {
             </ul>
 
             <ul className="navbar-btn">
-                <li className="nav-item">Search</li>
+                <li className="nav-item">
+                    <SearchBar setResults={setResults} />
+                    <SearchResultsList results={results} />
+                </li>
                 <li className="nav-item">
                     <NavLink to="/register">Register</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink to="/login">Login</NavLink>
+                </li>
+                <li>
+                    <NavLink w/>
                 </li>
             </ul>
         </nav>
