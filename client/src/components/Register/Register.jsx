@@ -60,11 +60,11 @@ const Register = () => {
                 <div className="loginInfo">
                     <div className="input-box-reg">
                         <input
-                        type="text"
-                        placeholder="Email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                            type="text"
+                            placeholder="Email"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                         {/* <EmailVerification setEmail={setEmail} /> */}
                     </div>
 
@@ -113,7 +113,7 @@ const Register = () => {
                 <div className="login-link">
                     <p>
                         Already have an account?
-                        <Link to="/login" className="button">
+                        <Link to="/login" className="btn-reg">
                             Login
                         </Link>
                     </p>
