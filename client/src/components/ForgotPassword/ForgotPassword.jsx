@@ -5,33 +5,32 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let LOGIN_URL = "http://localhost:3001/login";
+let LOGIN_URL = "http://localhost:3001/forgotpassword";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        if (email && password && role) {
+        if (email) {
             event.preventDefault();
             axios
                 .post(LOGIN_URL, {
                     email,
-                    password,
-                    role,
                 })
                 .then((res) => {
+                    if (res.status == 404) {
+                        alert("This user does not exist.");
+                    }
                     if (res.data.login) {
-                        console.log(res);
+                        console.log("Password email request sent to backend.");
                         navigate("/dashboard");
                     }
                 })
                 .catch((err) => console.log(err));
         } else {
-            alert("please enter your email, password, and role.");
+            alert("Please enter an email.");
         }
     };
 
@@ -42,14 +41,13 @@ const ForgotPassword = () => {
 
                 {/* email input textbox */}
                 <div className="input-box">
-                    <EmailVerification setEmail={setEmail} />
-
-                    {/* <input
+                    {/* <EmailVerification setEmail={setEmail} /> */}
+                    <input
                         type="text"
                         placeholder="Email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
-                    /> */}
+                    />
                     <FaUserAlt className="icon" />
                 </div>
 
