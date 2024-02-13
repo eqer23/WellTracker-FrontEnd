@@ -28,6 +28,8 @@ const LoginForm = () => {
                         console.log(res);
                         navigate("/dashboard");
                     }
+                    console.log(res.data)
+
                 })
                 .catch((err) => console.log(err));
         } else {
@@ -84,7 +86,7 @@ const LoginForm = () => {
                         <input type="checkbox" /> Remember me
                     </label>
                     {/* <a href="#"> Forgot Password?</a> */}
-                    <Link to="/forgotpassword" className="button">
+                    <Link to="/forgot-password" className="button">
                         Forgot Password?
                     </Link>
                 </div>

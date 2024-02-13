@@ -1,32 +1,35 @@
 import React, { useState } from "react";
-import "./ForgotPassword.css";
+import "./ResetPassword.css";
 import EmailVerification from "../EmailVerification/EmailVerification";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let URL = "http://localhost:3001/forgot-password";
 
-const ForgotPassword = () => {
-    const [email, setEmail] = useState("");
+// TODO
+
+const ResetPassword = () => {
+    const [password, setPassword] = useState("");
+    const {token} = useParams()
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        if (email) {
+        if (password) {
             event.preventDefault();
             axios
-                .post(URL, {
-                    email,
+                .post("http://localhost:3001/reset-password/"+token, {
+                    password,
                 })
                 .then((res) => {
                     if (res.status == 404) {
                         alert("This user does not exist.");
                     }
-                    if (res.data.login || res.status == 200) {
+                    if (res.data.status) {
                         console.log("Password email request sent to backend.");
                         navigate("/login");
                     }
+                    console.log(res.data)
                 })
                 .catch((err) => console.log(err));
         } else {
@@ -37,16 +40,15 @@ const ForgotPassword = () => {
     return (
         <div className="wrapper">
             <div>
-                <h1>Forgot Password?</h1>
+                <h1>Enter your new password.</h1>
 
                 {/* email input textbox */}
                 <div className="input-box">
-                    {/* <EmailVerification setEmail={setEmail} /> */}
                     <input
-                        type="text"
-                        placeholder="Email"
+                        type="password"
+                        placeholder="Password"
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <FaUserAlt className="icon" />
                 </div>
@@ -56,18 +58,10 @@ const ForgotPassword = () => {
                     Submit
                 </button>
 
-                {/* will link to a redister page */}
-                <div className="register-link">
-                    <p>
-                        Don't have an account?
-                        <Link to="/register" className="btn-reg">
-                            Register
-                        </Link>
-                    </p>
-                </div>
+
             </div>
         </div>
     );
 };
 
-export default ForgotPassword;
+export default ResetPassword;
