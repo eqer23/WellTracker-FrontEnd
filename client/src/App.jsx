@@ -5,6 +5,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/LoginForm/LoginForm";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
+import NewPassword from "./components/ForgotPassword/NewPassword";
 import ProfessionalRegistration from "./components/ProfessionalRegistration/ProfessionalRegistration";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                     element={<ForgotPassword />}
                 ></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/newpassword" element={<NewPassword />}></Route>
                 <Route
                     path="/pregistration"
                     element={<ProfessionalRegistration />}

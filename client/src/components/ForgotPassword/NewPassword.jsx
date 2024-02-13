@@ -5,10 +5,12 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let URL = "http://localhost:3001/forgotpassword";
+let URL = "http://localhost:3001/newpassword";
 
-const ForgotPassword = () => {
-    const [email, setEmail] = useState("");
+// TODO
+
+const NewPassword = () => {
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
@@ -17,15 +19,15 @@ const ForgotPassword = () => {
             event.preventDefault();
             axios
                 .post(URL, {
-                    email,
+                    password,
                 })
                 .then((res) => {
                     if (res.status == 404) {
                         alert("This user does not exist.");
                     }
-                    if (res.data.login || res.status == 200) {
+                    if (res.data.login) {
                         console.log("Password email request sent to backend.");
-                        navigate("/newpassword");
+                        navigate("/dashboard");
                     }
                 })
                 .catch((err) => console.log(err));
@@ -37,16 +39,16 @@ const ForgotPassword = () => {
     return (
         <div className="wrapper">
             <div>
-                <h1>Forgot Password?</h1>
+                <h1>Enter your new password.</h1>
 
                 {/* email input textbox */}
                 <div className="input-box">
                     {/* <EmailVerification setEmail={setEmail} /> */}
                     <input
-                        type="text"
-                        placeholder="Email"
+                        type="password"
+                        placeholder="Password"
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <FaUserAlt className="icon" />
                 </div>
@@ -56,18 +58,10 @@ const ForgotPassword = () => {
                     Submit
                 </button>
 
-                {/* will link to a redister page */}
-                <div className="register-link">
-                    <p>
-                        Don't have an account?
-                        <Link to="/register" className="btn-reg">
-                            Register
-                        </Link>
-                    </p>
-                </div>
+
             </div>
         </div>
     );
 };
 
-export default ForgotPassword;
+export default NewPassword;
