@@ -20,15 +20,20 @@ const ForgotPassword = () => {
                     email,
                 })
                 .then((res) => {
-                    if (res.status == 404) {
-                        alert("This user does not exist.");
+                    if (res.status === 404) {
+                        alert(res.data.message);
                     }
-                    if (res.data.login || res.status == 200) {
+                    if (res.data.login || res.status === 200) {
                         console.log("Password email request sent to backend.");
+                        alert("Success!")
                         navigate("/login");
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    if (err.response.status == 404) {
+                        alert("This user does not exist.")
+                    }
+                });
         } else {
             alert("Please enter an email.");
         }
