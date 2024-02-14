@@ -22,9 +22,6 @@ const ResetPassword = () => {
                     password,
                 })
                 .then((res) => {
-                    if (res.data.status == 404) {
-                        alert("This user does not exist.");
-                    }
                     if (res.data.status) {
                         console.log("Password updated");
                         navigate("/login");
