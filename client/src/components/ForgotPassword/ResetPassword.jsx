@@ -22,11 +22,11 @@ const ResetPassword = () => {
                     password,
                 })
                 .then((res) => {
-                    if (res.status == 404) {
+                    if (res.data.status == 404) {
                         alert("This user does not exist.");
                     }
                     if (res.data.status) {
-                        console.log("Password email request sent to backend.");
+                        console.log("Password updated");
                         navigate("/login");
                     }
                     console.log(res.data)
