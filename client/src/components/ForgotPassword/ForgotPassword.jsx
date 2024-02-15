@@ -5,33 +5,37 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let LOGIN_URL = "http://localhost:3001/login";
+let URL = "http://localhost:3001/forgot-password";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
-        if (email && password && role) {
+        if (email) {
             event.preventDefault();
             axios
-                .post(LOGIN_URL, {
+                .post(URL, {
                     email,
-                    password,
-                    role,
                 })
                 .then((res) => {
-                    if (res.data.login) {
-                        console.log(res);
-                        navigate("/dashboard");
+                    if (res.status === 404) {
+                        alert(res.data.message);
+                    }
+                    if (res.data.login || res.status === 200) {
+                        console.log("Password email request sent to backend.");
+                        alert("Success!")
+                        navigate("/login");
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    if (err.response.status == 404) {
+                        alert("This user does not exist.")
+                    }
+                });
         } else {
-            alert("please enter your email, password, and role.");
+            alert("Please enter an email.");
         }
     };
 
@@ -42,14 +46,13 @@ const ForgotPassword = () => {
 
                 {/* email input textbox */}
                 <div className="input-box">
-                    <EmailVerification setEmail={setEmail} />
-
-                    {/* <input
+                    {/* <EmailVerification setEmail={setEmail} /> */}
+                    <input
                         type="text"
                         placeholder="Email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
-                    /> */}
+                    />
                     <FaUserAlt className="icon" />
                 </div>
 

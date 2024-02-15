@@ -109,7 +109,7 @@ const Register = () => {
                     Submit
                 </button>
 
-                {/* will link to a redister page */}
+                {/* will link to a login page */}
                 <div className="login-link">
                     <p>
                         Already have an account?

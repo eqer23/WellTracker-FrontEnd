@@ -127,9 +127,9 @@ input[type="email"] {
     margin: 30px 0 5px;
 }
 
-.login-link button {
+.login-link p a {
     color: white;
-    /* text-decoration: none; */
+    text-decoration: none;
     font-weight: 600;
 }
 
@@ -143,6 +143,5 @@ input[type="email"] {
 
 button {
     color: white;
-    /* text-decoration: none; */
     font-weight: 600;
 }
