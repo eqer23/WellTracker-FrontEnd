@@ -5,7 +5,9 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {OAuth} from "./OAuth";
 let LOGIN_URL = "http://localhost:3001/login";
+
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -95,6 +97,8 @@ const LoginForm = () => {
                 <button className="btn-login" onClick={handleSubmit}>
                     Login
                 </button>
+
+                <OAuth />
 
                 {/* will link to a redister page */}
                 <div className="register-link">
