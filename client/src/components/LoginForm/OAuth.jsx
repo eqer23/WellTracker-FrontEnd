@@ -40,7 +40,7 @@ const OAuth = ({ role }) => {
             console.log(result.user.email);
 
             axios.defaults.withCredentials = true;
-            if (result.user.email) {
+            if (result.user.email && role) {
                 event.preventDefault();
                 axios
                     .post(OAUTH_URL, {
@@ -57,12 +57,14 @@ const OAuth = ({ role }) => {
                     .catch((err) => {
                         alert(err.response.data.message)
                     });
+                    navigate("/")
             } else {
                 alert("Could not sign in with Google.");
                 return;
             }
-            navigate("/")
-        } catch (err) {
+            
+        } 
+        catch (err) {
             console.log('Could not sign in with Google', err);
             alert(err.response.data.message)
         }
