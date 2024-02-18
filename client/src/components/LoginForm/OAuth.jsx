@@ -26,8 +26,6 @@ const app = initializeApp(firebaseConfig);
 
 const OAuth = ({ role }) => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
 
     const handleGoogleClick = async () => {
         try {
@@ -37,39 +35,36 @@ const OAuth = ({ role }) => {
             const auth = getAuth(app);
 
             const result = await signInWithPopup(auth, provider);
-
-            console.log('User object:', result.user);
-
+            
             console.log(result.user.displayName);
             console.log(result.user.email);
-            console.log(role);
-            setEmail(result.user.email)
 
             axios.defaults.withCredentials = true;
             if (result.user.email) {
                 event.preventDefault();
-                // console.log('Email' + email);
                 axios
                     .post(OAUTH_URL, {
                         email: result.user.email,
                         role: role,
                     })
                     .then((res) => {
-                        if (res.data.login) {
+                        if (res) {
                             console.log(res);
                         }
+                       ;
                         console.log(res.data)
-
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) => {
+                        alert(err.response.data.message)
+                    });
             } else {
                 alert("Could not sign in with Google.");
+                return;
             }
-
-            navigate("/");
-
-        } catch (error) {
-            console.log('Could not sign in with Google', error);
+            navigate("/")
+        } catch (err) {
+            console.log('Could not sign in with Google', err);
+            alert(err.response.data.message)
         }
     };
 

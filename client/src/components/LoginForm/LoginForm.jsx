@@ -33,7 +33,9 @@ const LoginForm = () => {
                     console.log(res.data)
 
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    alert(err.response.data.message)
+                });
         } else {
             alert("please enter your email, password, and role.");
         }
@@ -76,6 +78,7 @@ const LoginForm = () => {
                         id="role"
                         onChange={(e) => setRole(e.target.value)}
                     >
+                        <option value=""></option>
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
                         <option value="admin">Admin</option>
@@ -98,7 +101,7 @@ const LoginForm = () => {
                     Login
                 </button>
 
-                <OAuth role={role}/>
+                <OAuth role={role} />
 
                 {/* will link to a redister page */}
                 <div className="register-link">

@@ -4,6 +4,7 @@ import "./Register.css";
 import EmailVerification from "../EmailVerification/EmailVerification";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { OAuth } from "../LoginForm/OAuth";
 let REGISTER_URL = "http://localhost:3001/register";
 
 const Register = () => {
@@ -16,25 +17,23 @@ const Register = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        if (email && password && role) {
-            event.preventDefault();
-            axios
-                .post(REGISTER_URL, {
-                    email,
-                    password,
-                    role,
-                })
-                .then((res) => {
-                    if (res.status == 200) {
-                        console.log(res); // check if error is thrown because emil already used - 409 error (make message)
-                        navigate("/dashboard");
-                    }
-                })
-                .catch((err) => {
-                    console.log('Missing fields' + err)
-                    alert("Please fill in all required fields.")
-                });
-        }
+        event.preventDefault();
+        axios
+            .post(REGISTER_URL, {
+                email,
+                password,
+                role,
+            })
+            .then((res) => {
+                if (res.status == 200) {
+                    console.log(res); // check if error is thrown because emil already used - 400 error (make message)
+                    navigate("/dashboard");
+                }
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            });
+
     };
 
     return (
@@ -100,6 +99,7 @@ const Register = () => {
                             id="role"
                             onChange={(e) => setRole(e.target.value)}
                         >
+                            <option value=""></option>
                             <option value="user">Client</option>
                             <option value="professional">Professional</option>
                             <option value="admin">Admin</option>
@@ -111,6 +111,10 @@ const Register = () => {
                 <button type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
+
+
+
+                <OAuth role={role} />
 
                 {/* will link to a redister page */}
                 <div className="login-link">
