@@ -30,7 +30,10 @@ const Register = () => {
                         navigate("/dashboard");
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log('Missing fields' + err)
+                    alert("Please fill in all required fields.")
+                });
         }
     };
 
@@ -73,7 +76,7 @@ const Register = () => {
                             type="password"
                             placeholder="Password"
                             required
-                            // onChange={(e) => setPassword(e.target.value)}
+                        // onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
