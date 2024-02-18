@@ -5,12 +5,14 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { OAuth } from "./OAuth";
 let LOGIN_URL = "http://localhost:3001/login";
+
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
 
     axios.defaults.withCredentials = true;
@@ -31,7 +33,9 @@ const LoginForm = () => {
                     console.log(res.data)
 
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    alert(err.response.data.message)
+                });
         } else {
             alert("please enter your email, password, and role.");
         }
@@ -74,6 +78,7 @@ const LoginForm = () => {
                         id="role"
                         onChange={(e) => setRole(e.target.value)}
                     >
+                        <option value=""></option>
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
                         <option value="admin">Admin</option>
@@ -95,6 +100,8 @@ const LoginForm = () => {
                 <button className="btn-login" onClick={handleSubmit}>
                     Login
                 </button>
+
+                <OAuth role={role} />
 
                 {/* will link to a redister page */}
                 <div className="register-link">
