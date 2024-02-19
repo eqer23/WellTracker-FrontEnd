@@ -4,6 +4,7 @@ import "./Navbar.css";
 import "../Search/SearchBar"
 import { SearchBar } from "../Search/SearchBar";
 import { SearchResultsList } from "../Search/SearchResultsList";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
     // variables for searchBar

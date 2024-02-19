@@ -40,7 +40,7 @@ const OAuth = ({ role }) => {
             console.log(result.user.email);
 
             axios.defaults.withCredentials = true;
-            if (result.user.email && role) {
+            if (result.user.email) {
                 event.preventDefault();
                 axios
                     .post(OAUTH_URL, {
@@ -48,18 +48,17 @@ const OAuth = ({ role }) => {
                         role: role,
                     })
                     .then((res) => {
-                        if (res) {
+                        if (res.status === 200) {
                             console.log(res);
-                        }
-                       ;
-                        console.log(res.data)
+                            navigate("/")
+                        }                        
                     })
                     .catch((err) => {
                         alert(err.response.data.message)
                     });
-                    navigate("/")
+                    
             } else {
-                alert("Could not sign in with Google.");
+                alert("Critical Error: Could not sign in with Google.");
                 return;
             }
             

@@ -7,6 +7,8 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
 import ProfessionalRegistration from "./components/ProfessionalRegistration/ProfessionalRegistration";
+import Profile from "./components/Profile/Profile";
+
 
 function App() {
     return (
@@ -15,16 +17,11 @@ function App() {
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
-                <Route
-                    path="/forgot-password"
-                    element={<ForgotPassword />}
-                ></Route>
+                <Route path="/forgot-password" element={<ForgotPassword />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/reset-password/:token" element={<ResetPassword />}></Route>
-                <Route
-                    path="/pregistration"
-                    element={<ProfessionalRegistration />}
-                ></Route>
+                <Route path="/pregistration" element={<ProfessionalRegistration />}></Route>
+                <Route path = "/profile" element={<Profile />}></Route>
             </Routes>
         </BrowserRouter>
     );
