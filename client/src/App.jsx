@@ -28,14 +28,9 @@ function App() {
           element={<ProfessionalRegistration />}
         ></Route>
         {/* Logic for protected routes. Routes that a user should not be able to access until login */}
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        ></Route>
+        <Route path="/profile" element={<ProtectedRoute />}>
+          <Route path="" element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
