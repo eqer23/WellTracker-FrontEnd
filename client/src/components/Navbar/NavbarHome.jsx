@@ -46,8 +46,6 @@ const NavbarHome = () => {
                             <NavLink to="/login">Login</NavLink>
                         </li>
                     </React.Fragment>
-
-
                 )}
             </ul>
         </nav>

@@ -2,6 +2,8 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "./Logout.css";
+
 const Logout = () => {
     const [, , removeCookie] = useCookies(["session-token"]);
     const navigate = useNavigate();
@@ -10,12 +12,12 @@ const Logout = () => {
         // Remove the session-token cookie
         removeCookie("session-token");
         // Perform any additional logout tasks
-        alert("You have logged out.")
-        navigate("/"); // Redirect to the login page after logout
+        alert("You have been logged out.")
+        navigate("/"); // Redirect to this page after logout
     };
 
     return (
-        <li className="nav-item" onClick={handleLogout}>
+        <li className="nav-item logout" onClick={handleLogout}>
             Logout
         </li>
     );
