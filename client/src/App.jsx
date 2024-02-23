@@ -7,6 +7,7 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
 import ProfessionalRegistration from "./components/ProfessionalRegistration/ProfessionalRegistration";
+import Upload from "./components/Upload/Upload";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     path="/pregistration"
                     element={<ProfessionalRegistration />}
                 ></Route>
+                <Route path="/upload" element={<Upload />}></Route>
             </Routes>
         </BrowserRouter>
     );
