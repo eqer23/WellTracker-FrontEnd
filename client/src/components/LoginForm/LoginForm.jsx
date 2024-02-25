@@ -25,9 +25,15 @@ const LoginForm = () => {
           role,
         })
         .then((res) => {
-          if (res.data.login) {
+          if (res.data.login && res.data.tfa == null) {
             console.log(res);
             navigate("/dashboard");
+          }
+          else if (res.data.tfa) {
+            navigate("/twofactor");
+          }
+          else {
+            console.log("Unknown error happened, check 2fa logic.")
           }
           console.log(res.data);
         })

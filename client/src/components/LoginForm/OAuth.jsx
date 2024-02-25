@@ -32,18 +32,25 @@ const OAuth = ({ role }) => {
             const provider = new GoogleAuthProvider();
             provider.addScope('https://www.googleapis.com/auth/userinfo.email');
             provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+            provider.addScope('profile');
+
             const auth = getAuth(app);
 
             const result = await signInWithPopup(auth, provider);
-            
-            console.log(result.user.displayName);
-            console.log(result.user.email);
+
+            let [firstName, lastName] = result.user.displayName.split(' ');   
+            if (lastName === undefined) {
+                lastName = null;
+            }         
+    
 
             axios.defaults.withCredentials = true;
             if (result.user.email) {
                 event.preventDefault();
                 axios
                     .post(OAUTH_URL, {
+                        firstName: firstName,
+                        lastName: lastName,
                         email: result.user.email,
                         role: role,
                     })

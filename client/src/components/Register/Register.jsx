@@ -29,7 +29,7 @@ const Register = () => {
       .then((res) => {
         if (res.status == 200) {
           console.log(res); // check if error is thrown because emil already used - 400 error (make message)
-          navigate("/dashboard");
+          navigate("/login");
         }
       })
       .catch((err) => {
