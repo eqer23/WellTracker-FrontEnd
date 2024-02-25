@@ -8,16 +8,23 @@ import "./Profile.css";
 import axios from "axios";
 import NavbarHome from "../Navbar/NavbarHome";
 import { useCookies } from "react-cookie";
-let URL = import.meta.env.VITE_SERVER_URL + "generate-secret";
+import QRCode from "qrcode";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 const Profile = () => {
   const [data, setData] = useState(null);
   const [cookies] = useCookies(["session-token"]); // Get the token cookie
   const [decodedToken, setDecodedToken] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [qrCodeDataUrl, setQRCodeDataUrl] = useState("");
+  const [rerenderKey, setRerenderKey] = useState(0); // State variable for triggering re-render
 
   useEffect(() => {
     const fetchData = async () => {
+      if (qrCodeDataUrl != "") {
+        const qrCode = await QRCode.toDataURL(data.tfaToken);
+        setQRCodeDataUrl(qrCode);
+      }
       try {
         const decodedToken = jwtDecode(cookies["session-token"]);
         const userId = decodedToken.id;
@@ -40,35 +47,58 @@ const Profile = () => {
     };
 
     fetchData();
-  }, [cookies]);
+  }, [cookies, rerenderKey]);
 
   const handle2fa = async () => {
-    console.log("2fa ");
+    console.log("2fa started");
     try {
-      const response = await axios.post(URL, {
+      const response = await axios.post(URL + "generate-secret", {
         userId: decodedToken.id,
       });
-      console.log("Secret generated:", response.data);
+      if (response.status === 200) {
+        const secret = await response.data.secret; // Get the generated secret from the response
+        const qrCode = await QRCode.toDataURL("otpauth://totp/Instafit?secret=" + secret + "&issuer=Instafit&digits=6&period=30");
+        setQRCodeDataUrl(qrCode);
+        console.log("Secret generated:", response.data);
+        
+      }
     } catch (error) {
-      console.log(error.response.data.message)
-      console.error("Error generating secret:", error);
+      console.log(error);
+      console.log(error.response.data.message);
     }
+    
   };
+
+  const handleRerender = async () => {
+    const qrCode = await QRCode.toDataURL("otpauth://totp/Instafit?secret=" + data.tfaToken + "&issuer=Instafit&digits=6&period=30");
+    setQRCodeDataUrl(qrCode);
+    setRerenderKey((prevKey) => prevKey + 1);
+  };
+
   const isTfaTokenIdPresent = data && data["tfaTokenId"];
   return (
     <div>
       <NavbarHome />
       <h1>Your Profile</h1>
-      {/* <p>Data: {data}</p> */}
+
       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
 
-      <button 
-        className="btn-login" 
-        onClick={handle2fa} 
-        disabled={isTfaTokenIdPresent} // Disable the button if tfaTokenId is present
+      <button
+        className="btn-login"
+        onClick={handle2fa}
+        style={{ display: isTfaTokenIdPresent ? "none" : "block" }}
       >
         Activate 2-Factor Authentication
       </button>
+
+      <button
+        className="btn-login"
+        onClick={handleRerender}
+        style={{ display: isTfaTokenIdPresent ? "block" : "none" }}
+      >
+        Show 2fa QR Code
+      </button>
+      {qrCodeDataUrl && <img src={qrCodeDataUrl} alt="QR Code" />}
     </div>
   );
 };

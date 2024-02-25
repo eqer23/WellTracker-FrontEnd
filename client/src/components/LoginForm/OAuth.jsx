@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { initializeApp } from "firebase/app";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let URL = import.meta.env.VITE_SERVER_URL + "oauth";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 
 
@@ -48,7 +48,7 @@ const OAuth = ({ role }) => {
             if (result.user.email) {
                 event.preventDefault();
                 axios
-                    .post(URL, {
+                    .post(URL + "oauth", {
                         firstName: firstName,
                         lastName: lastName,
                         email: result.user.email,

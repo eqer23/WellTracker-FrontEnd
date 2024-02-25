@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { OAuth } from "./OAuth";
-let LOGIN_URL = import.meta.env.VITE_SERVER_URL + 'login'
+let LOGIN_URL = import.meta.env.VITE_SERVER_URL;
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const LoginForm = () => {
     if (email && password) {
       event.preventDefault();
       axios
-        .post(LOGIN_URL, {
+        .post(LOGIN_URL + 'login', {
           email,
           password,
           role,
