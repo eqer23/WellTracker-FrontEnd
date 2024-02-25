@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { OAuth } from "./OAuth";
-let LOGIN_URL = "http://localhost:3001/login";
+let LOGIN_URL = import.meta.env.VITE_SERVER_URL + 'login'
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

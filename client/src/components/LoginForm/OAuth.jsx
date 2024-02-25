@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { initializeApp } from "firebase/app";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let OAUTH_URL = "http://localhost:3001/oauth";
+let URL = import.meta.env.VITE_SERVER_URL + "oauth";
 
 
 
@@ -48,7 +48,7 @@ const OAuth = ({ role }) => {
             if (result.user.email) {
                 event.preventDefault();
                 axios
-                    .post(OAUTH_URL, {
+                    .post(URL, {
                         firstName: firstName,
                         lastName: lastName,
                         email: result.user.email,
@@ -77,7 +77,7 @@ const OAuth = ({ role }) => {
     };
 
     return (
-        <button onClick={handleGoogleClick} type='button' className=''>
+        <button className="btn-login" onClick={handleGoogleClick} type='button'>
             Continue with Google
         </button>
     )

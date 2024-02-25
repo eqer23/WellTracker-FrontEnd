@@ -8,7 +8,7 @@ import "./Profile.css";
 import axios from "axios";
 import NavbarHome from "../Navbar/NavbarHome";
 import { useCookies } from "react-cookie";
-let URL = "http://localhost:3001/";
+let URL = import.meta.env.VITE_SERVER_URL + "generate-secret";
 
 const Profile = () => {
   const [data, setData] = useState(null);
@@ -45,7 +45,7 @@ const Profile = () => {
   const handle2fa = async () => {
     console.log("2fa ");
     try {
-      const response = await axios.post(URL + "generate-secret", {
+      const response = await axios.post(URL, {
         userId: decodedToken.id,
       });
       console.log("Secret generated:", response.data);

@@ -5,7 +5,7 @@ import EmailVerification from "../EmailVerification/EmailVerification";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { OAuth } from "../LoginForm/OAuth";
-let REGISTER_URL = "http://localhost:3001/register";
+let URL = import.meta.env.VITE_SERVER_URL + "register";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const Register = () => {
   const handleSubmit = () => {
     event.preventDefault();
     axios
-      .post(REGISTER_URL, {
+      .post(URL, {
         firstname,
         lastname,
         email,

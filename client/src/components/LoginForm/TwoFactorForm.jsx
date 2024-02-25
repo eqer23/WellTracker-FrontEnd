@@ -29,11 +29,14 @@ const TwoFactorForm = () => {
             console.log("TFA passed");
             navigate("/dashboard");
           }
-          console.log(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          alert("Your code was incorrect. Please try again.");
+          navigate("/login");
+        });
     } else {
-      alert("Tfa failed");
+      navigate("/login");
     }
   };
 
