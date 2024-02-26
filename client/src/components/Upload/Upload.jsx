@@ -3,6 +3,7 @@ import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+let UPLOAD_URL = "http://localhost:3001/upload";
 
 
 const Upload = () => {
