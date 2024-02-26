@@ -6,7 +6,7 @@ import Topbar from "./Components/Global/Topbar";
 import Sidebar from "./Components/Global/Sidebar";
 import Team from "./Components/Dashboard/Team";
 // import Invoices from "./Components/Dashboard/Invoices";
-// import Contacts from "./Components/Dashboard/Contacts";
+import Contacts from "./Components/Dashboard/Contacts";
 // import Bar from "./Components/Dashboard/Bar";
 // import Form from "./Components/Dashboard/Form";
 // import Line from "./Components/Dashboard/Line";
