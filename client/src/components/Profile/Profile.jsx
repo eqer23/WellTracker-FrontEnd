@@ -41,16 +41,7 @@ const Profile = () => {
         console.log("data requested");
         setData(response.data);
 
-        if (response.data && response.data.tfaToken) {
-          const qrCode = await QRCode.toDataURL(
-            "otpauth://totp/" +
-              userId +
-              "?secret=" +
-              response.data.tfaToken +
-              "&issuer=Instafit&digits=6&period=30"
-          );
-          setQRCodeDataUrl(qrCode);
-        }
+        
       } catch (error) {
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
@@ -84,6 +75,10 @@ const Profile = () => {
     setRerenderKey((prevKey) => prevKey + 1);
   };
 
+  const handleRerender = async () => {
+    const qrCode = await QRCode.toDataURL("otpauth://totp/Instafit?secret=" + data.tfaToken + "&issuer=Instafit&digits=6&period=30");
+    setQRCodeDataUrl(qrCode);
+  };
 
   const isTfaTokenIdPresent = data && data["tfaTokenId"];
   return (
@@ -103,7 +98,7 @@ const Profile = () => {
 
       <button
         className="btn-login"
-        onClick={handle2fa}
+        onClick={handleRerender}
         style={{ display: isTfaTokenIdPresent ? "block" : "none" }}
       >
         Show 2fa QR Code
