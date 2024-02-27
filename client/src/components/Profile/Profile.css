@@ -12,10 +12,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
+  padding: 1em;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("./components/Assets/AdobeStock_197600642.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -25,18 +25,5 @@ code {
     monospace;
 }
 
-.btn-login:hover {
-  background-color: #9ca19d; /* Change background color on hover */
-}
 
-.btn-login {
-  background-color: white;
-  color: black;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  display: block;
-  margin: 0 auto;
-}
+

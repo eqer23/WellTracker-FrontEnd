@@ -5,7 +5,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let URL = "http://localhost:3001/forgot-password";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
         if (email) {
             event.preventDefault();
             axios
-                .post(URL, {
+                .post(URL + "forgot-password", {
                     email,
                 })
                 .then((res) => {
