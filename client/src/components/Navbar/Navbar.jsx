@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import "../Search/SearchBar"
+import "../Search/SearchBar";
 import { SearchBar } from "../Search/SearchBar";
 import { SearchResultsList } from "../Search/SearchResultsList";
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <NavLink to="/nutrition">Nutrition</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/rec">Recommendations</NavLink>
+                    <NavLink to="/calendar">Calendar</NavLink>
                 </li>
             </ul>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
                     <NavLink to="/login">Login</NavLink>
                 </li>
                 <li>
-                    <NavLink w/>
+                    <NavLink w />
                 </li>
             </ul>
         </nav>

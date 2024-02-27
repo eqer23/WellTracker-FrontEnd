@@ -1,8 +1,8 @@
-.input-wrapper{
+.input-wrapper {
     background-color: white;
     width: 100%;
     border-radius: 10px;
-    height: 2.5rem;
+    height: 2.2rem;
     padding: 0 15px;
     box-shadow: 0px 0px 8px #ddd;
     display: flex;
@@ -19,9 +19,9 @@ input {
 }
 
 input:focus {
-    outline: rebeccapurple;
+    outline: rgb(81, 29, 133);
 }
 
-#search-icon{
-    color: royalblue;
+#search-icon {
+    color: rgb(81, 29, 133);
 }
