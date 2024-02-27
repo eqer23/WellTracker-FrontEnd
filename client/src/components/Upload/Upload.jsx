@@ -8,17 +8,17 @@ let UPLOAD_URL = "http://localhost:3001/upload";
 
 const Upload = () => {
 
-    const [content, postContent] = useState("");
+    const [title, setTitle] = useState("");
     const {token} = useParams()
     const navigate = useNavigate();
 
 
     const handleSubmit = () => {
-        if (content) {
+        if (title) {
             event.preventDefault();
             axios
                 .post("http://localhost:3001/upload/"+token, {
-                    content
+                    title
                 })
                 .then((res) => {
                     if (res.data.status) {
@@ -40,6 +40,17 @@ const Upload = () => {
                 <h1>Upload</h1>
                 <main>
                     <p>Upload videos or workout plans here!</p>
+
+
+        {/* title input textbox */}
+                <div className="input-box">
+        <input
+            type="text"
+            placeholder="Enter Title Here"
+            required
+            onChange={(e) => setTitle(e.target.value)}
+            />
+        </div>  
 
                     <button className="push-upload-btn" onClick={handleSubmit}>
                     Submit
