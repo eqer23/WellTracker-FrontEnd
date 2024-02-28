@@ -21,8 +21,8 @@
 }
 
 .navbar-brand {
-    font-size: 1.5rem; /* Adjust font size as needed */
-    color: #333333; /* Add your desired font color */
+    font-size: 1.6rem;
+    color: #333333;
     text-decoration: none; /* Remove underline */
 }
 
@@ -30,11 +30,12 @@
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 15px 15px 15px 30px;
+    padding: 15px 15px 5px 30px;
 }
 
 .nav-item {
     margin-right: 20px; /* Adjust spacing between nav items */
+    font-size: 1.2rem;
 }
 
 .nav-item a {
