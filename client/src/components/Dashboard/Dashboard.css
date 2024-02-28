@@ -1,0 +1,56 @@
+/* .dash-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    border: 3px solid black;
+    background-color: rgba(245, 245, 220, 0.543);
+    margin-bottom: 20px;
+}
+
+.calendar {
+    border: 3px solid black;
+    background-color: rgba(245, 245, 220, 0.543);
+    margin-bottom: 20px;
+}
+
+.recommendations {
+    border: 3px solid black;
+    background-color: rgba(245, 245, 220, 0.543);
+    margin-bottom: 20px;
+} */
+
+.dash-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.message,
+.calendar {
+    display: flex; /* Make message and calendar flex containers */
+    flex-direction: column; /* Stack items vertically within message and calendar */
+    flex: 1; /* Allow message and calendar to grow to occupy available space */
+    margin-bottom: 20px; /* Add margin between message/calendar and recommendations */
+    border: 3px solid black;
+    background-color: rgba(245, 245, 220, 0.543);
+}
+
+.recommendations {
+    margin-bottom: 20px; /* Add margin between calendar and recommendations */
+    border: 3px solid black;
+    background-color: rgba(245, 245, 220, 0.543);
+}
+
+/* Remove list decorations from lists */
+.last-used-features,
+.recommendations ul {
+    list-style-type: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.recommendations li {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}

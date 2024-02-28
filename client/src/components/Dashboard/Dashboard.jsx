@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Header from "../Header";
 import Navbar from "../Navbar/Navbar";
+import "./Dashboard.css";
 
 const Dashboard = () => {
     return (
