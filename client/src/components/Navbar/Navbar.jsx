@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import "../Search/SearchBar"
+import "../Search/SearchBar";
 import { SearchBar } from "../Search/SearchBar";
 import { SearchResultsList } from "../Search/SearchResultsList";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
-
 
 const Navbar = () => {
     // variables for searchBar
@@ -23,7 +22,7 @@ const Navbar = () => {
             </div>
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <NavLink to="/plans">Fitness Plans</NavLink>
+                    <NavLink to="/plans">Plans</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink to="/nutrition">Nutrition</NavLink>
@@ -39,22 +38,22 @@ const Navbar = () => {
                     <SearchResultsList results={results} />
                 </li>
                 {isLoggedIn ? (
-                <React.Fragment>
-                    <li className="nav-item">
-                        <NavLink to="/profile">Profile</NavLink>
-                    </li>
-                    <Logout />
-                </React.Fragment>
-            ) : (
-                <React.Fragment>
-                    <li className="nav-item">
-                        <NavLink to="/register">Register</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/login">Login</NavLink>
-                    </li>
-                </React.Fragment>
-            )}
+                    <React.Fragment>
+                        <li className="nav-item">
+                            <NavLink to="/profile">Profile</NavLink>
+                        </li>
+                        <Logout />
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment>
+                        <li className="nav-item">
+                            <NavLink to="/register">Register</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/login">Login</NavLink>
+                        </li>
+                    </React.Fragment>
+                )}
             </ul>
         </nav>
     );
