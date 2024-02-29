@@ -6,6 +6,17 @@ import { useNavigate } from "react-router-dom";
 let UPLOAD_URL = "http://localhost:3001/upload";
 
 
+/*function Upload() {
+    const [file, setFile] = useState()
+    return (
+        <div>
+            <input type = "file" onChange = {(e) => setFile(e.target.files[0])}/>
+        </div>
+    )
+}*/
+
+
+
 const Upload = () => {
 
     const [title, setTitle] = useState("");
