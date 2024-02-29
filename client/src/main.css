@@ -33,7 +33,7 @@ code {
 }
 
 .btn-login:hover {
-    background-color: #9ca19d; /* Change background color on hover */
+    background-color: #ddb9e2; /* Change background color on hover */
 }
 
 .btn-login {
@@ -46,4 +46,8 @@ code {
     font-size: 16px;
     display: block;
     margin: 0 auto;
+}
+
+.btn-oauth:hover {
+    background-color: #ddb9e2;
 }

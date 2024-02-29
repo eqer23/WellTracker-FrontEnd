@@ -1,5 +1,4 @@
-.wrapper {
-    /* creates the overall back rectange that will match the login screen */
+/* .wrapper {
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -16,7 +15,6 @@
 }
 
 .wrapper button {
-    /* keeps buttons consistent with how they appear in the login page */
     width: 100%;
     height: 45px;
     background: white;
@@ -32,11 +30,11 @@
 
 .wrapper .professional-name .other-info {
     display: flex;
-    flex-direction: column; /* change flex direction to column so each new element stars atop one another */
+    flex-direction: column; 
 }
 
 .wrapper .client-name .other-info label {
     display: flex;
-    align-items: center; /* centers the buttons */
-    margin-bottom: 10px; /* add space between radio buttons */
-}
+    align-items: center; 
+    margin-bottom: 10px; 
+} */

@@ -1,6 +1,4 @@
 import React from "react";
-import { Box } from "@mui/material";
-import Header from "../Header";
 import Navbar from "../Navbar/Navbar";
 import "./Dashboard.css";
 
@@ -9,49 +7,49 @@ const Dashboard = () => {
         <div className="home">
             <Navbar />
             <div className="content" style={{ paddingTop: "100px" }}>
-                {/* <Box m="20px">
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                >
-                    <Header title="DASHBOARD" subtitle="Welcome to Instafit" />
-                </Box>
-            </Box> */}
                 <div className="dash-wrapper">
-                    <div className="message">
-                        <h1>Welcome to InstaFit!</h1>
-                        <h3>Pick up where you left off?</h3>
-                        <ul className="last-used-features">
-                            <li className="last-feature">Plans</li>
-                            <li className="last-feature">Nutrition</li>
-                        </ul>
+                    <div className="dash-greeting-calendar">
+                        <div className="dash-greeting">
+                            <div className="message">
+                                <h1>Welcome to InstaFit!</h1>
+                            </div>
+                            <div className="resume-activity">
+                                <h3>Pick up where you left off?</h3>
+                                <ul className="last-used-features">
+                                    <li className="last-feature">Plans</li>
+                                    <li className="last-feature">Nutrition</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="calendar">CALENDAR HERE</div>
                     </div>
-                    <div className="calendar">CALENDAR HERE</div>
+
                     <div className="recommendations">
+                        <h2>Recommendations: </h2>
                         <ul>
                             <li>
-                                image here
+                                <p>image here</p>
                                 <h3>class name</h3>
                                 <p>description</p>
                             </li>
                             <li>
-                                image here
+                                <p>image here</p>
                                 <h3>class name</h3>
                                 <p>description</p>
                             </li>
                             <li>
-                                image here
+                                <p>image here</p>
                                 <h3>class name</h3>
                                 <p>description</p>
                             </li>
                             <li>
-                                image here
+                                <p>image here</p>
                                 <h3>class name</h3>
                                 <p>description</p>
                             </li>
                             <li>
-                                image here
+                                <p>image here</p>
                                 <h3>class name</h3>
                                 <p>description</p>
                             </li>
