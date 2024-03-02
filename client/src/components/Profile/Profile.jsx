@@ -26,7 +26,7 @@ const Profile = () => {
         setQRCodeDataUrl(qrCode);
       }
       try {
-        const decodedToken = jwtDecode(cookies["session-token"]);
+        const decodedToken = jwtDecode(localStorage.getItem('session-token'));
         const userId = decodedToken.id;
         console.log("userId: " + decodedToken.id);
         setDecodedToken(decodedToken);
@@ -34,7 +34,7 @@ const Profile = () => {
         // Send HTTP request to backend
         const response = await axios.get(URL + "data", {
           headers: {
-            Authorization: `Bearer ${cookies["session-token"]}`, // Include the session-token cookie in the request headers
+            Authorization: `Bearer ${localStorage.getItem('session-token')}`, // Include the session-token cookie in the request headers
             userId: userId,
           },
         });

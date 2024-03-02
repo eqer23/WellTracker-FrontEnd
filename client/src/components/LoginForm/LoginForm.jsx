@@ -27,9 +27,11 @@ const LoginForm = () => {
         .then((res) => {
           if (res.data.login && res.data.tfa == null) {
             console.log(res);
+            localStorage.setItem('session-token', res.data.token)
             navigate("/dashboard");
           }
           else if (res.data.tfa) {
+            localStorage.setItem('temp-session-token', res.data.token)
             navigate("/twofactor");
           }
           else {
