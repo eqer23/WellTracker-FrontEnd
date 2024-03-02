@@ -22,7 +22,14 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="calendar">CALENDAR HERE</div>
+                        {/* will show workout for the day, meals, sleep cycle 
+                        (as in that speific day's info, but can click on a link 
+                        to the calendar page which will also be able to be accesses 
+                        by the navbar */}
+                        <div className="calendar">
+                            <p>info for that day (to do's)</p>
+                            <p>link to calendar page</p>
+                        </div>
                     </div>
 
                     <div className="recommendations">
