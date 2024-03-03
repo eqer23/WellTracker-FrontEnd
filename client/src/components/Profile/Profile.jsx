@@ -19,30 +19,39 @@ const Profile = () => {
     const [qrCodeDataUrl, setQRCodeDataUrl] = useState("");
     const [rerenderKey, setRerenderKey] = useState(0); // State variable for triggering re-render
 
-    //   useEffect(() => {
-    //     const fetchData = async () => {
-    //       if (qrCodeDataUrl != "") {
-    //         const qrCode = await QRCode.toDataURL(data.tfaToken);
-    //         setQRCodeDataUrl(qrCode);
-    //       }
-    //       try {
-    //         const decodedToken = jwtDecode(localStorage.getItem('session-token'));
-    //         const userId = decodedToken.id;
-    //         console.log("userId: " + decodedToken.id);
-    //         setDecodedToken(decodedToken);
-    //         setUserId(userId);
-    //         // Send HTTP request to backend
-    //         const response = await axios.get(URL + "data", {
-    //           headers: {
-    //             Authorization: `Bearer ${localStorage.getItem('session-token')}`, // Include the session-token cookie in the request headers
-    //             userId: userId,
-    //           },
-    //         });
-    //         console.log("data requested");
-    //         setData(response.data);
+    useEffect(() => {
+        const fetchData = async () => {
+            if (qrCodeDataUrl != "") {
+                const qrCode = await QRCode.toDataURL(data.tfaToken);
+                setQRCodeDataUrl(qrCode);
+            }
+            try {
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                const userId = decodedToken.id;
+                console.log("userId: " + decodedToken.id);
+                setDecodedToken(decodedToken);
+                setUserId(userId);
+                // Send HTTP request to backend
+                const response = await axios.get(URL + "data", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "session-token"
+                        )}`, // Include the session-token cookie in the request headers
+                        userId: userId,
+                    },
+                });
+                console.log("data requested");
+                setData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                alert(error.response.data.message);
+            }
+        };
 
-    //         fetchData();
-    //     }, [cookies, rerenderKey]);
+        fetchData();
+    }, [cookies, rerenderKey]);
 
     const handle2fa = async () => {
         console.log("2fa started");
@@ -80,35 +89,27 @@ const Profile = () => {
     const isTfaTokenIdPresent = data && data["tfaTokenId"];
     return (
         <div>
-            <form>
-                <NavbarHome />
-                <div className="wrapper-profile">
-                    <h1>USER NAME HERE</h1>
+            <NavbarHome />
+            <h1>Your Profile</h1>
 
-                    {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+            {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
 
-                    <button
-                        className="btn-2Factor"
-                        onClick={handle2fa}
-                        style={{
-                            display: isTfaTokenIdPresent ? "none" : "block",
-                        }}
-                    >
-                        Activate 2-Factor Authentication
-                    </button>
+            <button
+                className="btn-login"
+                onClick={handle2fa}
+                style={{ display: isTfaTokenIdPresent ? "none" : "block" }}
+            >
+                Activate 2-Factor Authentication
+            </button>
 
-                    <button
-                        className="btn-qr"
-                        onClick={handleRerender}
-                        style={{
-                            display: isTfaTokenIdPresent ? "block" : "none",
-                        }}
-                    >
-                        Show 2fa QR Code
-                    </button>
-                    {qrCodeDataUrl && <img src={qrCodeDataUrl} alt="QR Code" />}
-                </div>
-            </form>
+            <button
+                className="btn-login"
+                onClick={handleRerender}
+                style={{ display: isTfaTokenIdPresent ? "block" : "none" }}
+            >
+                Show 2fa QR Code
+            </button>
+            {qrCodeDataUrl && <img src={qrCodeDataUrl} alt="QR Code" />}
         </div>
     );
 };
