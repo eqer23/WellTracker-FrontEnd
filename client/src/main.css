@@ -13,8 +13,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     display: flex;
     flex-direction: column; /* Ensure body content flows vertically */
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     background: url("./components/Assets/AdobeStock_197600642.jpeg") no-repeat;
     background-size: cover;
