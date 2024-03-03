@@ -11,7 +11,7 @@ const Navbar = () => {
     // variables for searchBar
     const [results, setResults] = useState([]);
     const [cookies] = useCookies(["session-token"]); // Get the token cookie
-    const isLoggedIn = cookies["session-token"] ? true : false; // if token exists then logged in
+    const isLoggedIn = localStorage.getItem('session-token') ? true : false;
 
     return (
         <nav className="navbar">

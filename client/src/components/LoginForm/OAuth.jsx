@@ -56,8 +56,9 @@ const OAuth = ({ role }) => {
                     .then((res) => {
                         if (res.status === 200) {
                             console.log(res);
-                            navigate("/");
-                        }
+                            localStorage.setItem('session-token', res.data.token)
+                            navigate("/")
+                        }                        
                     })
                     .catch((err) => {
                         alert(err.response.data.message);

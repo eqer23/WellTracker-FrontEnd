@@ -14,34 +14,38 @@ const LoginForm = () => {
     const [role, setRole] = useState("");
     const navigate = useNavigate();
 
-    axios.defaults.withCredentials = true;
-    const handleSubmit = () => {
-        if (email && password) {
-            event.preventDefault();
-            axios
-                .post(LOGIN_URL + "login", {
-                    email,
-                    password,
-                    role,
-                })
-                .then((res) => {
-                    if (res.data.login && res.data.tfa == null) {
-                        console.log(res);
-                        navigate("/dashboard");
-                    } else if (res.data.tfa) {
-                        navigate("/twofactor");
-                    } else {
-                        console.log("Unknown error happened, check 2fa logic.");
-                    }
-                    console.log(res.data);
-                })
-                .catch((err) => {
-                    alert(err.response.data.message);
-                });
-        } else {
-            alert("Please enter your email, password, and role.");
-        }
-    };
+  axios.defaults.withCredentials = true;
+  const handleSubmit = () => {
+    if (email && password) {
+      event.preventDefault();
+      axios
+        .post(LOGIN_URL + 'login', {
+          email,
+          password,
+          role,
+        })
+        .then((res) => {
+          if (res.data.login && res.data.tfa == null) {
+            console.log(res);
+            localStorage.setItem('session-token', res.data.token)
+            navigate("/dashboard");
+          }
+          else if (res.data.tfa) {
+            localStorage.setItem('temp-session-token', res.data.token)
+            navigate("/twofactor");
+          }
+          else {
+            console.log("Unknown error happened, check 2fa logic.")
+          }
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      alert("please enter your email, password, and role.");
+    }
+  };
 
     return (
         <div className="wrapper-log">

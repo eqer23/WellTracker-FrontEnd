@@ -4,7 +4,8 @@ import { useCookies } from "react-cookie";
 
 const ProtectedRoute = () => {
   const [cookies] = useCookies(["session-token"]);
-  return cookies["session-token"] ? <Outlet /> : <Navigate to="/" />;
+  return localStorage.getItem('session-token') ? <Outlet /> : <Navigate to="/" />;
+
 };
 
 export default ProtectedRoute;
