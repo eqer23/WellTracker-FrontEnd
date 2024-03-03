@@ -13,7 +13,7 @@ const TwoFactorForm = () => {
   const [tfaCode, setTfaCode] = useState("");
   const navigate = useNavigate();
   const [cookies] = useCookies(["temp-session-token"]);
-  const decodedToken = jwtDecode(cookies["temp-session-token"]);
+  const decodedToken = jwtDecode(localStorage.getItem('temp-session-token'));
   console.log(decodedToken.tfa);
 
   axios.defaults.withCredentials = true;
@@ -27,6 +27,7 @@ const TwoFactorForm = () => {
         .then((res) => {
           if (res.data.login) {
             console.log("TFA passed");
+            localStorage.setItem('session-token', res.data.token)
             navigate("/dashboard");
           }
         })

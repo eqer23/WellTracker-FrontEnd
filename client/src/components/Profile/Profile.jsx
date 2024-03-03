@@ -19,32 +19,27 @@ const Profile = () => {
     const [qrCodeDataUrl, setQRCodeDataUrl] = useState("");
     const [rerenderKey, setRerenderKey] = useState(0); // State variable for triggering re-render
 
-    useEffect(() => {
-        const fetchData = async () => {
-            if (qrCodeDataUrl != "") {
-                const qrCode = await QRCode.toDataURL(data.tfaToken);
-                setQRCodeDataUrl(qrCode);
-            }
-            try {
-                const decodedToken = jwtDecode(cookies["session-token"]);
-                const userId = decodedToken.id;
-                console.log("userId: " + decodedToken.id);
-                setDecodedToken(decodedToken);
-                setUserId(userId);
-                // Send HTTP request to backend
-                const response = await axios.get(URL + "data", {
-                    headers: {
-                        Authorization: `Bearer ${cookies["session-token"]}`, // Include the session-token cookie in the request headers
-                        userId: userId,
-                    },
-                });
-                console.log("data requested");
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                alert(error.response.data.message);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (qrCodeDataUrl != "") {
+        const qrCode = await QRCode.toDataURL(data.tfaToken);
+        setQRCodeDataUrl(qrCode);
+      }
+      try {
+        const decodedToken = jwtDecode(localStorage.getItem('session-token'));
+        const userId = decodedToken.id;
+        console.log("userId: " + decodedToken.id);
+        setDecodedToken(decodedToken);
+        setUserId(userId);
+        // Send HTTP request to backend
+        const response = await axios.get(URL + "data", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('session-token')}`, // Include the session-token cookie in the request headers
+            userId: userId,
+          },
+        });
+        console.log("data requested");
+        setData(response.data);
 
         fetchData();
     }, [cookies, rerenderKey]);

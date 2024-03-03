@@ -10,8 +10,8 @@ const Logout = () => {
 
     const handleLogout = () => {
         // Remove the session-token cookie
-        removeCookie("session-token");
-        removeCookie("temp-session-token");
+        localStorage.removeItem('session-token');
+        localStorage.removeItem('temp-session-token');
         // Perform any additional logout tasks
         alert("You have been logged out.")
         navigate("/"); // Redirect to this page after logout
