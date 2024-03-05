@@ -40,7 +40,6 @@ const Profile = () => {
         });
         console.log("data requested");
         setData(response.data);
-
         
       } catch (error) {
         console.error("Error fetching data:", error);
