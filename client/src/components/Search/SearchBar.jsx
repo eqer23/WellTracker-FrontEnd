@@ -2,25 +2,24 @@ import React, {useState} from "react";
 import {FaSearch} from "react-icons/fa";
 import "./SearchBar.css"
 
+let LOGIN_URL = import.meta.env.VITE_SERVER_URL
+
 export const SearchBar = ({setResults}) => {
     const [input, setInput] = useState("");
     // Using a dummy json placeholder to get results in search
     const fetchData = (value) => { 
-        fetch("https://jsonplaceholder.typicode.com/users") // would need to change this to our backend
-        .then((response) => response.json())
-        .then((json) => {
-            // This json.filter is responsible for filtering results
-            // Will need to CHANGE for backend data, only an example rn
-            const results = json.filter((user) => {
-                // only returns if 
+        axios.get("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+            const result = response.data.filter((user) =>{
                 return (
-                    value &&  // there's a value
-                    user &&   // a user
-                    user.name &&  // the user has a name
-                    user.name.toLowerCase().includes(value)); // the name includes the value typed in
+                    value &&
+                    user &&
+                    user.name &&
+                    user.name.toLowerCase().includes(value.toLowerCase())
+                );
             });
-            setResults(results);
-        });
+        })
+        setResults(results);
     }
 
     const handleChange = (value) => {
