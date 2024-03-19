@@ -14,6 +14,8 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
   const navigate = useNavigate();
+  const [loaded, setLoaded] = useState(0); 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +25,7 @@ const Chat = () => {
       } else {
         const decodedToken = jwtDecode(localStorage.getItem("session-token"));
         setCurrentUser(decodedToken);
+        setLoaded(1);
       }
     };
 
@@ -49,6 +52,8 @@ const Chat = () => {
     setCurrentChat(chat);
   };
 
+  // console.log(currentChat.)
+
   return (
     <>
       <div>
@@ -59,10 +64,10 @@ const Chat = () => {
             changeChat={changeChat}
           />
           {
-            currentChat === undefined ? (
-              <Welcome />
+            loaded && currentChat === undefined ? (
+              <Welcome currentUser = {currentUser} />
             ) : (
-              <ChattingBox />
+              <ChattingBox currentChat = {currentChat} />
             )
           }
         </div>
