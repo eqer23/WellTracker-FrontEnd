@@ -6,33 +6,27 @@ import { SearchBar } from "../Search/SearchBar";
 import { SearchResultsList } from "../Search/SearchResultsList";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
+import logo from "../Assets/instaFitLogo1.jpg";
 
 const Navbar = () => {
     // variables for searchBar
     const [results, setResults] = useState([]);
     const [cookies] = useCookies(["session-token"]); // Get the token cookie
-    const isLoggedIn = localStorage.getItem('session-token') ? true : false;
+    const isLoggedIn = localStorage.getItem("session-token") ? true : false;
 
     return (
         <nav className="navbar">
-            <div className="navbar-brand">
+            <div className="navbar-sidebar">
+                <p>temp</p>
+            </div>
+
+            <div className="navbar-logo">
                 <NavLink to="/dashboard">
-                    <h1>LOGO</h1>
+                    <img width={50} src={logo} alt="Description of Image" />
                 </NavLink>
             </div>
-            <ul className="navbar-nav">
-                <li className="nav-item">
-                    <NavLink to="/plans">Plans</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/nutrition">Nutrition</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/rec">Recommendations</NavLink>
-                </li>
-            </ul>
 
-            <ul className="navbar-btn">
+            <ul className="navbar-other">
                 <li className="nav-item">
                     <SearchBar setResults={setResults} />
                     <SearchResultsList results={results} />
