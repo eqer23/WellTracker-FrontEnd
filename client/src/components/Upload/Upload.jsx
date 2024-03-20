@@ -34,7 +34,7 @@ const Upload = () => {
             formData.append('title', title)
             event.preventDefault();
             axios
-                .post("http://localhost:3001/upload/", formData)
+                .post("http://localhost:5173/upload/", formData)
                 .then((res) => {
                     if (res.data.status) {
                         console.log("Content uploaded");
@@ -66,6 +66,7 @@ const Upload = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div> 
+                <input type = "file" onChange = {(e) => setFile(e.target.files[0])}/>
                 <button className="push-upload-btn" onClick={handleSubmit}>
                     Submit
                 </button>
