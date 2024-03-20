@@ -4,55 +4,41 @@
     left: 0;
     width: 100%;
     background-color: #fff7ddfd;
-    z-index: 1000; /* Adjust the z-index as needed */
-    padding: 10px 25px; /* Adjust padding as needed */
-    /* box-shadow: 0 2px 5px rgba(238, 233, 226, 0.3);  */
+    z-index: 1000;
+    padding: 20px 25px;
+    box-shadow: 0 2px 5px rgba(238, 233, 226, 0.3);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    /* backdrop-filter: blur(30px); */
 
     display: flex;
     flex-direction: row;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -ms-align-items: flex-start;
-    -ms-flex-align: start;
-    -webkit-box-align: start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-brand {
-    font-size: 1.6rem;
-    color: #333333;
-    text-decoration: none; /* Remove underline */
+.navbar-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
 }
 
-.navbar-nav {
+.navbar-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.navbar-other {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.navbar-info {
     display: flex;
     list-style: none;
+    flex-direction: row;
     margin: 0;
-    padding: 15px 15px 5px 30px;
-}
-
-.nav-item {
-    margin-right: 20px; /* Adjust spacing between nav items */
-    font-size: 1.2rem;
-}
-
-.nav-item a {
-    text-decoration: none;
-    color: #333333; /* Add your desired font color */
-    font-weight: bold; /* Add font weight if needed */
-}
-
-.navbar-btn {
-    margin-left: auto; /* Push the login button to the right */
-    display: flex;
-    list-style: none;
-}
-
-.navbar-btn li {
-    /* padding: 0 10px 0 5px; */
-    color: #2f2a31; /* Add your desired font color */
-    font-weight: bold;
-    padding: 15px 0px 15px 0px;
 }
