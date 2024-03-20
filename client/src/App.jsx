@@ -27,11 +27,13 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <div className="app">
+          <div className="app" 
+            style={{ display: 'flex', height: '100vh', marginLeft: '-28px', marginTop: '-14px'}}>
             <Sidebar isSidebar={isSidebar} />
-            <main className="content">
+            <div style={{ flexGrow: 1, marginLeft: isSidebar ? '550px' : '0' }}>
               <Topbar setIsSiderbar={setIsSiderbar} />
-              <Routes>
+              <main className="content" style={{ marginTop: '0px', marginLeft: '-550px' }}>
+                <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -53,6 +55,7 @@ function App() {
                 </Route>
               </Routes>
             </main>
+          </div>
           </div>
         </ThemeProvider>
       </ColorModeContext.Provider>

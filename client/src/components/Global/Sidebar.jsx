@@ -22,8 +22,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode);
   return (
     <MenuItem
-      activ={selected === title}
-      style={{ color: colors.grey[100] }}
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
@@ -59,7 +61,7 @@ const Sidebar = () => {
         },
       }}
     >
-      <div className="sidebar-whole">
+      <div className="app">
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* Logo and Menu Icon */}
@@ -78,7 +80,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h4" color={colors.grey[100]}>
+                <Typography variant="h2" color={colors.grey[100]}>
                   INSTAFIT
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -91,12 +93,12 @@ const Sidebar = () => {
           {/* User */}
           {!isCollapsed && (
             <Box>
-              <Box>
+              <Box textAlign="center">
                 <img
                   alt="profile-user"
-                  width="100px"
+                  width="180px"
                   height="100px"
-                  src={`../../Assets/user.png`}
+                  src={`src/assets/user.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
