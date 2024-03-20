@@ -6,7 +6,7 @@ export const SearchBar = ({setResults}) => {
     const [input, setInput] = useState("");
     // Using a dummy json placeholder to get results in search
     const fetchData = (value) => { 
-        fetch("https://jsonplaceholder.typicode.com/users") // would need to change this to our backend
+        fetch("http://localhost:5173/searchUsers?value=${value}") // might not work well
         .then((response) => response.json())
         .then((json) => {
             // This json.filter is responsible for filtering results
