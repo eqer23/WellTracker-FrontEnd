@@ -11,8 +11,8 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlinedIcon from "@mui/icons-material/HelpOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlineded";
+//import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+//import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlineded";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
@@ -49,7 +49,7 @@ const Sidebar = () => {
           backgroundColor: "transparent !important",
         },
         "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
+          padding: "0px 35px 5px 20px !important",
         },
         "& .pro-inner-item-hover": {
           color: "#868dfb !important",
@@ -59,6 +59,7 @@ const Sidebar = () => {
         },
       }}
     >
+      <div className="sidebar-whole">
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* Logo and Menu Icon */}
@@ -77,7 +78,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography variant="h4" color={colors.grey[100]}>
                   INSTAFIT
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -102,7 +103,7 @@ const Sidebar = () => {
 
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h4"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
@@ -143,14 +144,14 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Connections"
               to="/Contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Invoices"
               to="/Invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -179,7 +180,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
+              title="FAQs"
               to="/FAQ"
               icon={<HelpOutlinedIcon />}
               selected={selected}
@@ -196,14 +197,14 @@ const Sidebar = () => {
             <Item
               title="Bar Chart"
               to="/Bar"
-              icon={<BarChartOutlinedIcon />}
+              //icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
               to="/Pie"
-              icon={<PieChartOutlineOutlinedIcon />}
+              //icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -224,7 +225,9 @@ const Sidebar = () => {
           </Box>
         </Menu>
       </ProSidebar>
+    </div>
     </Box>
+    
   );
 };
 

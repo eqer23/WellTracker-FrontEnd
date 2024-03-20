@@ -4,7 +4,7 @@ import { tokens } from "../../theme";
 // Remember to change the name from mock to actual data and fill in the proper data
 // This isn't of extremely high importance as of now
 import { mockDataContacts } from "../../Data/mockData";
-import Header from "../../Components/Header";
+import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 
 const Team = () => {
