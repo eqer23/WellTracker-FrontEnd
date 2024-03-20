@@ -7,12 +7,8 @@ import Sidebar from "../Global/Sidebar";
 const Dashboard = () => {
   return (
     <div>
-      <Sidebar />
       <div>
-        <div>
-        <Topbar />
-          <Header title="DASHBOARD" subtitle="Welcome to Instafit" />
-        </div>
+        <Header title="DASHBOARD" subtitle="Welcome to Instafit" />
       </div>
     </div>
   );
