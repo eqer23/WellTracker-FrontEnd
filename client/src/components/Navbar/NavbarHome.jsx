@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import "../Search/SearchBar"
+import { SearchBar } from "../Search/SearchBar";
+import { SearchResultsList } from "../Search/SearchResultsList";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 
 const NavbarHome = () => {
 
+    const [results, setResults] = useState([]);
     const [cookies] = useCookies(["session-token"]); // Get the token cookie
     const isLoggedIn = cookies["session-token"] ? true : false; // if token exists then logged in
 
@@ -26,7 +30,10 @@ const NavbarHome = () => {
             </ul>
 
             <ul className="navbar-btn">
-                <li className="nav-item">Search</li>
+                <li className="nav-item">
+                    <SearchBar setResults={setResults} />
+                    <SearchResultsList results={results} />
+                </li>
 
                 {/* Changes navbar based on user logged in or not */}
 
