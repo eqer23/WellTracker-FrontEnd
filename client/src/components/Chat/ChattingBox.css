@@ -1,0 +1,21 @@
+.chat-messages {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+}
+.sent {
+  display: flex;
+  justify-content: flex-end;
+  .content {
+    background-color: #ff0404d8;
+  }
+}
+.recieved {
+  display: flex;
+  justify-content: flex-start;
+  .content {
+    background-color: #9900ff20;
+  }
+}

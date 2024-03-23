@@ -26,6 +26,7 @@
         "@syncfusion/ej2-react-schedule": "^19.4.55",
         "axios": "^1.6.7",
         "dotenv": "^16.4.4",
+        "emoji-picker-react": "^4.8.0",
         "firebase": "^10.8.0",
         "jwt-decode": "^4.0.0",
         "qrcode": "^1.5.3",
