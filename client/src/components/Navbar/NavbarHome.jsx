@@ -9,9 +9,6 @@ import Logout from "../Logout/Logout";
 import "../Search/SearchBar";
 import logo from "../Assets/instaFitLogo1.jpg";
 
-import { SearchBar } from "../Search/SearchBar";
-import { SearchResultsList } from "../Search/SearchResultsList";
-
 const NavbarHome = () => {
 
     const [results, setResults] = useState([]);
