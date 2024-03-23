@@ -13,7 +13,7 @@ function ChattingBox({ currentChat, currentUser }) {
     const fetchData = async () => {
       try {
         const response = await axios.post(getMessageRoute, {
-          from: currentUser.id,
+          from: currentUser._id,
           to: currentChat._id,
         });
         setMessages(response.data);
@@ -26,10 +26,10 @@ function ChattingBox({ currentChat, currentUser }) {
   
 
   const sendMessageHandler = async (msg) => {
-    console.log("from: " + currentUser.id);
+    console.log("from: " + currentUser._id);
     console.log("to: " + currentChat._id);
     await axios.post(sendMessageRoute, {
-      from: currentUser.id,
+      from: currentUser._id,
       to: currentChat._id,
       message: msg,
     });

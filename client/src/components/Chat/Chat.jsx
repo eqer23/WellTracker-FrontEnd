@@ -36,7 +36,7 @@ const Chat = () => {
     const fetchData = async () => {
       if (currentUser) {
         try {
-          const data = await axios.get(URL + `getAllUsers/${currentUser.id}`);
+          const data = await axios.get(URL + `getAllUsers/${currentUser._id}`);
           setContacts(data.data);
           console.log(data.data);
         } catch (error) {

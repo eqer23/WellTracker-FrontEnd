@@ -29,8 +29,8 @@ const Profile = () => {
                 const decodedToken = jwtDecode(
                     localStorage.getItem("session-token")
                 );
-                const userId = decodedToken.id;
-                console.log("userId: " + decodedToken.id);
+                const userId = decodedToken._id;
+                console.log("userId: " + decodedToken._id);
                 setDecodedToken(decodedToken);
                 setUserId(userId);
                 // Send HTTP request to backend
@@ -57,7 +57,7 @@ const Profile = () => {
         console.log("2fa started");
         try {
             const response = await axios.post(URL + "generate-secret", {
-                userId: decodedToken.id,
+                userId: decodedToken._id,
             });
             if (response.status === 200) {
                 const secret = await response.data.secret; // Get the generated secret from the response

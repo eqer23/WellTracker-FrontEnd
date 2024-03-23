@@ -25,7 +25,7 @@ function Welcome({currentUser}) {
 
   return (
     <div>
-      <h1> Welcome! {currentUser.id}</h1>
+      <h1> Welcome! {currentUser._id}</h1>
       <h2> Select a Chat to Start Chatting!</h2>
     </div>
 

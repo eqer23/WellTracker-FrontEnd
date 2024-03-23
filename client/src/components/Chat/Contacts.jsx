@@ -8,8 +8,8 @@ function Contacts({ contacts, currentUser, changeChat }) {
   useEffect(() => {
     // Update currentUserName when currentUser changes
     if (currentUser) {
-      console.log(currentUser.id);
-      setCurrentUserName(currentUser.id);
+      console.log(currentUser._id);
+      setCurrentUserName(currentUser._id);
     }
   }, [currentUser]);
 
