@@ -10,10 +10,12 @@ export const SearchBar = ({setResults}) => {
         if (!value) return; //exit if the value is empty
 
         try{
-            const response = await axios.get("http://localhost:5173/searchUsers?search=${value}");
-            const json = response.data;
-
-            setResults(json.users || [] );
+            const response = await axios.get(`http://localhost:3001/searchUsers?query=${value}`);
+            const users = response.data;
+            
+            const emails = users.map(user => user.email);
+            console.log(emails);
+            setResults(emails);
         } catch (error) {
             console.error("Error fetching search results: ", error);
             setResults([]);
@@ -22,7 +24,12 @@ export const SearchBar = ({setResults}) => {
 
     const handleChange = (value) => {
         setInput(value)
-        fetchData(value)
+
+        if(value){
+            fetchData(value);
+        } else {
+            setResults([]);
+        }
     };
 
     return (
