@@ -12,6 +12,7 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import progressImage from "../Assets/AdobeStock_207866687.jpeg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 
+
 const Dashboard = () => {
     const [data, setData] = useState(null);
 

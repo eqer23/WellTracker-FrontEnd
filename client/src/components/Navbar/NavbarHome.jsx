@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import "../Search/SearchBar"
+import { SearchBar } from "../Search/SearchBar";
+import { SearchResultsList } from "../Search/SearchResultsList";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import "../Search/SearchBar";
 import logo from "../Assets/instaFitLogo1.jpg";
 
-import { SearchBar } from "../Search/SearchBar";
-import { SearchResultsList } from "../Search/SearchResultsList";
-
 const NavbarHome = () => {
+
     const [results, setResults] = useState([]);
     const [cookies] = useCookies(["session-token"]); // Get the token cookie
     const isLoggedIn = localStorage.getItem("session-token") ? true : false;
