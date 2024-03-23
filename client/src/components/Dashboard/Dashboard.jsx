@@ -95,7 +95,15 @@ const Dashboard = () => {
                         to the calendar page which will also be able to be accesses 
                         by the navbar */}
                         <div className="calendar">
-                            <p>info for that day (to do's)</p>
+                            <div className="my-calendar">calendar</div>
+                            <div className="progress">
+                                <div className="to-do-list">
+                                    <p>to do list</p>
+                                    <div className="completion-graph">
+                                        <p>completion graph</p>
+                                    </div>
+                                </div>
+                            </div>
                             <p>link to calendar page</p>
                         </div>
                     </div>
