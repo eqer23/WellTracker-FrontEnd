@@ -27,18 +27,19 @@
     background-color: #df1717c9;
     min-height: 5rem;
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     border-radius: 0.2rem;
     padding: 0.4rem;
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: center; 
     transition: 0.5s ease-in-out;
-    .avatar {
+    /* .avatar {
       img {
         height: 3rem;
       }
-    }
+    } */
     .username {
       h3 {
         color: white;
@@ -78,9 +79,10 @@
 }
 
 .contactsholder {
-  display: grid;
-  grid-template-rows: 10% 75% 15%;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  overflow: overlay;
   background-color: pink;
 }
 

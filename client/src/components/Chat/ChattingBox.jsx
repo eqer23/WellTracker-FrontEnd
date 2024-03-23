@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ChatInput from "./ChatInput";
 import Message from "./Message";
+import axios from "axios";
+import "./ChattingBox.css";
+import { getMessageRoute, sendMessageRoute } from "../utils/APIRoutes";
+let URL = import.meta.env.VITE_SERVER_URL;
 
-function ChattingBox({ currentChat }) {
-  const sendMessageHandler = (msg) => {
+function ChattingBox({ currentChat, currentUser }) {
+  const [messages, setMessages] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(getMessageRoute, {
+          from: currentUser.id,
+          to: currentChat._id,
+        });
+        setMessages(response.data);
+        console.log("messages: " + messages);
+      } catch (error) {
+      }
+    };
+    fetchData();
+  }, [currentChat]);
+  
+
+  const sendMessageHandler = async (msg) => {
+    console.log("from: " + currentUser.id);
+    console.log("to: " + currentChat._id);
+    await axios.post(sendMessageRoute, {
+      from: currentUser.id,
+      to: currentChat._id,
+      message: msg,
+    });
   };
   return (
-    // Wrap the JSX in parentheses for the return statement
     currentChat && (
       <div>
         <div className="chat-header">
@@ -18,7 +45,17 @@ function ChattingBox({ currentChat }) {
             </div>
           </div>
         </div>
-        <Message />
+        <div className="chat-messages">
+          {messages.map((message) => {
+            return (
+              <div
+                className={`${message.fromSelf ? "sent" : "recieved"}`}
+              >
+                <p>{message.message}</p>
+              </div>
+            );
+          })}
+        </div>
         <ChatInput sendMessageHandler={sendMessageHandler} />
       </div>
     )

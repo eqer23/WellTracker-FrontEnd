@@ -3,11 +3,7 @@
   width: 85vw;
   background-color: rgb(68, 61, 61);
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: auto 75%;
 }
 
-@media screen and (min-width: 720px) and (max-width: 1080px) {
-  .container {
-    grid-template-columns: 35% 65%;
-  }
-}
+

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import NavbarHome from "../Navbar/NavbarHome";
 import Contacts from "./Contacts";
 import Welcome from "./Welcome";
 import "./Chat.css";
@@ -14,8 +15,7 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
   const navigate = useNavigate();
-  const [loaded, setLoaded] = useState(0); 
-
+  const [loaded, setLoaded] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +56,8 @@ const Chat = () => {
 
   return (
     <>
+      {/* <NavbarHome /> */}
+
       <div>
         <div className="conversationContainer">
           <Contacts
@@ -63,18 +65,15 @@ const Chat = () => {
             currentUser={currentUser}
             changeChat={changeChat}
           />
-          {
-            loaded && currentChat === undefined ? (
-              <Welcome currentUser = {currentUser} />
-            ) : (
-              <ChattingBox currentChat = {currentChat} />
-            )
-          }
+          {loaded && currentChat === undefined ? (
+            <Welcome currentUser={currentUser} />
+          ) : (
+            <ChattingBox currentChat={currentChat} currentUser={currentUser} />
+          )}
         </div>
       </div>
     </>
   );
 };
-
 
 export default Chat;
