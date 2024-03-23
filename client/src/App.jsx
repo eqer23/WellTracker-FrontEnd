@@ -10,16 +10,20 @@ import ProfessionalRegistration from "./components/ProfessionalRegistration/Prof
 import Profile from "./components/Profile/Profile/";
 import ProtectedRoute from "./ProtectedRoute";
 import TwoFactorForm from "./components/LoginForm/TwoFactorForm";
+import Chat from "./components/Chat/Chat";
+import Calendar from "./components/Calendar/Calendar";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/calendar" element={<Calendar />}></Route>
         <Route
           path="/reset-password/:token"
           element={<ResetPassword />}
