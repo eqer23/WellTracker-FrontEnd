@@ -22,14 +22,16 @@ const Navbar = () => {
 
             <div className="navbar-logo">
                 <NavLink to="/dashboard">
-                    <img width={50} src={logo} alt="Description of Image" />
+                    <img width={80} src={logo} alt="Description of Image" />
                 </NavLink>
             </div>
 
             <ul className="navbar-other">
                 <li className="nav-item">
-                    <SearchBar setResults={setResults} />
-                    <SearchResultsList results={results} />
+                    <div className="search-item">
+                        <SearchBar setResults={setResults} />
+                        <SearchResultsList results={results} />
+                    </div>
                 </li>
                 {isLoggedIn ? (
                     <React.Fragment>
@@ -40,11 +42,11 @@ const Navbar = () => {
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink to="/register">Register</NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
-                            <NavLink to="/login">Login</NavLink>
+                            <NavLink to="/login">Logout</NavLink>
                         </li>
                     </React.Fragment>
                 )}

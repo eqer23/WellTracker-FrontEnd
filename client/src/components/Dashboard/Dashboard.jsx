@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
 import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
@@ -52,20 +54,20 @@ const Dashboard = () => {
                                 <h1>Welcome to InstaFit!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h2>Hello, {data.username}!</h2>
+                                    <h1>Hello, {data.username}!</h1>
                                 )}
                             </div>
                             <div className="resume-activity">
-                                <h3>Pick up where you left off?</h3>
+                                <h2>Pick up where you left off?</h2>
                                 <div className="last-used-features">
-                                    <div className="last-feature-progress">
+                                    {/* <div className="last-feature-progress">
                                         <img
                                             width={70}
                                             src={progressImage}
                                             alt="Description of Image"
                                         />
                                         <h3>Progress</h3>
-                                    </div>
+                                    </div> */}
 
                                     <div className="last-feature-nutrition">
                                         <img
@@ -95,8 +97,25 @@ const Dashboard = () => {
                         to the calendar page which will also be able to be accesses 
                         by the navbar */}
                         <div className="calendar">
-                            <p>info for that day (to do's)</p>
-                            <p>link to calendar page</p>
+                            <div className="my-calendar">
+                                <NavLink
+                                    to="/Calendar"
+                                    className="calendar-link"
+                                >
+                                    {" "}
+                                    <h2>Calendar</h2>
+                                </NavLink>
+                                <Calendar />
+                            </div>
+                            <div className="progress">
+                                <div className="to-do-list">
+                                    <p>to do list (WORK IN PROGRESS)</p>
+                                    {/* <Calendar availableViews="Agenda" /> */}
+                                    <div className="completion-graph">
+                                        <p>completion graph</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
