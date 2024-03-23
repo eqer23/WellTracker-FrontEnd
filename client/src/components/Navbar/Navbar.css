@@ -26,14 +26,16 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex-grow: 1;
+    /* flex-grow: 1; */
 }
 
 .navbar-other {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex-grow: 1;
+    justify-content: space-between;
+    /* flex-grow: 1; */
+    padding-right: 50px;
 }
 
 .navbar-info {
@@ -41,4 +43,12 @@
     list-style: none;
     flex-direction: row;
     margin: 0;
+}
+
+li {
+    padding: 0 10px;
+}
+
+.search-item {
+    padding-right: 30px;
 }

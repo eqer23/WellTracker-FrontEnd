@@ -58,16 +58,16 @@ const Dashboard = () => {
                                 )}
                             </div>
                             <div className="resume-activity">
-                                <h3>Pick up where you left off?</h3>
+                                <h2>Pick up where you left off?</h2>
                                 <div className="last-used-features">
-                                    <div className="last-feature-progress">
+                                    {/* <div className="last-feature-progress">
                                         <img
                                             width={70}
                                             src={progressImage}
                                             alt="Description of Image"
                                         />
                                         <h3>Progress</h3>
-                                    </div>
+                                    </div> */}
 
                                     <div className="last-feature-nutrition">
                                         <img
