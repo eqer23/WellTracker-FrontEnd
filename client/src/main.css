@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -20,6 +24,8 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+
 
 /* .content {
     flex-grow: 1; /* Allow body content to grow and take up remaining space 
@@ -51,3 +57,4 @@ code {
 .btn-oauth:hover {
     background-color: #ddb9e2;
 }
+

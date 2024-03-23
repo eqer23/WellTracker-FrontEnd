@@ -1,0 +1,70 @@
+/* Calendar.css */
+.calendar-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+  }
+  
+  .schedule-header h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .date-picker {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Adjusting Syncfusion Schedule component */
+  .e-schedule {
+    --background-color: #f9f9f9;
+    --selected-day-background: #007bff;
+    --selected-day-color: #fff;
+    --day-hover-background: #e7e7e7;
+  }
+  
+  /* Generic table styles for calendar layout, if needed */
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .calendar-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .calendar-table td:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Styles for the PropertyPane component */
+  .property-pane {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
