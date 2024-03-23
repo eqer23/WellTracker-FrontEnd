@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
 import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
@@ -52,7 +54,7 @@ const Dashboard = () => {
                                 <h1>Welcome to InstaFit!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h2>Hello, {data.username}!</h2>
+                                    <h1>Hello, {data.username}!</h1>
                                 )}
                             </div>
                             <div className="resume-activity">
@@ -95,10 +97,20 @@ const Dashboard = () => {
                         to the calendar page which will also be able to be accesses 
                         by the navbar */}
                         <div className="calendar">
-                            <div className="my-calendar">calendar</div>
+                            <div className="my-calendar">
+                                <NavLink
+                                    to="/Calendar"
+                                    className="calendar-link"
+                                >
+                                    {" "}
+                                    <h2>Calendar</h2>
+                                </NavLink>
+                                <Calendar />
+                            </div>
                             <div className="progress">
                                 <div className="to-do-list">
-                                    <p>to do list</p>
+                                    <p>to do list (WORK IN PROGRESS)</p>
+                                    {/* <Calendar availableViews="Agenda" /> */}
                                     <div className="completion-graph">
                                         <p>completion graph</p>
                                     </div>

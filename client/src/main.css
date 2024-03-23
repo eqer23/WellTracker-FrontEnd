@@ -1,22 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&family=Unna&display=swap");
 
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
 
 body {
-    margin: 0;
+    margin: 20px;
     font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
-    flex-direction: column; /* Ensure body content flows vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -24,8 +35,6 @@ body {
     background-size: cover;
     background-position: center;
 }
-
-
 
 /* .content {
     flex-grow: 1; /* Allow body content to grow and take up remaining space 
@@ -39,7 +48,7 @@ code {
 }
 
 .btn-login:hover {
-    background-color: #ddb9e2; /* Change background color on hover */
+    background-color: #ddb9e2;
 }
 
 .btn-login {
@@ -57,4 +66,3 @@ code {
 .btn-oauth:hover {
     background-color: #ddb9e2;
 }
-
