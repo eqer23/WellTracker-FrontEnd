@@ -94,13 +94,19 @@ ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     padding-top: 5px;
 }
 
-.last-feature-progress,
 .last-feature-nutrition,
 .last-feature-class {
     width: 150px;
+    border: #000000 solid 3px;
+}
+
+.last-feature-nutrition img,
+.last-feature-class img {
+    width: 100%;
 }
 
 .calendar-link {

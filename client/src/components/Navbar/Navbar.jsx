@@ -22,7 +22,7 @@ const Navbar = () => {
 
             <div className="navbar-logo">
                 <NavLink to="/dashboard">
-                    <img width={50} src={logo} alt="Description of Image" />
+                    <img width={80} src={logo} alt="Description of Image" />
                 </NavLink>
             </div>
 

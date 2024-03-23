@@ -13,11 +13,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    font-size: 20px;
 }
 
 .navbar-logo {
     position: absolute;
-    left: 50%;
+    left: 48.5%;
     transform: translateX(-50%);
     align-items: center;
 }

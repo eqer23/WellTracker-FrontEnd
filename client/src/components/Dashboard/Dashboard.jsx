@@ -116,7 +116,6 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <p>link to calendar page</p>
                         </div>
                     </div>
 
