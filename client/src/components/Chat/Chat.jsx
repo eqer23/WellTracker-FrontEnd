@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -8,6 +8,7 @@ import Contacts from "./Contacts";
 import Welcome from "./Welcome";
 import "./Chat.css";
 import ChattingBox from "./ChattingBox";
+import io from "socket.io-client";
 let URL = import.meta.env.VITE_SERVER_URL;
 
 const Chat = () => {
@@ -16,6 +17,7 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(undefined);
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(0);
+  const socket = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +34,12 @@ const Chat = () => {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    if (currentUser) {
+      socket.current = io(URL);
+      socket.current.emit("add-user", currentUser._id);
+    }
+  },[currentUser])
   useEffect(() => {
     const fetchData = async () => {
       if (currentUser) {
@@ -68,7 +76,7 @@ const Chat = () => {
           {loaded && currentChat === undefined ? (
             <Welcome currentUser={currentUser} />
           ) : (
-            <ChattingBox currentChat={currentChat} currentUser={currentUser} />
+            <ChattingBox currentChat={currentChat} currentUser={currentUser} socket={socket}/>
           )}
         </div>
       </div>

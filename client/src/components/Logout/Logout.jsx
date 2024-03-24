@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Logout.css";
 
 const Logout = () => {
-    const [, , removeCookie] = useCookies(["session-token"]);
     const navigate = useNavigate();
 
     const handleLogout = () => {
