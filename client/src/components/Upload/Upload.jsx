@@ -4,6 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
 
 let UPLOAD_URL = "http://localhost:3001/upload";
 
