@@ -1,9 +1,45 @@
 import React, { useState, useEffect } from "react";
 import "./Contacts.css";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
+
+
 
 function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [selectedContact, setSelectedContact] = useState(undefined);
+  const [decodedToken, setDecodedToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [data, setData] = useState(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+        const userId = decodedToken._id;
+        console.log("userId: " + decodedToken._id);
+        setDecodedToken(decodedToken);
+        setUserId(userId);
+        // Send HTTP request to backend
+        const response = await axios.get(URL + "data", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("session-token")}`, // Include the session-token cookie in the request headers
+            userId: userId,
+          },
+        });
+        console.log("data requested");
+        setData(response.data);
+        console.log("data ", response.data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert(error.response.data.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // Update currentUserName when currentUser changes
@@ -40,7 +76,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
             ))}
           </div>
           <div>
-            <h2 className="username">{currentUserName}</h2>
+            <h2 className="current-user">{data && data.firstName}</h2>
           </div>
         </div>
       )}
