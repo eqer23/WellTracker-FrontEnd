@@ -18,6 +18,7 @@ const Chat = () => {
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(0);
   const socket = useRef();
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,24 @@ const Chat = () => {
         const decodedToken = jwtDecode(localStorage.getItem("session-token"));
         setCurrentUser(decodedToken);
         setLoaded(1);
+      }
+      
+      try {
+        const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+        const response = await axios.get(URL + "data", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("session-token")}`, // Include the session-token cookie in the request headers
+            userId: decodedToken._id,
+          },
+        });
+        console.log("data request !1");
+        setData(response.data);
+        console.log("TEST ", response.data);
+      }
+      catch {
+        console.log("ERROR")
+        console.error("Error fetching data:", error);
+        alert(error.response.data.message);
       }
     };
 
@@ -74,7 +93,7 @@ const Chat = () => {
             changeChat={changeChat}
           />
           {loaded && currentChat === undefined ? (
-            <Welcome currentUser={currentUser} />
+            <Welcome currentUser={data} />
           ) : (
             <ChattingBox currentChat={currentChat} currentUser={currentUser} socket={socket}/>
           )}

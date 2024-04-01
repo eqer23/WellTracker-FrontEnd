@@ -55,13 +55,15 @@ function Contacts({ contacts, currentUser, changeChat }) {
     changeChat(contact);
   };
 
+  const filteredContacts = contacts.filter(contact => contact.role === 'user');
+
   return (
     <>
       {currentUserName && (
         <div className="contactsholder">
           <div className="brand">Instafit</div>
           <div className="contacts">
-            {contacts.map((contact, index) => (
+            {filteredContacts.map((contact, index) => (
               <div
                 className={`contact ${
                   index === selectedContact ? "selected" : ""
