@@ -46,7 +46,8 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
-            <div className="content" style={{ paddingTop: "100px", }}>
+            <Sidebar />
+            <div className="content" style={{ paddingTop: "100px" }}>
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">
                         <div className="dash-greeting">

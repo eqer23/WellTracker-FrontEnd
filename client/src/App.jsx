@@ -7,7 +7,6 @@ import Team from "./components/Team/Team";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 
-
 import Home from "./components/Home/Home";
 // import Navbar from "./components/Navbar/Navbar";
 import Register from "./components/Register/Register";
@@ -29,29 +28,25 @@ function App() {
     <BrowserRouter>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />          
-          <Sidebar />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/team" element={<Team />} />
-                  <Route
-                    path="/reset-password/:token"
-                    element={<ResetPassword />}
-                  />
-                  <Route
-                    path="/pregistration"
-                    element={<ProfessionalRegistration />}
-                  />
-                  <Route path="/twofactor" element={<TwoFactorForm />} />
-                  {/* Logic for protected routes. Routes that a user should not be able to access until login */}
-                  <Route path="/profile" element={<ProtectedRoute />}>
-                    <Route path="" element={<Profile />} />
-                  </Route>
-                </Routes>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route
+              path="/pregistration"
+              element={<ProfessionalRegistration />}
+            />
+            <Route path="/twofactor" element={<TwoFactorForm />} />
+            {/* Logic for protected routes. Routes that a user should not be able to access until login */}
+            <Route path="/profile" element={<ProtectedRoute />}>
+              <Route path="" element={<Profile />} />
+            </Route>
+          </Routes>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </BrowserRouter>
