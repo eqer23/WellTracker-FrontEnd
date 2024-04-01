@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&family=Unna&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column; /* Ensure body content flows vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("./components/Assets/AdobeStock_197600642.jpeg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* .content {
+    flex-grow: 1; /* Allow body content to grow and take up remaining space 
+    padding: 1em; /* Adjust as needed 
+    overflow-y: auto; /* Enable vertical scrolling for body content 
+} */
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.btn-login:hover {
+    background-color: #ddb9e2; /* Change background color on hover */
+}
+
+.btn-login {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-oauth:hover {
+    background-color: #ddb9e2;
+}
