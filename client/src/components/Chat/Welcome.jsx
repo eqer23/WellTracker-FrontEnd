@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 
-function Welcome({currentUser}) {
+function Welcome({data}) {
   // const [userName, setUserName] = useState("");
   // const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ function Welcome({currentUser}) {
 
   return (
     <div>
-      <h1> Welcome, {currentUser.firstName}!</h1>
+      <h1> Welcome, {data && data.firstName}!</h1>
       <h2> Select a Chat to Start Chatting!</h2>
     </div>
 

@@ -39,9 +39,7 @@ const Chat = () => {
             userId: decodedToken._id,
           },
         });
-        console.log("data request !1");
         setData(response.data);
-        console.log("TEST ", response.data);
       }
       catch {
         console.log("ERROR")
@@ -93,7 +91,7 @@ const Chat = () => {
             changeChat={changeChat}
           />
           {loaded && currentChat === undefined ? (
-            <Welcome currentUser={data} />
+            <Welcome data={data} />
           ) : (
             <ChattingBox currentChat={currentChat} currentUser={currentUser} socket={socket}/>
           )}
