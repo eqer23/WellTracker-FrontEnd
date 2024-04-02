@@ -28,6 +28,7 @@ const Scheduler = ({
 }) => {
     const [scheduleObj, setScheduleObj] = useState();
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [events, setEvents] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,13 +40,10 @@ const Scheduler = ({
                         _userId: id,
                     },
                 });
-                console.log(
-                    "Data successfully retreived from the backend:"
-                    // response.data
-                );
-                console.log(response);
 
-                return response;
+                console.log("Data successfully retreived from the backend:");
+                console.log(response.data[0].eventData[0]);
+                setEvents(response.data.map((data) => data.eventData[0]));
             } catch (error) {
                 console.error("Error sending data to backend:", error);
             }
@@ -147,6 +145,7 @@ const Scheduler = ({
                     currentUser={currentUser}
                     dragStart={onDragStart}
                     actionComplete={onActionComplete}
+                    eventSettings={{ dataSource: events }}
                 >
                     <ViewsDirective>
                         {availableViews.map(
@@ -175,7 +174,7 @@ const Scheduler = ({
                             <tr style={{ height: "50px" }}>
                                 <td style={{ width: "100%" }}>
                                     <DatePickerComponent
-                                        value={new Date(0, 0, 0)}
+                                        value={new Date(2024, 3, 2)}
                                         showClearButton={false}
                                         placeholder="Current Date"
                                         floatLabelType="Always"
