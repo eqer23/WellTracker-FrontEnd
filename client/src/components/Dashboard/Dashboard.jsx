@@ -12,6 +12,8 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import progressImage from "../Assets/AdobeStock_207866687.jpeg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import { jwtDecode } from "jwt-decode";
+import Sidebar from "../Global/Sidebar";
+
 
 
 const Dashboard = () => {
@@ -50,6 +52,7 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
+            <Sidebar />
             <div className="content" style={{ paddingTop: "100px" }}>
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">

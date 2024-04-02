@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./theme";
 import Home from "./components/Home/Home";
-// import Navbar from "./components/Navbar/Navbar";
 import Register from "./components/Register/Register";
 import Login from "./components/LoginForm/LoginForm";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Team from "./components/Team/Team";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
 import ProfessionalRegistration from "./components/ProfessionalRegistration/ProfessionalRegistration";
 import Profile from "./components/Profile/Profile/";
@@ -14,30 +17,39 @@ import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/Calendar";
 
 function App() {
+  const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/chat" element={<Chat />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/calendar" element={<Calendar />}></Route>
-        <Route
-          path="/reset-password/:token"
-          element={<ResetPassword />}
-        ></Route>
-        <Route
-          path="/pregistration"
-          element={<ProfessionalRegistration />}
-        ></Route>
-        <Route path="/twofactor" element={<TwoFactorForm />}></Route>
-        {/* Logic for protected routes. Routes that a user should not be able to access until login */}
-        <Route path="/profile" element={<ProtectedRoute />}>
-          <Route path="" element={<Profile />} />
-        </Route>
-      </Routes>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route
+              path="/reset-password/:token"
+              element={<ResetPassword />}
+            ></Route>
+            <Route
+              path="/pregistration"
+              element={<ProfessionalRegistration />}
+            ></Route>
+            <Route path="/twofactor" element={<TwoFactorForm />}></Route>
+            {/* Logic for protected routes. Routes that a user should not be able to access until login */}
+            <Route path="/profile" element={<ProtectedRoute />}>
+              <Route path="" element={<Profile />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
     </BrowserRouter>
   );
 }
