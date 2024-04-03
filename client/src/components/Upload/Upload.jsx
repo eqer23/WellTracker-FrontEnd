@@ -106,7 +106,7 @@ const Upload = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div> 
-                <input type = "file" onChange = {(e) => setFile(e.target.files[0])}/>
+                <input type = "file" onChange = {handleFileUpload}/>
                 <input type = "text"
                 placeholder = "Add Image URL"
                 value = {ImgUrl}
