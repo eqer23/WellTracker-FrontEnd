@@ -4,7 +4,8 @@ import "./Register.css";
 import EmailVerification from "../EmailVerification/EmailVerification";
 import { Link } from "react-router-dom";
 import axios from "axios";
-let REGISTER_URL = "http://localhost:3001/register";
+import { OAuth } from "../LoginForm/OAuth";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -16,26 +17,28 @@ const Register = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        if (email && password && role) {
-            event.preventDefault();
-            axios
-                .post(REGISTER_URL, {
-                    email,
-                    password,
-                    role,
-                })
-                .then((res) => {
-                    if (res.status == 200) {
-                        console.log(res); // check if error is thrown because emil already used - 409 error (make message)
-                        navigate("/dashboard");
-                    }
-                })
-                .catch((err) => console.log(err));
-        }
+        event.preventDefault();
+        axios
+            .post(URL + "register", {
+                firstname,
+                lastname,
+                email,
+                password,
+                role,
+            })
+            .then((res) => {
+                if (res.status == 200) {
+                    console.log(res); // check if error is thrown because emil already used - 400 error (make message)
+                    navigate("/login");
+                }
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
     };
 
     return (
-        <div className="wrapper">
+        <div className="wrapper-reg">
             <form>
                 <h1>Register</h1>
 
@@ -44,7 +47,7 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="First Name"
-                        // required
+                        required
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                 </div>
@@ -52,7 +55,7 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="Last Name"
-                        // required
+                        required
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
@@ -97,6 +100,7 @@ const Register = () => {
                             id="role"
                             onChange={(e) => setRole(e.target.value)}
                         >
+                            <option value=""></option>
                             <option value="user">Client</option>
                             <option value="professional">Professional</option>
                             <option value="admin">Admin</option>
@@ -105,11 +109,19 @@ const Register = () => {
                 </div>
 
                 {/* submit button */}
-                <button type="submit" onClick={handleSubmit}>
+                <button
+                    className="btn-submit"
+                    type="submit"
+                    onClick={handleSubmit}
+                >
                     Submit
                 </button>
 
-                {/* will link to a login page */}
+                <div className="o-btn">
+                    <OAuth role={role} />
+                </div>
+
+                {/* will link to a redister page */}
                 <div className="login-link">
                     <p>
                         Already have an account?

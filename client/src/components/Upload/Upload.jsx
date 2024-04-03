@@ -48,7 +48,7 @@ const Upload = () => {
       }, [navigate]);
 
 
-      const handleFileUpload = (event) => {
+    const handleFileUpload = (event) => {
         const selectedFile = event.target.files[0]
 
         if (selectedFile) {

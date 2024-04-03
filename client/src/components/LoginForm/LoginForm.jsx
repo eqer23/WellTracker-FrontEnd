@@ -5,40 +5,50 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-let LOGIN_URL = "http://localhost:3001/login";
+import { OAuth } from "./OAuth";
+let LOGIN_URL = import.meta.env.VITE_SERVER_URL;
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
 
-    axios.defaults.withCredentials = true;
-    const handleSubmit = () => {
-        if (email && password) {
-            event.preventDefault();
-            axios
-                .post(LOGIN_URL, {
-                    email,
-                    password,
-                    role,
-                })
-                .then((res) => {
-                    if (res.data.login) {
-                        console.log(res);
-                        navigate("/dashboard");
-                    }
-                    console.log(res.data)
-
-                })
-                .catch((err) => console.log(err));
-        } else {
-            alert("please enter your email, password, and role.");
-        }
-    };
+  axios.defaults.withCredentials = true;
+  const handleSubmit = () => {
+    if (email && password) {
+      event.preventDefault();
+      axios
+        .post(LOGIN_URL + 'login', {
+          email,
+          password,
+          role,
+        })
+        .then((res) => {
+          if (res.data.login && res.data.tfa == null) {
+            console.log(res);
+            localStorage.setItem('session-token', res.data.token)
+            navigate("/dashboard");
+          }
+          else if (res.data.tfa) {
+            localStorage.setItem('temp-session-token', res.data.token)
+            navigate("/twofactor");
+          }
+          else {
+            console.log("Unknown error happened, check 2fa logic.")
+          }
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      alert("please enter your email, password, and role.");
+    }
+  };
 
     return (
-        <div className="wrapper">
+        <div className="wrapper-log">
             <div>
                 <h1>Login</h1>
 
@@ -74,6 +84,7 @@ const LoginForm = () => {
                         id="role"
                         onChange={(e) => setRole(e.target.value)}
                     >
+                        <option value=""></option>
                         <option value="user">Client</option>
                         <option value="professional">Professional</option>
                         <option value="admin">Admin</option>
@@ -95,6 +106,10 @@ const LoginForm = () => {
                 <button className="btn-login" onClick={handleSubmit}>
                     Login
                 </button>
+
+                <div className="o-btn">
+                    <OAuth role={role} />
+                </div>
 
                 {/* will link to a redister page */}
                 <div className="register-link">
