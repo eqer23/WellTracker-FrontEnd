@@ -42,7 +42,6 @@ const Chat = () => {
         setData(response.data);
       }
       catch {
-        console.log("ERROR")
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
       }
@@ -63,7 +62,6 @@ const Chat = () => {
         try {
           const data = await axios.get(URL + `getAllUsers/${currentUser._id}`);
           setContacts(data.data);
-          console.log(data.data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -77,7 +75,6 @@ const Chat = () => {
     setCurrentChat(chat);
   };
 
-  // console.log(currentChat.)
 
   return (
     <>

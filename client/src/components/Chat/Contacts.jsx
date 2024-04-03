@@ -104,7 +104,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
               >
                 <div className="username">
                   <h3>{contact.firstName}</h3>
-                  <h3>{contact.role}</h3>
+                  <h4>{contact.role}</h4>
                 </div>
               </div>
             ))}
