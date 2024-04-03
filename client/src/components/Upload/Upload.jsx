@@ -25,15 +25,53 @@ const Upload = () => {
 
     const [title, setTitle] = useState("");
     const [file, setFile] = useState();
+    const [creatorID, setCreatorID] = useState(undefined);
     const {token} = useParams();
+    const [ImgUrl, setImgURL] = useState();
+    const [description, setDescription] = useState("")
+    
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchData = async () => {
+          if (!localStorage.getItem("session-token")) {
+            navigate("/login");
+            alert("You cannot use chat if you haven't logged in.");
+          } else {
+            const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+            setCreatorID(decodedToken);
+            
+          }
+        };
+    
+        fetchData();
+      }, [navigate]);
+
+
+      const handleFileUpload = (event) => {
+        const selectedFile = event.target.files[0]
+
+        if (selectedFile) {
+            const storageRef = firebase.storage().ref()
+            const fileRef = storageRef.child(selectedFile.name)
+
+            fileRef.put(selectedFile).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log(downloadURL);
+                    setImgURL(downloadURL);
+                });
+            });
+        } else {
+            console.log("No file selected")
+        }
+      }
 
     const handleSubmit = () => {
         if (title) {
             const formData = new FormData()
-            formData.append('file', file)
+            formData.append('ImgURL', ImgUrl)
             formData.append('title', title)
+            formData.append('creatorId', creatorID)
             event.preventDefault();
             axios
                 .post("http://localhost:5173/upload/", formData)
@@ -69,6 +107,10 @@ const Upload = () => {
                     />
                 </div> 
                 <input type = "file" onChange = {(e) => setFile(e.target.files[0])}/>
+                <input type = "text"
+                placeholder = "Add Image URL"
+                value = {ImgUrl}
+                onChange={(e) => setImgURL(e.target.value)}/>
                 <button className="push-upload-btn" onClick={handleSubmit}>
                     Submit
                 </button>
