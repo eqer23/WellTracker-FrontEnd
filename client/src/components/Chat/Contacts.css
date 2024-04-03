@@ -27,7 +27,8 @@
     background-color: #df1717c9;
     min-height: 5rem;
     cursor: pointer;
-    width: 400%;
+    
+    width: 200%;
     border-radius: 0.2rem;
     padding: 0.4rem;
     margin: 0.4rem;
@@ -53,7 +54,7 @@
 }
 
 .current-user {
-  background-color: #0d0d30;
+  background-color: #adadc4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,11 +82,17 @@
 
 .contactsholder {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center; 
-  overflow: overlay;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100vh; /* Set maximum height to viewport height */
   background-color: pink;
+  width: 100%;
 }
+
+
 
 .brand {
   display: flex;

@@ -22,12 +22,14 @@ function ChattingBox({ currentChat, currentUser, socket }) {
             to: currentChat._id,
           });
           setMessages(response.data);
-          console.log("messages: " + messages);
+          console.log("messages: " + JSON.stringify(response.data));
         }
       } catch (error) {}
     };
     fetchData();
   }, [currentChat]);
+
+
 
   const sendMessageHandler = async (msg) => {
     console.log("from: " + currentUser._id);
@@ -78,9 +80,13 @@ function ChattingBox({ currentChat, currentUser, socket }) {
         <div className="chat-messages">
           {messages.map((message) => {
             return (
-                <div ref={scrollRef} key={uuidv4} className={`${message.fromSelf ? "sent" : "recieved"}`}>
-                  <p>{message.message}</p>
-                </div>
+              <div
+                ref={scrollRef}
+                key={uuidv4}
+                className={`${message.fromSelf ? "sent" : "recieved"}`}
+              >
+                <p>{message.message}</p>
+              </div>
             );
           })}
         </div>
