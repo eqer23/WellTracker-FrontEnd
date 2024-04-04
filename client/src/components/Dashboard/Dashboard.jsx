@@ -11,7 +11,7 @@ import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import progressImage from "../Assets/AdobeStock_207866687.jpeg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import Sidebar from "../Global/Sidebar";
 
 
@@ -32,11 +32,16 @@ const Dashboard = () => {
                 //     },
                 // });
                 let user = jwtDecode(localStorage.getItem("session-token"))
-                setData(user._id); // Update state with fetched data
+                if (user) {
+                    const token = jwtDecode(user);
+                    setData(token._id); // Update state with fetched data
+                    console.log(token);
+                } else {
+                    console.log("No toekn found in local storage");
+                }
                 // console.log(response);
                 // console.log(response.data);
                 // console.log(data.username);
-                console.log(user);
             } catch (error) {
                 console.error("Error fetching data:", error);
                 alert(error.response.data.message); // Handle error (e.g., through user notification)
