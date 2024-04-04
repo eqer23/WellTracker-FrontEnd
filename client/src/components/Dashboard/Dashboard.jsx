@@ -32,13 +32,7 @@ const Dashboard = () => {
                 //     },
                 // });
                 let user = jwtDecode(localStorage.getItem("session-token"))
-                if (user) {
-                    const token = jwtDecode(user);
-                    setData(token._id); // Update state with fetched data
-                    console.log(token);
-                } else {
-                    console.log("No toekn found in local storage");
-                }
+                setData(user._id); // Update state with fetched data
                 // console.log(response);
                 // console.log(response.data);
                 // console.log(data.username);
