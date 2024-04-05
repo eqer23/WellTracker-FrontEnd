@@ -9,11 +9,9 @@ import image2 from "../Assets/kike-vega-F2qh3yjz6Jk-unsplash.jpg";
 import image3 from "../Assets/mor-shani-li4dxZ0KYRw-unsplash.jpg";
 import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
-import progressImage from "../Assets/AdobeStock_207866687.jpeg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import { jwtDecode } from "jwt-decode";
 import Sidebar from "../Global/Sidebar";
-
 
 
 const Dashboard = () => {
@@ -23,20 +21,23 @@ const Dashboard = () => {
         const fetchData = async () => {
             try {
                 // Replace 'your-backend-endpoint' with the actual endpoint
-                // const response = await axios.get(URL + "data", {
-                //     headers: {
-                //         Authorization: `Bearer ${localStorage.getItem(
-                //             "session-token"
-                //         )}`, // Include the session-token cookie in the request headers
-                //         // userId: userId,
-                //     },
-                // });
-                let user = jwtDecode(localStorage.getItem("session-token"))
-                setData(user._id); // Update state with fetched data
+                const response = await axios.get(URL + "data", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "session-token"
+                        )}`, // Include the session-token cookie in the request headers
+                        // userId: userId,
+                    },
+                });
+
+                setData(response.data); // Update state with fetched data
+
+                // -----------------------------------------------
+                let name = jwtDecode(localStorage.getItem("session-token"));
+                setData(name._id);
                 // console.log(response);
                 // console.log(response.data);
                 // console.log(data.username);
-                console.log(user);
             } catch (error) {
                 console.error("Error fetching data:", error);
                 alert(error.response.data.message); // Handle error (e.g., through user notification)
@@ -61,21 +62,12 @@ const Dashboard = () => {
                                 <h1>Welcome to InstaFit!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h1>Hello, {data}!</h1>
+                                    <h1>Hello, {data.username}!</h1>
                                 )}
                             </div>
                             <div className="resume-activity">
                                 <h2>Pick up where you left off?</h2>
                                 <div className="last-used-features">
-                                    {/* <div className="last-feature-progress">
-                                        <img
-                                            width={70}
-                                            src={progressImage}
-                                            alt="Description of Image"
-                                        />
-                                        <h3>Progress</h3>
-                                    </div> */}
-
                                     <div className="last-feature-nutrition">
                                         <img
                                             width={100}
