@@ -28,7 +28,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 /*function Upload() {
     const [file, setFile] = useState()
     return (
@@ -70,7 +70,7 @@ const Upload = () => {
         const selectedFile = event.target.files[0]
 
         if (selectedFile) {
-            const storageRef = app.storage().ref()
+            const storageRef = firebase.storage().ref()
             const fileRef = storageRef.child(selectedFile.name)
 
             fileRef.put(selectedFile).then((snapshot) => {
