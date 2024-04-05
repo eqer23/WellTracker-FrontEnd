@@ -24,7 +24,6 @@ let UPLOAD_URL = "http://localhost:3001/upload";
 const Upload = () => {
 
     const [title, setTitle] = useState("");
-    const [file, setFile] = useState();
     const [creatorID, setCreatorID] = useState(undefined);
     const {token} = useParams();
     const [ImgUrl, setImgURL] = useState();
@@ -32,11 +31,11 @@ const Upload = () => {
     
     const navigate = useNavigate();
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchData = async () => {
           if (!localStorage.getItem("session-token")) {
             navigate("/login");
-            alert("You cannot use chat if you haven't logged in.");
+            alert("You cannot use upload if you haven't logged in.");
           } else {
             const decodedToken = jwtDecode(localStorage.getItem("session-token"));
             setCreatorID(decodedToken);
@@ -46,7 +45,7 @@ const Upload = () => {
     
         fetchData();
       }, [navigate]);
-
+*/
 
     const handleFileUpload = (event) => {
         const selectedFile = event.target.files[0]
@@ -68,13 +67,15 @@ const Upload = () => {
 
     const handleSubmit = () => {
         if (title) {
-            const formData = new FormData()
-            formData.append('ImgURL', ImgUrl)
-            formData.append('title', title)
-            formData.append('creatorId', creatorID)
             event.preventDefault();
             axios
-                .post("http://localhost:5173/upload/", formData)
+            .post(URL + "upload", {
+                ImgUrl,
+                title,
+                creatorID,
+                description,
+                
+            })
                 .then((res) => {
                     if (res.data.status) {
                         console.log("Content uploaded");
@@ -104,6 +105,12 @@ const Upload = () => {
                         placeholder="Enter Title Here"
                         required
                         onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Enter Description Here"
+                        required
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </div> 
                 <input type = "file" onChange = {handleFileUpload}/>
