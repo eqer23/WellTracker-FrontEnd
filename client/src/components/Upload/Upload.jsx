@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
@@ -50,21 +50,25 @@ const Upload = () => {
     
     const navigate = useNavigate();
 
-    /*useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
           if (!localStorage.getItem("session-token")) {
             navigate("/login");
             alert("You cannot use upload if you haven't logged in.");
           } else {
             const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-            setCreatorID(decodedToken);
+            if (decodedToken.role == "Professional") {
+                setCreatorID(decodedToken._id)
+            } else {
+                console.log("you do not have permission to use this feature")
+            }
             
           }
         };
     
         fetchData();
       }, [navigate]);
-*/
+
 
     const handleFileUpload = (event) => {
         const selectedFile = event.target.files[0]
