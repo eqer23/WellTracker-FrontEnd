@@ -1,9 +1,0 @@
-.conversationContainer {
-  height: 85vh;
-  width: 85vw;
-  background-color: rgb(68, 61, 61);
-  display: grid;
-  grid-template-columns: auto 75%;
-}
-
-

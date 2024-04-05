@@ -60,8 +60,8 @@
 
 .input-box-reg input {
     /* styles the input box (name, email, and password) */
-    width: 83%;
-    height: 20px;
+    width: 100%;
+    height: 50px;
     background: transparent;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 0.2);
