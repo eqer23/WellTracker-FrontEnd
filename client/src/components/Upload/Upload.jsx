@@ -57,7 +57,7 @@ const Upload = () => {
             alert("You cannot use upload if you haven't logged in.");
           } else {
             const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-            if (decodedToken.role == "Professional" || "admin") {
+            if (decodedToken.role == "professional" || "admin") {
                 setCreatorID(decodedToken._id)
             } else {
                 console.log("you do not have permission to use this feature")
