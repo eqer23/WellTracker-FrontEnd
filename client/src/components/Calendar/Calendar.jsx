@@ -74,7 +74,7 @@ const Scheduler = ({
         arg.navigation.enable = true;
     };
 
-    const onActionComplete = (args) => {
+    const onActionComplete = async (args) => {
         console.log("in action complete: ", args);
         // Checking if the action is either creating a new event or editing an existing one
         if (
@@ -83,13 +83,23 @@ const Scheduler = ({
         ) {
             // args.data contains the event details in an array for create and as an object for edit
             const eventData =
-                args.requestType === "eventCreate" ? args.data[0] : args.data;
+                (await args.requestType) === "eventCreate"
+                    ? args.data[0]
+                    : args.data;
 
-            console.log(eventData); // For debugging. You'll see this in your browser's console
+            console.log("EVENT CREATED!", eventData); // For debugging. You'll see this in your browser's console
 
             // Send this data to your backend
             console.log("doing things");
-            sendDataToBackend(eventData);
+            sendDataToBackend(eventData, "createOrUpdate");
+
+            // used to delete an event
+        } else if (args.requestType === "eventRemoved") {
+            const eventData = await args.data[0];
+            sendDataToBackend(eventData.Id, "delete");
+            // console.log(JSON.stringify(eventData));
+            // console.log("EVENTDATA:", eventData);
+            // console.log(JSON.stringify(eventData.Id));
         }
     };
 
@@ -118,17 +128,39 @@ const Scheduler = ({
     }
     */
 
-    const sendDataToBackend = async (eventData) => {
-        try {
-            // axio.post(/frontendCallsGetdata)
-            const response = await axios.post(URL + "getevents", {
-                currentUser: currentUser._id,
-                eventData,
-            });
+    const sendDataToBackend = async (eventData, actionType) => {
+        // try {
+        //     // axio.post(/frontendCallsGetdata)
+        //     const response = await axios.post(URL + "getevents", {
+        //         currentUser: currentUser._id,
+        //         eventData,
+        //     });
 
-            console.log("Data successfully sent to backend:", response.data);
+        //     console.log("Data successfully sent to backend:", response.data);
+        // } catch (error) {
+        //     console.error("Error sending data to backend:", error);
+        // }
+        try {
+            if (actionType === "createOrUpdate") {
+                // Code for creating or updating an event
+                const response = await axios.post(URL + "getevents", {
+                    currentUser: currentUser._id,
+                    eventData,
+                });
+                console.log(
+                    "Data successfully sent to backend:",
+                    response.data
+                );
+            } else if (actionType === "delete") {
+                // Adjusted code for deleting an event
+                const response = await axios.post(URL + "deleteevent", {
+                    currentUser: currentUser._id,
+                    eventData,
+                });
+                console.log("Event successfully deleted:", response.data);
+            }
         } catch (error) {
-            console.error("Error sending data to backend:", error);
+            console.error("Error communicating with the backend:", error);
         }
     };
 
