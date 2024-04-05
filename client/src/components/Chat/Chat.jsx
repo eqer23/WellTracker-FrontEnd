@@ -1,15 +1,7 @@
+import { Container } from "@mui/material";
 import styled from "styled-components";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import NavbarHome from "../Navbar/NavbarHome";
-import Contacts from "./Contacts";
-import Welcome from "./Welcome";
-import "./Chat.css";
-import ChattingBox from "./ChattingBox";
-import io from "socket.io-client";
-let URL = import.meta.env.VITE_SERVER_URL;
 
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
