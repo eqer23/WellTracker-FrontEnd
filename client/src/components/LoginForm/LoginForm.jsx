@@ -93,9 +93,6 @@ const LoginForm = () => {
 
                 {/* forgot password check box and text */}
                 <div className="remember-forgot">
-                    <label>
-                        <input type="checkbox" /> Remember me
-                    </label>
                     {/* <a href="#"> Forgot Password?</a> */}
                     <Link to="/forgot-password" className="button">
                         Forgot Password?
