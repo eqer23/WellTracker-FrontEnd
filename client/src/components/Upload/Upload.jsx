@@ -18,18 +18,17 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDXqCJDV8_fwIGlnC_j7oZvqVMnPAcVbE4",
-  authDomain: "wellnesstracker-b78eb.firebaseapp.com",
-  projectId: "wellnesstracker-b78eb",
-  storageBucket: "wellnesstracker-b78eb.appspot.com",
-  messagingSenderId: "929450767017",
-  appId: "1:929450767017:web:e995341876ff689ea7efb8",
-  measurementId: "G-1VGFR58P8S"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: "instafit-8ad3a.firebaseapp.com",
+    projectId: "instafit-8ad3a",
+    storageBucket: "instafit-8ad3a.appspot.com",
+    messagingSenderId: "961039527584",
+    appId: "1:961039527584:web:7a7fd3411101433ea263c5",
+    measurementId: "G-8SB8MBQ4DW",
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+const app = initializeApp(firebaseConfig);
 /*function Upload() {
     const [file, setFile] = useState()
     return (
@@ -71,7 +70,7 @@ const Upload = () => {
         const selectedFile = event.target.files[0]
 
         if (selectedFile) {
-            const storageRef = firebase.storage().ref()
+            const storageRef = app.storage().ref()
             const fileRef = storageRef.child(selectedFile.name)
 
             fileRef.put(selectedFile).then((snapshot) => {
