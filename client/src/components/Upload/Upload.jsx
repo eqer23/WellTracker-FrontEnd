@@ -9,7 +9,27 @@ import "firebase/compat/storage";
 
 let UPLOAD_URL = "http://localhost:3001/upload";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDXqCJDV8_fwIGlnC_j7oZvqVMnPAcVbE4",
+  authDomain: "wellnesstracker-b78eb.firebaseapp.com",
+  projectId: "wellnesstracker-b78eb",
+  storageBucket: "wellnesstracker-b78eb.appspot.com",
+  messagingSenderId: "929450767017",
+  appId: "1:929450767017:web:e995341876ff689ea7efb8",
+  measurementId: "G-1VGFR58P8S"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebase);
 /*function Upload() {
     const [file, setFile] = useState()
     return (
@@ -69,7 +89,7 @@ const Upload = () => {
         if (title) {
             event.preventDefault();
             axios
-            .post(URL + "upload", {
+            .post(UPLOAD_URL, {
                 ImgUrl,
                 title,
                 creatorID,
