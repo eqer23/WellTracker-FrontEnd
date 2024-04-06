@@ -11,7 +11,6 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
-import Sidebar from "../Global/Sidebar";
 
 
 
