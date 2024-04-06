@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -15,6 +16,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import TwoFactorForm from "./components/LoginForm/TwoFactorForm";
 import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/Calendar";
+import Upload from "./components/Upload/Upload";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -34,6 +36,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/team" element={<Team />} />
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/upload" element={<Upload />} />
             <Route
               path="/reset-password/:token"
               element={<ResetPassword />}
