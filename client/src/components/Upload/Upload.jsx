@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
+import { jwtDecode } from "jwt-decode";
 
 let UPLOAD_URL = "http://localhost:3001/upload";
 
