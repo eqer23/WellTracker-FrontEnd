@@ -100,7 +100,7 @@ const Scheduler = ({
             console.log("event updated: ", eventData); // For debugging. You'll see this in your browser's console
 
             // Send this data to your backend
-            sendDataToBackend(eventData, "update");
+            sendDataToBackend(eventData.Id, "update");
 
             // used to delete an event
         } else if (args.requestType === "eventRemoved") {
