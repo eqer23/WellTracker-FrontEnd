@@ -69,11 +69,6 @@ const Dashboard = () => {
                                 <h3>Pick up where you left off?</h3>
                                 <div className="last-used-features">
                                     <div className="last-feature-progress">
-                                        <img
-                                            width={70}
-                                            src={progressImage}
-                                            alt="Description of Image"
-                                        />
                                         <h3>Progress</h3>
                                     </div>
 
