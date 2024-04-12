@@ -42,7 +42,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const Upload = () => {
-    const [tag, setTag] = useState("")
+    const [tag, setTag] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
     const {token} = useParams();
@@ -98,6 +98,7 @@ const Upload = () => {
                 title,
                 creatorID,
                 description,
+                tag
                 
             })
                 .then((res) => {
@@ -143,7 +144,7 @@ const Upload = () => {
                 value = {ImgUrl}
                 onChange={(e) => setImgURL(e.target.value)}/>
                 <h2>{tag}</h2>
-                <select value = {tag} onChange = {e => setTag(e.target.value)}>
+                <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
                     <option>Low Intensity</option>
                     <option>Medium Intensity</option>
                     <option>High Intensity</option>
