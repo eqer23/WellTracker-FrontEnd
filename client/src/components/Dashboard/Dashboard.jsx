@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Header from "../Header";
+import { NavLink } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
@@ -10,7 +11,10 @@ import image3 from "../Assets/mor-shani-li4dxZ0KYRw-unsplash.jpg";
 import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
+import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
+
+
 
 const Dashboard = () => {
     const [data, setData] = useState(null);
@@ -51,6 +55,7 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
+            <Sidebar />
             <div className="content" style={{ paddingTop: "100px" }}>
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">
@@ -63,8 +68,12 @@ const Dashboard = () => {
                                 )}
                             </div>
                             <div className="resume-activity">
-                                <h2>Pick up where you left off?</h2>
+                                <h3>Pick up where you left off?</h3>
                                 <div className="last-used-features">
+                                    <div className="last-feature-progress">
+                                        <h3>Progress</h3>
+                                    </div>
+
                                     <div className="last-feature-nutrition">
                                         <img
                                             width={100}
@@ -102,15 +111,6 @@ const Dashboard = () => {
                                     <h2>Calendar</h2>
                                 </NavLink>
                                 <Calendar />
-                            </div>
-                            <div className="progress">
-                                <div className="to-do-list">
-                                    <p>to do list (WORK IN PROGRESS)</p>
-                                    {/* <Calendar availableViews="Agenda" /> */}
-                                    <div className="completion-graph">
-                                        <p>completion graph</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
