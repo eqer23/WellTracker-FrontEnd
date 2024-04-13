@@ -6,10 +6,6 @@
     box-sizing: border-box;
 } */
 
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
 @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
@@ -22,12 +18,12 @@
 @import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
 
 body {
-    margin: 20px;
+    margin: 0;
     font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Ensure body content flows vertically */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -48,7 +44,7 @@ code {
 }
 
 .btn-login:hover {
-    background-color: #ddb9e2;
+    background-color: #ddb9e2; /* Change background color on hover */
 }
 
 .btn-login {

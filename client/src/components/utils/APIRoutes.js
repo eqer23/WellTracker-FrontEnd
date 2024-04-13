@@ -4,4 +4,5 @@ export const host = URL;
 
 export const sendMessageRoute = `${host}api/chat/addmessage`;
 export const getMessageRoute = `${host}api/chat/getmessage`;
+export const messageCheckRoute = `${host}api/chat/messagecheck`
 

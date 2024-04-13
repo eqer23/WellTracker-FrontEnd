@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Header from "../Header";
+import { NavLink } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
@@ -9,9 +10,10 @@ import image2 from "../Assets/kike-vega-F2qh3yjz6Jk-unsplash.jpg";
 import image3 from "../Assets/mor-shani-li4dxZ0KYRw-unsplash.jpg";
 import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
-import progressImage from "../Assets/AdobeStock_207866687.jpeg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
+import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
+
 
 
 const Dashboard = () => {
@@ -21,20 +23,23 @@ const Dashboard = () => {
         const fetchData = async () => {
             try {
                 // Replace 'your-backend-endpoint' with the actual endpoint
-                // const response = await axios.get(URL + "data", {
-                //     headers: {
-                //         Authorization: `Bearer ${localStorage.getItem(
-                //             "session-token"
-                //         )}`, // Include the session-token cookie in the request headers
-                //         // userId: userId,
-                //     },
-                // });
-                let user = jwtDecode(localStorage.getItem("session-token"))
-                setData(user._id); // Update state with fetched data
+                const response = await axios.get(URL + "data", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "session-token"
+                        )}`, // Include the session-token cookie in the request headers
+                        // userId: userId,
+                    },
+                });
+
+                setData(response.data); // Update state with fetched data
+
+                // -----------------------------------------------
+                let name = jwtDecode(localStorage.getItem("session-token"));
+                setData(name._id);
                 // console.log(response);
                 // console.log(response.data);
                 // console.log(data.username);
-                console.log(user);
             } catch (error) {
                 console.error("Error fetching data:", error);
                 alert(error.response.data.message); // Handle error (e.g., through user notification)
@@ -50,6 +55,7 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
+            <Sidebar />
             <div className="content" style={{ paddingTop: "100px" }}>
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">
@@ -58,20 +64,15 @@ const Dashboard = () => {
                                 <h1>Welcome to InstaFit!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h1>Hello, {data}!</h1>
+                                    <h1>Hello, {data.username}!</h1>
                                 )}
                             </div>
                             <div className="resume-activity">
-                                <h2>Pick up where you left off?</h2>
+                                <h3>Pick up where you left off?</h3>
                                 <div className="last-used-features">
-                                    {/* <div className="last-feature-progress">
-                                        <img
-                                            width={70}
-                                            src={progressImage}
-                                            alt="Description of Image"
-                                        />
+                                    <div className="last-feature-progress">
                                         <h3>Progress</h3>
-                                    </div> */}
+                                    </div>
 
                                     <div className="last-feature-nutrition">
                                         <img
@@ -110,15 +111,6 @@ const Dashboard = () => {
                                     <h2>Calendar</h2>
                                 </NavLink>
                                 <Calendar />
-                            </div>
-                            <div className="progress">
-                                <div className="to-do-list">
-                                    <p>to do list (WORK IN PROGRESS)</p>
-                                    {/* <Calendar availableViews="Agenda" /> */}
-                                    <div className="completion-graph">
-                                        <p>completion graph</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
