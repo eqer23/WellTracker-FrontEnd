@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Header from "../Header";
+import { NavLink } from "react-router-dom";
+import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
 import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
@@ -100,8 +102,16 @@ const Dashboard = () => {
                         to the calendar page which will also be able to be accesses 
                         by the navbar */}
                         <div className="calendar">
-                            <p>info for that day (to do's)</p>
-                            <p>link to calendar page</p>
+                            <div className="my-calendar">
+                                <NavLink
+                                    to="/Calendar"
+                                    className="calendar-link"
+                                >
+                                    {" "}
+                                    <h2>Calendar</h2>
+                                </NavLink>
+                                <Calendar />
+                            </div>
                         </div>
                     </div>
 
