@@ -12,6 +12,7 @@ import {
     Resize,
     DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
+import { registerLicense } from "@syncfusion/ej2-base";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,9 @@ let URL = import.meta.env.VITE_SERVER_URL;
 import Navbar from "../Navbar/Navbar";
 // eslint-disable-next-line react/destructuring-assignment
 const PropertyPane = (props) => <div className="mt-5">{props.children}</div>;
+registerLicense(
+    "Ngo9BigBOggjHTQxAR8/V1NBaF5cXmpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXtfcnZWRGVeUUZxVko="
+);
 
 const Scheduler = ({
     defaultView = "Week",
