@@ -16,6 +16,8 @@
         "@mui/material": "^5.15.14",
         "@mui/x-data-grid": "^7.1.0",
         "@reduxjs/toolkit": "^2.2.1",
+        "@syncfusion/ej2-react-calendars": "^25.1.39",
+        "@syncfusion/ej2-react-schedule": "^25.1.39",
         "axios": "^1.6.7",
         "dotenv": "^16.4.4",
         "emoji-picker-react": "^4.8.0",
