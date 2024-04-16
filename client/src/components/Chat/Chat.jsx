@@ -78,8 +78,6 @@ const Chat = () => {
 
   return (
     <>
-      {/* <NavbarHome /> */}
-
       <div>
         <div className="conversationContainer">
           <Contacts

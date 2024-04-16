@@ -1,60 +1,44 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
-import Header from "../Header";
 import "./Dashboard.css";
 import axios from "axios";
-import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
-import image2 from "../Assets/kike-vega-F2qh3yjz6Jk-unsplash.jpg";
-import image3 from "../Assets/mor-shani-li4dxZ0KYRw-unsplash.jpg";
-import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
-import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
-import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
-import Sidebar from "../Global/Sidebar";
-import { jwtDecode } from "jwt-decode";
 let URL = import.meta.env.VITE_SERVER_URL;
 
 
 
 const AdminDash = () => {
-    const [data, setData] = useState(null);
-    const [userId, setUserId] = useState(null);
-    const [decodedToken, setDecodedToken] = useState(null);
+    const [allUsers, setAllUsers] = useState([]);
+    const [professionalUsers, setProfessionalUsers] = useState([]);
+    const [clientUsers, setClientUsers] = useState([]);
 
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Replace 'your-backend-endpoint' with the actual endpoint
-                const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-                const userId = decodedToken._id;
-                console.log("userId: " + decodedToken._id);
-                setDecodedToken(decodedToken);
-                setUserId(userId);
-                const response = await axios.get(URL + "data", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("session-token")}`, // Include the session-token cookie in the request headers
-                    userId: userId,
-                },
-                });
-                console.log("data requested");
-                setData(response.data);
-
-                // -----------------------------------------------
-                // let name = jwtDecode(localStorage.getItem("session-token"));
-                // setData(name._id);
-                // console.log(response);
-                // console.log(response.data);
-                // console.log(data.username);
+                const data = await axios.get(URL + `getAllUsers/${-1}`);
+                setAllUsers(data.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
-                alert(error.response.data.message); // Handle error (e.g., through user notification)
+                alert(error.response.data.message); 
             }
         };
-
-        fetchData(); // Call the fetchData function
+        fetchData();
     }, []);
 
-    // console.log(data);
-    // console.log(data.response);
+    useEffect(() => {
+        if (allUsers.length > 0) {
+            const professionals = allUsers.filter(user => user.role === 'professional');
+            setProfessionalUsers(professionals);
+        }
+    }, [allUsers]);
+
+    useEffect(() => {
+        if (allUsers.length > 0) {
+            const professionals = allUsers.filter(user => user.role === 'user');
+            setClientUsers(professionals);
+        }
+    }, [allUsers]);
+
+
 
     return (
         <div className="home">
@@ -64,13 +48,14 @@ const AdminDash = () => {
                         <div className="dash-greeting">
                             <div className="message">
                                 <h1>Admin Dashboard!</h1>
-                                {data && (
-                                    // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h1>Hello, {data.firstName}!</h1>
-                                )}
+                                <h1>Hello, admin!</h1>
                             </div>
                             <div className="resume-activity">
-                                <h3>Pick up where you left off?</h3>
+                                <h3>Total number of users: {allUsers && allUsers.length}</h3>
+                                <h3>Professional users: {professionalUsers && professionalUsers.length}</h3>
+                                <h3>Client users: {clientUsers && clientUsers.length}</h3>
+                                {/* <h3>Client users: {allUsers && allUsers.data.filter(user => user.role === 'user').data.length}</h3> */}
+
                             </div>
                         </div>
 
