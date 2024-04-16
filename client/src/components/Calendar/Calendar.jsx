@@ -55,7 +55,6 @@ const Scheduler = ({
         const fetchData = async () => {
             if (!localStorage.getItem("session-token")) {
                 navigate("/login");
-                alert("You cannot use chat if you haven't logged in.");
             } else {
                 const decodedToken = jwtDecode(
                     localStorage.getItem("session-token")

@@ -58,8 +58,6 @@ const AdminDash = () => {
 
     return (
         <div className="home">
-            <Navbar />
-            <Sidebar />
             <div className="content" style={{ paddingTop: "100px" }}>
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">
@@ -73,31 +71,6 @@ const AdminDash = () => {
                             </div>
                             <div className="resume-activity">
                                 <h3>Pick up where you left off?</h3>
-                                <div className="last-used-features">
-                                    <div className="last-feature-progress">
-                                        <h3>Progress</h3>
-                                    </div>
-
-                                    <div className="last-feature-nutrition">
-                                        <img
-                                            width={100}
-                                            src={nutritionImage}
-                                            alt="Description of Image"
-                                        />
-                                        <h3>Nutrition</h3>
-                                    </div>
-
-                                    <div className="last-feature-class">
-                                        <img
-                                            width={100}
-                                            src={image1}
-                                            alt="Description of Image"
-                                        />
-                                        <h3>15 Minute Core</h3>
-                                        <p>Taught By: Coach A</p>
-                                        <p>description</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
