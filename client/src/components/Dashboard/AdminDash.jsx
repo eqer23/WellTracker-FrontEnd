@@ -15,7 +15,7 @@ let URL = import.meta.env.VITE_SERVER_URL;
 
 
 
-const Dashboard = () => {
+const AdminDash = () => {
     const [data, setData] = useState(null);
     const [userId, setUserId] = useState(null);
     const [decodedToken, setDecodedToken] = useState(null);
@@ -65,7 +65,7 @@ const Dashboard = () => {
                     <div className="dash-greeting-calendar">
                         <div className="dash-greeting">
                             <div className="message">
-                                <h1>Welcome to InstaFit!</h1>
+                                <h1>Admin Dashboard!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
                                     <h1>Hello, {data.firstName}!</h1>
@@ -116,4 +116,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default AdminDash;

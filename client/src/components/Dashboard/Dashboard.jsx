@@ -13,6 +13,7 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 
 
@@ -22,27 +23,22 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Replace 'your-backend-endpoint' with the actual endpoint
+                const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+                const userId = decodedToken._id;
+                console.log("userId: " + decodedToken._id);
+                // Send HTTP request to backend
                 const response = await axios.get(URL + "data", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "session-token"
-                        )}`, // Include the session-token cookie in the request headers
-                        // userId: userId,
-                    },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("session-token")}`, // Include the session-token cookie in the request headers
+                    userId: userId,
+                },
                 });
-
-                setData(response.data); // Update state with fetched data
-
-                // -----------------------------------------------
-                let name = jwtDecode(localStorage.getItem("session-token"));
-                setData(name._id);
-                // console.log(response);
-                // console.log(response.data);
-                // console.log(data.username);
+                console.log("data requested");
+                setData(response.data);
+                console.log(JSON.stringify(response.data));
             } catch (error) {
                 console.error("Error fetching data:", error);
-                alert(error.response.data.message); // Handle error (e.g., through user notification)
+                alert(error.response.data.message);
             }
         };
 
@@ -64,7 +60,7 @@ const Dashboard = () => {
                                 <h1>Welcome to InstaFit!</h1>
                                 {data && (
                                     // Now safely accessing `username` since `data` is confirmed to exist
-                                    <h1>Hello, {data.username}!</h1>
+                                    <h1>Hello, {data.firstName}!</h1>
                                 )}
                             </div>
                             <div className="resume-activity">
