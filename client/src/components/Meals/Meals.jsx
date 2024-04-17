@@ -8,7 +8,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import { jwtDecode } from "jwt-decode";
 
-let UPLOAD_URL = "http://localhost:3001/mealTracker";
+let UPLOAD_URL = "http://localhost:3001/meals";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -45,8 +45,9 @@ const Upload = () => {
     const [tag, setTag] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
+    const [dateCreated, setDateCreated] = useState();
     const {token} = useParams();
-    const [ImgUrl, setImgURL] = useState();
+    
     const [description, setDescription] = useState("")
     
     const navigate = useNavigate();
@@ -67,47 +68,34 @@ const Upload = () => {
       }, [navigate]);
 
 
-    const handleFileUpload = (event) => {
-        const selectedFile = event.target.files[0]
-
-        if (selectedFile) {
-            const storageRef = firebase.storage().ref()
-            const fileRef = storageRef.child(selectedFile.name)
-
-            fileRef.put(selectedFile).then((snapshot) => {
-                snapshot.ref.getDownloadURL().then((downloadURL) => {
-                    console.log(downloadURL);
-                    setImgURL(downloadURL);
-                });
-            });
-        } else {
-            console.log("No file selected")
-        }
-      }
+    
 
     const handleSubmit = () => {
         if (title) {
             event.preventDefault();
             axios
             .post(UPLOAD_URL, {
-                ImgUrl,
+                
                 title,
                 creatorID,
                 description,
+                dateCreated,
                 tag
                 
             })
                 .then((res) => {
                     if (res.data.status) {
                         console.log("Content uploaded");
-                        navigate("/upload");
+                        navigate("/meals");
                     }
                     console.log(res.data)
                 })
                 .then()
                 .catch((err) => console.log(err));
+                setDateCreated(Date());
         } else {
             alert("Please upload a file.");
+            
         }
     };
 
@@ -123,7 +111,7 @@ const Upload = () => {
                 <div className="input-box">
                     <input
                         type="text"
-                        placeholder="Enter Title Here"
+                        placeholder="Enter Meal Contents"
                         required
                         onChange={(e) => setTitle(e.target.value)}
                     />
