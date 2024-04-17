@@ -14,8 +14,6 @@ import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
 
-
-
 const Dashboard = () => {
     const [data, setData] = useState(null);
 
@@ -55,9 +53,11 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
-            <Sidebar />
-            <div className="content" style={{ paddingTop: "100px" }}>
-                <div className="dash-wrapper">
+
+            <div className="content">
+                <Sidebar />
+                {/*  */}
+                <div className="dash-wrapper" style={{ paddingTop: "100px" }}>
                     <div className="dash-greeting-calendar">
                         <div className="dash-greeting">
                             <div className="message">
