@@ -12,6 +12,7 @@ import {
     Resize,
     DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
+import { registerLicense } from "@syncfusion/ej2-base";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,9 @@ let URL = import.meta.env.VITE_SERVER_URL;
 import Navbar from "../Navbar/Navbar";
 // eslint-disable-next-line react/destructuring-assignment
 const PropertyPane = (props) => <div className="mt-5">{props.children}</div>;
+registerLicense(
+    "Ngo9BigBOggjHTQxAR8/V1NBaF5cXmpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXtfcnZWRGVeUUZxVko="
+);
 
 const Scheduler = ({
     defaultView = "Week",
@@ -78,8 +82,8 @@ const Scheduler = ({
         console.log("in action complete: ", args);
         // Checking if the action is either creating a new event or editing an existing one
         if (
-            args.requestType === "eventCreated" ||
-            args.requestType === "eventChanged"
+            args.requestType === "eventCreated"
+            // args.requestType === "eventChanged"
         ) {
             // args.data contains the event details in an array for create and as an object for edit
             const eventData =
@@ -90,16 +94,22 @@ const Scheduler = ({
             console.log("EVENT CREATED!", eventData); // For debugging. You'll see this in your browser's console
 
             // Send this data to your backend
-            console.log("doing things");
-            sendDataToBackend(eventData, "createOrUpdate");
+            sendDataToBackend(eventData, "create");
+        } else if (args.requestType === "eventChanged") {
+            const eventData =
+                (await args.requestType) === "eventChanged"
+                    ? args.data[0]
+                    : args.data;
+
+            console.log("event updated: ", eventData); // For debugging. You'll see this in your browser's console
+
+            // Send this data to your backend
+            sendDataToBackend(eventData, "update");
 
             // used to delete an event
         } else if (args.requestType === "eventRemoved") {
             const eventData = await args.data[0];
             sendDataToBackend(eventData.Id, "delete");
-            // console.log(JSON.stringify(eventData));
-            // console.log("EVENTDATA:", eventData);
-            // console.log(JSON.stringify(eventData.Id));
         }
     };
 
@@ -141,16 +151,19 @@ const Scheduler = ({
         //     console.error("Error sending data to backend:", error);
         // }
         try {
-            if (actionType === "createOrUpdate") {
-                // Code for creating or updating an event
+            if (actionType === "create") {
                 const response = await axios.post(URL + "getevents", {
                     currentUser: currentUser._id,
                     eventData,
                 });
-                console.log(
-                    "Data successfully sent to backend:",
-                    response.data
-                );
+
+                console.log("Backend response:", response.data);
+            } else if (actionType === "update") {
+                const response = await axios.post(URL + "updateevent", {
+                    currentUser: currentUser._id,
+                    eventData,
+                });
+                console.log("Backend response:", response.data);
             } else if (actionType === "delete") {
                 // Adjusted code for deleting an event
                 const response = await axios.post(URL + "deleteevent", {
