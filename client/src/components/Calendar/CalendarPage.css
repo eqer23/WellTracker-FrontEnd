@@ -5,7 +5,7 @@
 .cal-wrapper {
     display: flex;
     flex-direction: column;
-    width: 1350px;
+    width: 1200px;
     padding: 10px 20px, 20px, 50px;
     background-color: rgb(43, 27, 64);
     color: black;
