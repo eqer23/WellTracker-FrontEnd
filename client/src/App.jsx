@@ -16,6 +16,7 @@ import TwoFactorForm from "./components/LoginForm/TwoFactorForm";
 import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/Calendar";
 import Upload from "./components/Upload/Upload";
+import Meals from "./components/Meals/Meals";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -36,6 +37,7 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/meals" element={<Meals />} />
             <Route
               path="/reset-password/:token"
               element={<ResetPassword />}

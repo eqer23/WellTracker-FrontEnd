@@ -41,7 +41,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 
-const Upload = () => {
+const Meal = () => {
     const [tag, setTag] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
@@ -141,4 +141,4 @@ const Upload = () => {
     );
 };
 
-export default Upload;
+export default Meals;
