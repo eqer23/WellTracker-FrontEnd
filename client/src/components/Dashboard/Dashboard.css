@@ -4,32 +4,38 @@
     width: 1200px;
     padding: 10px;
     background-color: rgb(43, 27, 64);
+    /* background-color: #fff7ddfd; */
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1250px) {
     .dash-wrapper {
-        width: 900px;
+        width: 850px;
     }
 }
 
 @media screen and (max-width: 980px) {
     .dash-wrapper {
-        width: 750px;
+        width: 650px;
     }
 }
 
 @media screen and (max-width: 800px) {
     .dash-wrapper {
-        width: 600px;
+        width: 400px;
         margin-top: 40px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .dash-wrapper {
-        width: 400px;
+        width: 300px;
         margin-top: 40px;
     }
+}
+
+.dash-greeting {
+    display: flex;
+    flex-direction: column;
 }
 
 .dash-greeting-calendar {
@@ -37,9 +43,23 @@
     flex-direction: row;
 }
 
-.dash-greeting {
-    display: flex;
-    flex-direction: column;
+.calendar {
+    line-height: 1.5;
+}
+
+.calendar h2 {
+    color: #fff;
+    /* font-family: Source Sans Pro, sans-serif; */
+    /* font-weight: 400; */
+    line-height: 1;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.calendar h2:hover {
+    text-decoration: underline;
+    color: rgb(255, 239, 187);
+    cursor: pointer;
 }
 
 .message,

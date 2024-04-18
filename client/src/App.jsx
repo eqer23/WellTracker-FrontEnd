@@ -16,44 +16,67 @@ import TwoFactorForm from "./components/LoginForm/TwoFactorForm";
 import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/Calendar";
 import Upload from "./components/Upload/Upload";
+import Recommendations from "./components/Recommendations/Recommendations";
+import WellnessForm from "./components/Recommendations/WellnessForm";
+import WorkoutForm from "./components/Recommendations/WorkoutForm";
+import NutritionForm from "./components/Recommendations/NutritionForm";
 
 function App() {
-  const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
+    const [theme, colorMode] = useMode();
+    const [isSidebar, setIsSidebar] = useState(true);
 
-  return (
-    <BrowserRouter>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route
-              path="/reset-password/:token"
-              element={<ResetPassword />}
-            ></Route>
-            <Route
-              path="/pregistration"
-              element={<ProfessionalRegistration />}
-            ></Route>
-            <Route path="/twofactor" element={<TwoFactorForm />}></Route>
-            {/* Logic for protected routes. Routes that a user should not be able to access until login */}
-            <Route path="/profile" element={<ProtectedRoute />}>
-              <Route path="" element={<Profile />} />
-            </Route>
-          </Routes>
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <ColorModeContext.Provider value={colorMode}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/chat" element={<Chat />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route
+                            path="/forgot-password"
+                            element={<ForgotPassword />}
+                        />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/team" element={<Team />} />
+                        <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/upload" element={<Upload />} />
+                        <Route
+                            path="/recommendations"
+                            element={<Recommendations />}
+                        />
+                        <Route
+                            path="/reset-password/:token"
+                            element={<ResetPassword />}
+                        ></Route>
+                        <Route
+                            path="/wellnessForm"
+                            element={<WellnessForm />}
+                        />
+                        <Route path="/workoutForm" element={<WorkoutForm />} />
+                        <Route
+                            path="/nutritionForm"
+                            element={<NutritionForm />}
+                        />
+                        <Route
+                            path="/pregistration"
+                            element={<ProfessionalRegistration />}
+                        ></Route>
+                        <Route
+                            path="/twofactor"
+                            element={<TwoFactorForm />}
+                        ></Route>
+                        {/* Logic for protected routes. Routes that a user should not be able to access until login */}
+                        <Route path="/profile" element={<ProtectedRoute />}>
+                            <Route path="" element={<Profile />} />
+                        </Route>
+                    </Routes>
+                </ThemeProvider>
+            </ColorModeContext.Provider>
+        </BrowserRouter>
+    );
 }
 
 export default App;

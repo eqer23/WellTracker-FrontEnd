@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+// import "../Dashboard/Dashboard";
 import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
@@ -39,44 +41,44 @@ firebase.initializeApp(firebaseConfig);
     )
 }*/
 
-
-
 const Upload = () => {
-    const [tag, setTag] = useState()
+    const [tag, setTag] = useState();
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
-    const {token} = useParams();
+    const { token } = useParams();
     const [ImgUrl, setImgURL] = useState();
-    const [description, setDescription] = useState("")
-    
+    const [description, setDescription] = useState("");
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-          if (!localStorage.getItem("session-token")) {
-            navigate("/login");
-            alert("You cannot use upload if you haven't logged in.");
-          } else {
-            const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-            if (decodedToken.role == "professional" || "admin") {
-                setCreatorID(decodedToken._id)
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+                alert("You cannot use upload if you haven't logged in.");
             } else {
-                console.log("you do not have permission to use this feature")
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                if (decodedToken.role == "professional" || "admin") {
+                    setCreatorID(decodedToken._id);
+                } else {
+                    console.log(
+                        "you do not have permission to use this feature"
+                    );
+                }
             }
-            
-          }
         };
-    
-        fetchData();
-      }, [navigate]);
 
+        fetchData();
+    }, [navigate]);
 
     const handleFileUpload = (event) => {
-        const selectedFile = event.target.files[0]
+        const selectedFile = event.target.files[0];
 
         if (selectedFile) {
-            const storageRef = firebase.storage().ref()
-            const fileRef = storageRef.child(selectedFile.name)
+            const storageRef = firebase.storage().ref();
+            const fileRef = storageRef.child(selectedFile.name);
 
             fileRef.put(selectedFile).then((snapshot) => {
                 snapshot.ref.getDownloadURL().then((downloadURL) => {
@@ -85,28 +87,28 @@ const Upload = () => {
                 });
             });
         } else {
-            console.log("No file selected")
+            console.log("No file selected");
         }
-      }
+    };
 
     const handleSubmit = () => {
         if (title) {
             event.preventDefault();
             axios
-            .post(UPLOAD_URL, {
-                ImgUrl,
-                title,
-                creatorID,
-                description,
-                tag
-                
-            })
+                .post(UPLOAD_URL, {
+                    ImgUrl,
+                    title,
+                    creatorID,
+                    description,
+                    tag,
+                })
                 .then((res) => {
                     if (res.data.status) {
                         console.log("Content uploaded");
                         navigate("/upload");
                     }
-                    console.log(res.data)
+                    console.log(res.data);
+                    navigate("/dashboard");
                 })
                 .then()
                 .catch((err) => console.log(err));
@@ -123,52 +125,61 @@ const Upload = () => {
                 <main>
                     <p>Upload videos or workout plans here!</p>
 
+                    <div className="input-box">
+                        <input
+                            type="text"
+                            placeholder="Enter Title Here"
+                            required
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Enter Description Here"
+                            required
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
 
-                <div className="input-box">
-                    <input
-                        type="text"
-                        placeholder="Enter Title Here"
-                        required
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Enter Description Here"
-                        required
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                
-                <input type = "file" onChange = {handleFileUpload}/>
-                <input type = "text"
-                placeholder = "Add Image URL"
-                value = {ImgUrl}
-                onChange={(e) => setImgURL(e.target.value)}/>
-                <h2>{tag}</h2>
-                <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
-                    <option>Low Intensity</option>
-                    <option>Medium Intensity</option>
-                    <option>High Intensity</option>
-                    <option>HIIT</option>
-                    <option>Yoga</option>
-                    <option>Pilates</option>
-                    <option>Weights</option>
-                    <option>No Equipment</option>
-                    <option>Low Impact</option>
-                    <option>Upper Body</option>
-                    <option>Full Body</option>
-                    <option>Lower Body</option>
-                    <option>15 Minutes</option>
-                    <option>30 Minutes</option>
-                    <option>1 Hour</option>
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
-                </select>
-                
-                <button className="push-upload-btn" onClick={handleSubmit}>
-                    Submit
-                </button>
-                </div>
+                        <input type="file" onChange={handleFileUpload} />
+                        <input
+                            type="text"
+                            placeholder="Add Image URL"
+                            value={ImgUrl}
+                            onChange={(e) => setImgURL(e.target.value)}
+                        />
+                        <h2>{tag}</h2>
+                        <select
+                            value={tag}
+                            onChange={(e) => setTag(e.target.value)}
+                        >
+                            <option>Low Intensity</option>
+                            <option>Medium Intensity</option>
+                            <option>High Intensity</option>
+                            <option>HIIT</option>
+                            <option>Yoga</option>
+                            <option>Pilates</option>
+                            <option>Weights</option>
+                            <option>No Equipment</option>
+                            <option>Low Impact</option>
+                            <option>Upper Body</option>
+                            <option>Full Body</option>
+                            <option>Lower Body</option>
+                            <option>15 Minutes</option>
+                            <option>30 Minutes</option>
+                            <option>1 Hour</option>
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Advanced</option>
+                        </select>
+
+                        {/* <NavLink to="dashboard"> */}
+                        <button
+                            className="push-upload-btn"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                        {/* </NavLink> */}
+                    </div>
                 </main>
             </div>
         </div>

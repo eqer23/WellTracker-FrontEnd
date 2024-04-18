@@ -14,8 +14,6 @@ import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
 
-
-
 const Dashboard = () => {
     const [data, setData] = useState(null);
 
@@ -70,9 +68,9 @@ const Dashboard = () => {
                             <div className="resume-activity">
                                 <h3>Pick up where you left off?</h3>
                                 <div className="last-used-features">
-                                    <div className="last-feature-progress">
+                                    {/* <div className="last-feature-progress">
                                         <h3>Progress</h3>
-                                    </div>
+                                    </div> */}
 
                                     <div className="last-feature-nutrition">
                                         <img
@@ -116,7 +114,13 @@ const Dashboard = () => {
                     </div>
 
                     <div className="recommendations">
-                        <h2>Recommendations: </h2>
+                        <NavLink
+                            to="/Recommendations"
+                            className="recommendations-link"
+                        >
+                            {" "}
+                            <h2>Recommendations:</h2>
+                        </NavLink>
                         <ul>
                             <li>
                                 <img src={image1} alt="Description of Image" />
