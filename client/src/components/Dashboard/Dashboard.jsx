@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Header from "../Header";
+import { NavLink } from "react-router-dom";
+import Calendar from "../Calendar/Calendar";
 import "./Dashboard.css";
 import axios from "axios";
 import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
@@ -11,8 +13,6 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
-
-
 
 const Dashboard = () => {
     const [data, setData] = useState(null);
@@ -53,9 +53,11 @@ const Dashboard = () => {
     return (
         <div className="home">
             <Navbar />
-            <Sidebar />
-            <div className="content" style={{ paddingTop: "100px" }}>
-                <div className="dash-wrapper">
+
+            <div className="content">
+                <Sidebar />
+                {/*  */}
+                <div className="dash-wrapper" style={{ paddingTop: "100px" }}>
                     <div className="dash-greeting-calendar">
                         <div className="dash-greeting">
                             <div className="message">
@@ -69,11 +71,6 @@ const Dashboard = () => {
                                 <h3>Pick up where you left off?</h3>
                                 <div className="last-used-features">
                                     <div className="last-feature-progress">
-                                        <img
-                                            width={70}
-                                            src={progressImage}
-                                            alt="Description of Image"
-                                        />
                                         <h3>Progress</h3>
                                     </div>
 
@@ -105,8 +102,16 @@ const Dashboard = () => {
                         to the calendar page which will also be able to be accesses 
                         by the navbar */}
                         <div className="calendar">
-                            <p>info for that day (to do's)</p>
-                            <p>link to calendar page</p>
+                            <div className="my-calendar">
+                                <NavLink
+                                    to="/Calendar"
+                                    className="calendar-link"
+                                >
+                                    {" "}
+                                    <h2>Calendar</h2>
+                                </NavLink>
+                                <Calendar />
+                            </div>
                         </div>
                     </div>
 

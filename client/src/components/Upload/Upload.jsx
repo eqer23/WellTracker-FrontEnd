@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
+import { jwtDecode } from "jwt-decode";
 
 let UPLOAD_URL = "http://localhost:3001/upload";
 
@@ -41,7 +42,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const Upload = () => {
-
+    const [tag, setTag] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
     const {token} = useParams();
@@ -97,6 +98,7 @@ const Upload = () => {
                 title,
                 creatorID,
                 description,
+                tag
                 
             })
                 .then((res) => {
@@ -135,15 +137,38 @@ const Upload = () => {
                         required
                         onChange={(e) => setDescription(e.target.value)}
                     />
-                </div> 
+                
                 <input type = "file" onChange = {handleFileUpload}/>
                 <input type = "text"
                 placeholder = "Add Image URL"
                 value = {ImgUrl}
                 onChange={(e) => setImgURL(e.target.value)}/>
+                <h2>{tag}</h2>
+                <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
+                    <option>Low Intensity</option>
+                    <option>Medium Intensity</option>
+                    <option>High Intensity</option>
+                    <option>HIIT</option>
+                    <option>Yoga</option>
+                    <option>Pilates</option>
+                    <option>Weights</option>
+                    <option>No Equipment</option>
+                    <option>Low Impact</option>
+                    <option>Upper Body</option>
+                    <option>Full Body</option>
+                    <option>Lower Body</option>
+                    <option>15 Minutes</option>
+                    <option>30 Minutes</option>
+                    <option>1 Hour</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+                
                 <button className="push-upload-btn" onClick={handleSubmit}>
                     Submit
                 </button>
+                </div>
                 </main>
             </div>
         </div>

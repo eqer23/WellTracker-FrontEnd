@@ -1,0 +1,14 @@
+.calendar-div {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+}
+
+.calendar-div .e-schedule .e-header-cells,
+.e-schedule .e-work-cells {
+    background-color: #892ca2;
+}
+
+.calendar-div .e-schedule .e-appointment {
+    border-radius: 10px; /* Example: Rounding appointment edges */
+}
