@@ -14,7 +14,7 @@ import Profile from "./components/Profile/Profile/";
 import ProtectedRoute from "./ProtectedRoute";
 import TwoFactorForm from "./components/LoginForm/TwoFactorForm";
 import Chat from "./components/Chat/Chat";
-import Calendar from "./components/Calendar/Calendar";
+import Calendar from "./components/Calendar/CalendarPage";
 import Upload from "./components/Upload/Upload";
 import Recommendations from "./components/Recommendations/Recommendations";
 import WellnessForm from "./components/Recommendations/WellnessForm";

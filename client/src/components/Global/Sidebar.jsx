@@ -299,14 +299,14 @@ const Sidebar = () => {
                     width: isCollapsed ? 80 : 256, // Adjust the width based on the collapsed state
                     height: "100vh",
                     zIndex: 1100,
-                    // background: "#fff7ddfd !important", // Set the sidebar background color
-                    background: `${colors.primary[400]}`,
-                    "& .pro-sidebar-inner": {
-                        background: `${colors.primary[400]} !important`,
-                    },
+                    background: "rgb(43, 27, 64) !important", // Set the sidebar background color
+                    // background: `${colors.primary[400]}`,
                     // "& .pro-sidebar-inner": {
-                    //     backgroundColor: "#fff7ddfd !important", // Ensure this is set for internal elements too
+                    //     background: `${colors.primary[400]} !important`,
                     // },
+                    "& .pro-sidebar-inner": {
+                        backgroundColor: "rgb(43, 27, 64) !important", // Ensure this is set for internal elements too
+                    },
                     "& .pro-icon-wrapper": {
                         backgroundColor: "transparent !important",
                     },

@@ -38,99 +38,103 @@ const Register = () => {
     };
 
     return (
-        <div className="wrapper-reg">
-            <form>
-                <h1>Register</h1>
+        <div className="outter-reg">
+            <div className="wrapper-reg">
+                <form>
+                    <h1>Register</h1>
 
-                {/* users name email and password creation */}
-                <div className="input-box-reg">
-                    <input
-                        type="text"
-                        placeholder="First Name"
-                        required
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                </div>
-                <div className="input-box-reg">
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        required
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </div>
-
-                <div className="loginInfo">
+                    {/* users name email and password creation */}
                     <div className="input-box-reg">
                         <input
                             type="text"
-                            placeholder="Email"
+                            placeholder="First Name"
                             required
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setFirstName(e.target.value)}
                         />
-                        {/* <EmailVerification setEmail={setEmail} /> */}
                     </div>
-
                     <div className="input-box-reg">
                         <input
-                            type="password"
-                            placeholder="Password"
+                            type="text"
+                            placeholder="Last Name"
                             required
-                            // onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setLastName(e.target.value)}
                         />
                     </div>
 
-                    <div className="input-box-reg">
-                        <input
-                            type="password"
-                            placeholder="Confirm Password"
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                    <div className="loginInfo">
+                        <div className="input-box-reg">
+                            <input
+                                type="text"
+                                placeholder="Email"
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            {/* <EmailVerification setEmail={setEmail} /> */}
+                        </div>
+
+                        <div className="input-box-reg">
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                required
+                                // onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="input-box-reg">
+                            <input
+                                type="password"
+                                placeholder="Confirm Password"
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+
+                        {/* add age and gender here - do we want it to look differernt?? */}
+
+                        {/* role selection dropdown */}
+                        <div className="form-group">
+                            <label htmlFor="role">Role:</label>
+                            <select
+                                className="dropdown"
+                                name="role"
+                                id="role"
+                                onChange={(e) => setRole(e.target.value)}
+                            >
+                                <option value=""></option>
+                                <option value="user">Client</option>
+                                <option value="professional">
+                                    Professional
+                                </option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
                     </div>
 
-                    {/* add age and gender here - do we want it to look differernt?? */}
+                    {/* submit button */}
+                    <button
+                        className="btn-submit"
+                        type="submit"
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </button>
 
-                    {/* role selection dropdown */}
-                    <div className="form-group">
-                        <label htmlFor="role">Role:</label>
-                        <select
-                            className="dropdown"
-                            name="role"
-                            id="role"
-                            onChange={(e) => setRole(e.target.value)}
-                        >
-                            <option value=""></option>
-                            <option value="user">Client</option>
-                            <option value="professional">Professional</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                    <div className="o-btn">
+                        <OAuth role={role} />
                     </div>
-                </div>
 
-                {/* submit button */}
-                <button
-                    className="btn-submit"
-                    type="submit"
-                    onClick={handleSubmit}
-                >
-                    Submit
-                </button>
-
-                <div className="o-btn">
-                    <OAuth role={role} />
-                </div>
-
-                {/* will link to a redister page */}
-                <div className="login-link">
-                    <p>
-                        Already have an account?
-                        <Link to="/login" className="btn-reg">
-                            Login
-                        </Link>
-                    </p>
-                </div>
-            </form>
+                    {/* will link to a redister page */}
+                    <div className="login-link">
+                        <p>
+                            Already have an account?
+                            <Link to="/login" className="btn-reg">
+                                Login
+                            </Link>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
