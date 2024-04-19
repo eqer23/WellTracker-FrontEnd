@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+// import "../Dashboard/Dashboard";
 import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
@@ -39,47 +41,48 @@ firebase.initializeApp(firebaseConfig);
     )
 }*/
 
-
-
 const Upload = () => {
+
     const [tag, setTag] = useState()
     const [difficulty, setDifficulty] = useState()
     const [intensity, setIntensity] = useState()
     const [time, setTime] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
-    const {token} = useParams();
+    const { token } = useParams();
     const [ImgUrl, setImgURL] = useState();
-    const [description, setDescription] = useState("")
-    
+    const [description, setDescription] = useState("");
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-          if (!localStorage.getItem("session-token")) {
-            navigate("/login");
-            alert("You cannot use upload if you haven't logged in.");
-          } else {
-            const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-            if (decodedToken.role == "professional" || "admin") {
-                setCreatorID(decodedToken._id)
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+                alert("You cannot use upload if you haven't logged in.");
             } else {
-                console.log("you do not have permission to use this feature")
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                if (decodedToken.role == "professional" || "admin") {
+                    setCreatorID(decodedToken._id);
+                } else {
+                    console.log(
+                        "you do not have permission to use this feature"
+                    );
+                }
             }
-            
-          }
         };
-    
-        fetchData();
-      }, [navigate]);
 
+        fetchData();
+    }, [navigate]);
 
     const handleFileUpload = (event) => {
-        const selectedFile = event.target.files[0]
+        const selectedFile = event.target.files[0];
 
         if (selectedFile) {
-            const storageRef = firebase.storage().ref()
-            const fileRef = storageRef.child(selectedFile.name)
+            const storageRef = firebase.storage().ref();
+            const fileRef = storageRef.child(selectedFile.name);
 
             fileRef.put(selectedFile).then((snapshot) => {
                 snapshot.ref.getDownloadURL().then((downloadURL) => {
@@ -88,9 +91,9 @@ const Upload = () => {
                 });
             });
         } else {
-            console.log("No file selected")
+            console.log("No file selected");
         }
-      }
+    };
 
     const handleSubmit = () => {
         if (title) {
@@ -112,7 +115,8 @@ const Upload = () => {
                         console.log("Content uploaded");
                         navigate("/upload");
                     }
-                    console.log(res.data)
+                    console.log(res.data);
+                    navigate("/dashboard");
                 })
                 .then()
                 .catch((err) => console.log(err));
@@ -185,6 +189,7 @@ const Upload = () => {
                     Submit
                 </button>
                 </div>
+
                 </main>
             </div>
         </div>
