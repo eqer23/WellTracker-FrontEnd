@@ -11,6 +11,14 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlinedIcon from "@mui/icons-material/HelpOutlined";
+import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
+import RecommendOutlinedIcon from "@mui/icons-material/RecommendOutlined";
+
+// Inside your component
+<FitnessCenterOutlinedIcon />
+
 //import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 //import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlineded";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
@@ -303,7 +311,6 @@ const Sidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-
   return (
     <>
       {!isCollapsed && (
@@ -377,9 +384,9 @@ const Sidebar = () => {
                     // color="black"
                     fontWeight="bold"
                     sx={{ m: "10px 0 0 0" }}
-                  > {data && (
-                    <h1>{data.firstName}</h1>
-                  )}
+                  >
+                    {" "}
+                    {data && <h1>{data.firstName}</h1>}
                   </Typography>
                   <Typography variant="h5" color={colors.greenAccent[500]}>
                     {data.role}
@@ -414,23 +421,31 @@ const Sidebar = () => {
                 Data
               </Typography>
               <Item
-                title="Manage Team"
-                to="/Team"
-                icon={<PeopleOutlinedIcon />}
+                title="Upload"
+                to="/upload"
+                icon={<CloudUploadOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
-                title="Connections"
-                to="/Contacts"
-                icon={<ContactsOutlinedIcon />}
+                title="Workout Form"
+                to="/WorkoutForm"
+                icon={<FitnessCenterOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
-                title="Invoices"
-                to="/Invoices"
+                title="Wellness Form"
+                to="/WellnessForm"
                 icon={<ReceiptOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+
+              <Item
+                title="Recommendations"
+                to="/Recommendations"
+                icon={<RecommendOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
@@ -458,14 +473,14 @@ const Sidebar = () => {
                 setSelected={setSelected}
               />
               <Item
-                title="FAQs"
-                to="/FAQ"
-                icon={<HelpOutlinedIcon />}
+                title="Chat"
+                to="/chat"
+                icon={<ChatOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
 
-              <Typography
+              {/* <Typography
                 variant="h6"
                 color={colors.grey[300]}
                 // color="black"
@@ -500,7 +515,7 @@ const Sidebar = () => {
                 icon={<MapOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
-              />
+              /> */}
             </Box>
           </Menu>
         </ProSidebar>
