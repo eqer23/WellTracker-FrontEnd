@@ -15,13 +15,8 @@ import image2 from "../Assets/kike-vega-F2qh3yjz6Jk-unsplash.jpg";
 import image3 from "../Assets/mor-shani-li4dxZ0KYRw-unsplash.jpg";
 import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
-import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 
 const Recommendations = () => {
-    // const handleSubmit = () => {
-
-    // };
-
     return (
         <div className="recc-home">
             <Navbar />

@@ -4,8 +4,71 @@ import React, { useEffect, useState } from "react";
 import "./Form.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 const WellnessForm = () => {
+    const [days, setDays] = useState("");
+    const [rate, setRate] = useState("");
+    const [sleep, setSleep] = useState("");
+    const [nutrition, setNutrition] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const total = Number(days) + Number(rate) + Number(sleep); // + Number(nutrition);
+        let description = "";
+
+        if (total < 10) {
+            description =
+                "You may need to focus more on your wellness routines!";
+        } else if (total >= 10 && total < 20) {
+            description =
+                "You're doing well, but there's room for improvement.";
+        } else {
+            description =
+                "Great job! You're really taking good care of your wellness!";
+        }
+
+        try {
+            const response = await axios.post(URL + "wellnessScore", {
+                totalScore: total,
+                description: description,
+            });
+
+            if (response.status === 200) {
+                console.log("form filled out susccessfully!!!");
+                navigate("/recommendations");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+
+            // Handle errors differently based on the error status
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.error(error.response.data);
+                console.error(error.response.status);
+                console.error(error.response.headers);
+                alert(
+                    "Failed to submit the wellness score: " +
+                        error.response.data.message
+                );
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.error(error.request);
+                alert(
+                    "No response received when submitting the wellness score."
+                );
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error("Error", error.message);
+                alert(
+                    "An error occurred when setting up the submission: " +
+                        error.message
+                );
+            }
+        }
+    };
+
     return (
         <div className="home">
             <div className="form-wrapper-form">
@@ -118,7 +181,7 @@ const WellnessForm = () => {
                     <button
                         className="btn-submit-form"
                         type="submit"
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                     >
                         Submit
                     </button>
