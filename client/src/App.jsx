@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Home from "./components/Home/Home";
@@ -26,7 +26,7 @@ function App() {
   const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -67,7 +67,7 @@ function App() {
           </Routes>
         </ThemeProvider>
       </ColorModeContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
