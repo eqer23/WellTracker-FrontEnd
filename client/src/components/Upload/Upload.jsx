@@ -43,6 +43,9 @@ firebase.initializeApp(firebaseConfig);
 
 const Upload = () => {
     const [tag, setTag] = useState()
+    const [difficulty, setDifficulty] = useState()
+    const [intensity, setIntensity] = useState()
+    const [time, setTime] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
     const {token} = useParams();
@@ -98,7 +101,10 @@ const Upload = () => {
                 title,
                 creatorID,
                 description,
-                tag
+                tag, 
+                difficulty,
+                intensity,
+                time
                 
             })
                 .then((res) => {
@@ -145,9 +151,6 @@ const Upload = () => {
                 onChange={(e) => setImgURL(e.target.value)}/>
                 <h2>{tag}</h2>
                 <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
-                    <option>Low Intensity</option>
-                    <option>Medium Intensity</option>
-                    <option>High Intensity</option>
                     <option>HIIT</option>
                     <option>Yoga</option>
                     <option>Pilates</option>
@@ -157,12 +160,25 @@ const Upload = () => {
                     <option>Upper Body</option>
                     <option>Full Body</option>
                     <option>Lower Body</option>
-                    <option>15 Minutes</option>
-                    <option>30 Minutes</option>
-                    <option>1 Hour</option>
+                    
+                </select>
+                <h2>{intensity}</h2>
+                <select value = {intensity} onChange = {(e) => setIntensity(e.target.value)}>
+                    <option>Low Intensity</option>
+                    <option>Medium Intensity</option>
+                    <option>High Intensity</option>
+                </select>
+                <h2>{difficulty}</h2>
+                <select value = {difficulty} onChange = {(e) => setDifficulty(e.target.value)}>
                     <option>Beginner</option>
                     <option>Intermediate</option>
                     <option>Advanced</option>
+                </select>
+                <h2>{time}</h2>
+                <select value = {time} onChange = {(e) => setTime(e.target.value)}>
+                    <option>15 Minutes</option>
+                    <option>30 Minutes</option>
+                    <option>1 Hour</option>
                 </select>
                 
                 <button className="push-upload-btn" onClick={handleSubmit}>
