@@ -4,7 +4,7 @@ import axios from "axios";
 import "./AdminDash.css";
 import Upload from "../Upload/Upload";
 let URL = import.meta.env.VITE_SERVER_URL;
-
+import { jwtDecode } from "jwt-decode";
 
 const ProDash = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -21,8 +21,12 @@ const ProDash = () => {
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
       }
+      const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+      const userId = decodedToken._id;
       const contentRetrieved = await axios.get(URL + "getAllContent");
-      setContent(contentRetrieved.data);
+      setContent(
+        contentRetrieved.data.filter((content) => content.creatorID === userId)
+      );
     };
     fetchData();
   }, []);
@@ -46,13 +50,16 @@ const ProDash = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${URL}deleteContent/${id}`);
-      const updatedContent = await axios.get(URL + "getAllContent");
-      setContent(updatedContent.data);
+      const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+      const userId = decodedToken._id;
+      const contentRetrieved = await axios.get(URL + "getAllContent");
+      setContent(
+        contentRetrieved.data.filter((content) => content.creatorID === userId)
+      );
     } catch (error) {
       console.error("Error deleting content:", error);
     }
   };
-
 
   return (
     <div className="home">
@@ -65,7 +72,6 @@ const ProDash = () => {
                 <h1>Hello, professional!</h1>
               </div>
               <div className="resume-activity">
-                <h3>Total number of users: {allUsers && allUsers.length}</h3>
                 <h3>Client users: {clientUsers && clientUsers.length}</h3>
                 <Upload />
               </div>
