@@ -84,6 +84,15 @@ ul {
     border: 3px solid black;
     background-color: #fff7dd89;
     padding: 10px;
+    color: black;
+}
+
+.recommendations h2,
+.recommendations:visited,
+.recommendations:hover,
+.recommendations:active {
+    color: #fff;
+    text-decoration: none;
 }
 
 .recommendations ul {
