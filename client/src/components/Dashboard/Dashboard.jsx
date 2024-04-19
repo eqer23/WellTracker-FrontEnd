@@ -14,6 +14,7 @@ import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
 import AdminDash from "./AdminDash"
+import ProDash from "./ProDash";
 let URL = import.meta.env.VITE_SERVER_URL;
 
 const Dashboard = () => {
@@ -147,7 +148,7 @@ const Dashboard = () => {
           </div>
         </div>
       ): (
-        <div>prof</div>
+        <ProDash />
       )}
     </div>
   );

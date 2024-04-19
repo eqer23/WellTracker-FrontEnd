@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import axios from "axios";
 import "./AdminDash.css";
+import Upload from "../Upload/Upload";
 let URL = import.meta.env.VITE_SERVER_URL;
 
-const AdminDash = () => {
+
+const ProDash = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [professionalUsers, setProfessionalUsers] = useState([]);
   const [clientUsers, setClientUsers] = useState([]);
@@ -21,15 +23,6 @@ const AdminDash = () => {
       }
       const contentRetrieved = await axios.get(URL + "getAllContent");
       setContent(contentRetrieved.data);
-      // console.log("content: ", JSON.stringify(contentRetrieved.data))
-
-      // try {
-      //     const contentRetrieved = await axios.get(URL + "getAllContent");
-      //     setContent(contentRetrieved);
-      //     console.log(contentRetrieved);
-      // } catch (error) {
-      //     console.log(error);
-      // }
     };
     fetchData();
   }, []);
@@ -68,17 +61,13 @@ const AdminDash = () => {
           <div className="dash-greeting-calendar">
             <div className="dash-greeting">
               <div className="message">
-                <h1>Admin Dashboard!</h1>
-                <h1>Hello, admin!</h1>
+                <h1>Professional Dashboard!</h1>
+                <h1>Hello, professional!</h1>
               </div>
               <div className="resume-activity">
                 <h3>Total number of users: {allUsers && allUsers.length}</h3>
-                <h3>
-                  Professional users:{" "}
-                  {professionalUsers && professionalUsers.length}
-                </h3>
                 <h3>Client users: {clientUsers && clientUsers.length}</h3>
-                {/* <h3>Client users: {allUsers && allUsers.data.filter(user => user.role === 'user').data.length}</h3> */}
+                <Upload />
               </div>
             </div>
 
@@ -117,4 +106,4 @@ const AdminDash = () => {
   );
 };
 
-export default AdminDash;
+export default ProDash;
