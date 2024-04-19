@@ -61,6 +61,19 @@ const ProDash = () => {
     }
   };
 
+  const handleUploadSuccess = async () => {
+    try {
+      const decodedToken = jwtDecode(localStorage.getItem("session-token"));
+      const userId = decodedToken._id;
+      const contentRetrieved = await axios.get(URL + "getAllContent");
+      setContent(
+        contentRetrieved.data.filter((content) => content.creatorID === userId)
+      );
+    } catch (error) {
+      console.error("Error deleting content:", error);
+    }
+  };
+
   return (
     <div className="home">
       <div className="content" style={{ paddingTop: "100px" }}>
@@ -73,12 +86,12 @@ const ProDash = () => {
               </div>
               <div className="resume-activity">
                 <h3>Client users: {clientUsers && clientUsers.length}</h3>
-                <Upload />
+                <Upload onSuccess={handleUploadSuccess} />
               </div>
             </div>
 
             <div className="calendar">
-              <h1>All Uploaded Content</h1>
+              <h1>Your Uploaded Content</h1>
               {content.map((item, index) => (
                 <div className={`content-item-wrapper`} key={index}>
                   <div

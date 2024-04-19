@@ -41,7 +41,7 @@ firebase.initializeApp(firebaseConfig);
     )
 }*/
 
-const Upload = () => {
+const Upload = ({ onSuccess }) => {
 
     const [tag, setTag] = useState()
     const [difficulty, setDifficulty] = useState()
@@ -52,6 +52,8 @@ const Upload = () => {
     const { token } = useParams();
     const [ImgUrl, setImgURL] = useState();
     const [description, setDescription] = useState("");
+
+    
 
     const navigate = useNavigate();
 
@@ -77,14 +79,14 @@ const Upload = () => {
         fetchData();
     }, [navigate]);
 
-    const handleFileUpload = (event) => {
+    const handleFileUpload = async (event) => {
         const selectedFile = event.target.files[0];
 
         if (selectedFile) {
             const storageRef = firebase.storage().ref();
             const fileRef = storageRef.child(selectedFile.name);
 
-            fileRef.put(selectedFile).then((snapshot) => {
+            await fileRef.put(selectedFile).then((snapshot) => {
                 snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log(downloadURL);
                     setImgURL(downloadURL);
@@ -116,6 +118,7 @@ const Upload = () => {
                         navigate("/upload");
                     }
                     console.log(res.data);
+                    onSuccess();
                     navigate("/dashboard");
                 })
                 .then()
