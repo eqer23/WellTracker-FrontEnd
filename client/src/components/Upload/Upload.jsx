@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 // import "../Dashboard/Dashboard";
 import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Global/Sidebar";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -42,18 +43,15 @@ firebase.initializeApp(firebaseConfig);
 }*/
 
 const Upload = ({ onSuccess }) => {
-
-    const [tag, setTag] = useState()
-    const [difficulty, setDifficulty] = useState()
-    const [intensity, setIntensity] = useState()
-    const [time, setTime] = useState()
+    const [tag, setTag] = useState();
+    const [difficulty, setDifficulty] = useState();
+    const [intensity, setIntensity] = useState();
+    const [time, setTime] = useState();
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
     const { token } = useParams();
     const [ImgUrl, setImgURL] = useState();
     const [description, setDescription] = useState("");
-
-    
 
     const navigate = useNavigate();
 
@@ -101,25 +99,24 @@ const Upload = ({ onSuccess }) => {
         if (title) {
             event.preventDefault();
             axios
-            .post(UPLOAD_URL, {
-                ImgUrl,
-                title,
-                creatorID,
-                description,
-                tag, 
-                difficulty,
-                intensity,
-                time
-                
-            })
+                .post(UPLOAD_URL, {
+                    ImgUrl,
+                    title,
+                    creatorID,
+                    description,
+                    tag,
+                    difficulty,
+                    intensity,
+                    time,
+                })
                 .then((res) => {
                     if (res.data.status) {
                         console.log("Content uploaded");
-                        navigate("/upload");
+                        // navigate("/dashboard");
                     }
                     console.log(res.data);
-                    onSuccess();
-                    navigate("/dashboard");
+                    // onSuccess();
+                    navigate("/upload");
                 })
                 .then()
                 .catch((err) => console.log(err));
@@ -131,68 +128,124 @@ const Upload = ({ onSuccess }) => {
     return (
         <div className="home">
             <Navbar />
-            <div className="wrapper">
-                <h1>Upload</h1>
+            <Sidebar />
+            <div className="wrapper-up">
                 <main>
-                    <p>Upload videos or workout plans here!</p>
+                    <div className="input-box">
+                        <h1>Upload</h1>
+                        <p>Upload videos or workout plans here!</p>
 
+                        <div className="form-input">
+                            <input
+                                type="text"
+                                placeholder="Enter Title Here"
+                                required
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-input">
+                            <input
+                                type="text"
+                                placeholder="Enter Description Here"
+                                required
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
 
-                <div className="input-box">
-                    <input
-                        type="text"
-                        placeholder="Enter Title Here"
-                        required
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Enter Description Here"
-                        required
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                
-                <input type = "file" onChange = {handleFileUpload}/>
-                <input type = "text"
-                placeholder = "Add Image URL"
-                value = {ImgUrl}
-                onChange={(e) => setImgURL(e.target.value)}/>
-                <h2>{tag}</h2>
-                <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
-                    <option>HIIT</option>
-                    <option>Yoga</option>
-                    <option>Pilates</option>
-                    <option>Weights</option>
-                    <option>No Equipment</option>
-                    <option>Low Impact</option>
-                    <option>Upper Body</option>
-                    <option>Full Body</option>
-                    <option>Lower Body</option>
-                    
-                </select>
-                <h2>{intensity}</h2>
-                <select value = {intensity} onChange = {(e) => setIntensity(e.target.value)}>
-                    <option>Low Intensity</option>
-                    <option>Medium Intensity</option>
-                    <option>High Intensity</option>
-                </select>
-                <h2>{difficulty}</h2>
-                <select value = {difficulty} onChange = {(e) => setDifficulty(e.target.value)}>
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
-                </select>
-                <h2>{time}</h2>
-                <select value = {time} onChange = {(e) => setTime(e.target.value)}>
-                    <option>15 Minutes</option>
-                    <option>30 Minutes</option>
-                    <option>1 Hour</option>
-                </select>
-                
-                <button className="push-upload-btn" onClick={handleSubmit}>
-                    Submit
-                </button>
-                </div>
+                        <div className="form-input">
+                            <input type="file" onChange={handleFileUpload} />
+                            <input
+                                type="text"
+                                placeholder="Add Image URL"
+                                value={ImgUrl}
+                                onChange={(e) => setImgURL(e.target.value)}
+                            />
+                        </div>
+                        {/* <h2>{tag}</h2> */}
+                        <div className="drop-label">
+                            <h3>Type: </h3>
+                            <div className="form-click">
+                                <select
+                                    value={tag}
+                                    onChange={(e) => setTag(e.target.value)}
+                                >
+                                    <option></option>
 
+                                    <option>HIIT</option>
+                                    <option>Yoga</option>
+                                    <option>Pilates</option>
+                                    <option>Weights</option>
+                                    <option>No Equipment</option>
+                                    <option>Low Impact</option>
+                                    <option>Upper Body</option>
+                                    <option>Full Body</option>
+                                    <option>Lower Body</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* <h2>{intensity}</h2> */}
+
+                        <div className="drop-label">
+                            <h3>Intensity: </h3>
+                            <div className="form-click">
+                                <select
+                                    value={intensity}
+                                    onChange={(e) =>
+                                        setIntensity(e.target.value)
+                                    }
+                                >
+                                    <option></option>
+                                    <option>Low Intensity</option>
+                                    <option>Medium Intensity</option>
+                                    <option>High Intensity</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* <h2>{difficulty}</h2> */}
+                        <div className="drop-label">
+                            <h3>Difficulity: </h3>
+                            <div className="form-click">
+                                <select
+                                    value={difficulty}
+                                    onChange={(e) =>
+                                        setDifficulty(e.target.value)
+                                    }
+                                >
+                                    <option></option>
+                                    <option>Beginner</option>
+                                    <option>Intermediate</option>
+                                    <option>Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* <h2>{time}</h2> */}
+                        <div className="drop-label">
+                            <h3>Time: </h3>
+                            <div className="form-click">
+                                <select
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                >
+                                    <option></option>
+
+                                    <option>15 Minutes</option>
+                                    <option>30 Minutes</option>
+                                    <option>1 Hour</option>
+                                </select>{" "}
+                            </div>
+                        </div>
+                        <div className="btn-flex">
+                            <button
+                                className="btn-submit-up"
+                                onClick={handleSubmit}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
                 </main>
             </div>
         </div>
