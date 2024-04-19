@@ -8,7 +8,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import { jwtDecode } from "jwt-decode";
 
-let UPLOAD_URL = "http://localhost:3001/mealTracker";
+let UPLOAD_URL = import.meta.env.VITE_SERVER_URL + "mealTracker";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
