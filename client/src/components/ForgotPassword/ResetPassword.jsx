@@ -5,6 +5,8 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
+
 
 // TODO
 
@@ -18,7 +20,7 @@ const ResetPassword = () => {
         if (password) {
             event.preventDefault();
             axios
-                .post("http://localhost:3001/reset-password/"+token, {
+                .post(URL + "reset-password/"+token, {
                     password,
                 })
                 .then((res) => {

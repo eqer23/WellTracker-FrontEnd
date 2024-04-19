@@ -6,6 +6,8 @@ import { jwtDecode } from "jwt-decode";
 import { useCookies, Cookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
+
 
 // TODO
 
@@ -21,7 +23,7 @@ const TwoFactorForm = () => {
     if (tfaCode) {
       event.preventDefault();
       axios
-        .post("http://localhost:3001/verify-token/" + decodedToken.tfa, {
+        .post(URL + "verify-token/" + decodedToken.tfa, {
           token: tfaCode,
         })
         .then((res) => {

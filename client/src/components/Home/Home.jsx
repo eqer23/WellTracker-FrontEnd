@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarHome from "../Navbar/NavbarHome";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+  
+
+  const navigate = useNavigate();
+
   return (
     <div className="home">
       <NavbarHome />
       <div className="home-wrapper">
-        {/* <h1>Home</h1> */}
 
         <h2>InstaFit</h2>
         <h3>Get ready to reach new heights!</h3>
