@@ -15,11 +15,6 @@ const LoginForm = () => {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (jwtDecode(localStorage.getItem("session-token"))) {
-      navigate("/dashboard");
-    }
-  })
 
   axios.defaults.withCredentials = true;
   const handleSubmit = () => {

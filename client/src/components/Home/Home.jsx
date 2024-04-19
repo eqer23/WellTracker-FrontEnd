@@ -7,14 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+  
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (jwtDecode(localStorage.getItem("session-token"))) {
-      navigate("/dashboard");
-    }
-  })
   return (
     <div className="home">
       <NavbarHome />

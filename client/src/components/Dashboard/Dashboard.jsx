@@ -13,12 +13,30 @@ import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 import nutritionImage from "../Assets/AdobeStock_258165676.jpeg";
 import Sidebar from "../Global/Sidebar";
 import { jwtDecode } from "jwt-decode";
-import AdminDash from "./AdminDash"
+import AdminDash from "./AdminDash";
 import ProDash from "./ProDash";
 let URL = import.meta.env.VITE_SERVER_URL;
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
+  const [content, setContent] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await axios.get(URL + `getAllUsers/${-1}`);
+        setAllUsers(data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert(error.response.data.message);
+      }
+      const contentRetrieved = await axios.get(URL + "getAllContent");
+      setContent(contentRetrieved.data);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,9 +69,9 @@ const Dashboard = () => {
     <div className="home">
       <Navbar />
       <Sidebar />
-      {data && data.role == 'admin' ? (
+      {data && data.role == "admin" ? (
         <AdminDash />
-      ) : data && data.role === 'user' ? (
+      ) : data && data.role === "user" ? (
         <div className="content" style={{ paddingTop: "100px" }}>
           <div className="dash-wrapper">
             <div className="dash-greeting-calendar">
@@ -111,49 +129,39 @@ const Dashboard = () => {
             </div>
 
             <div className="recommendations">
-                        <NavLink
-                            to="/Recommendations"
-                            className="recommendations-link"
-                        >
-                            {" "}
-                  <h2>Recommendations:</h2>
-                        </NavLink>
-              <ul>
-                <li>
-                  <img src={image1} alt="Description of Image" />
-                  <h3>15 Minute Core</h3>
-                  <p>Taught By: Coach A</p>
-                  <p>description</p>
-                </li>
-                <li>
-                  <img src={image2} alt="Description of Image" />
-                  <h3>Yoga A</h3>
-                  <p>Taught By: Coach A</p>
-                  <p>description</p>
-                </li>
-                <li>
-                  <img src={image3} alt="Description of Image" />
-                  <h3>Yoga B</h3>
-                  <p>Taught By: Coach B</p>
-                  <p>description</p>
-                </li>
-                <li>
-                  <img src={image4} alt="Description of Image" />
-                  <h3>30 Minute Full Body Workout</h3>
-                  <p>Taught By: Coach C</p>
-                  <p>description</p>
-                </li>
-                <li>
-                  <img src={image5} alt="Description of Image" />
-                  <h3>Strength A</h3>
-                  <p>Taught By: Coach D</p>
-                  <p>description</p>
-                </li>
-              </ul>
+              <NavLink to="/Recommendations" className="recommendations-link">
+                {" "}
+                <h2>Recommendations:</h2>
+              </NavLink>
+              <h1>All Uploaded Content</h1>
+              {content.map((item, index) => (
+                <div className={`content-item-wrapper`} key={index}>
+                  <div
+                    className={`content-item`}
+                    onClick={() => handleItemClick(index, item)}
+                  >
+                    <div className="content-details">
+                      <h3>{item.contentTitle}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                    <a
+                      href={item.contentContents}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={item.contentContents}
+                        alt={item.contentTitle}
+                        style={{ maxWidth: "200px", maxHeight: "200px" }}
+                      />
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      ): (
+      ) : (
         <ProDash />
       )}
     </div>
