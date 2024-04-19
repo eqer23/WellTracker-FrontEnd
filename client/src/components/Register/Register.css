@@ -1,3 +1,7 @@
+.outter-reg {
+    padding: 100px 0;
+}
+
 .wrapper-reg {
     /* creates the overall back rectange that will match the login screen */
     width: 420px;
@@ -13,6 +17,7 @@
 .wrapper-reg h1 {
     font-size: 36px;
     text-align: center;
+    margin-top: 0;
 }
 
 /* .wrapper-reg button {

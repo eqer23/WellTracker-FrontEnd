@@ -111,7 +111,13 @@ const Dashboard = () => {
             </div>
 
             <div className="recommendations">
-              <h2>Recommendations: </h2>
+                        <NavLink
+                            to="/Recommendations"
+                            className="recommendations-link"
+                        >
+                            {" "}
+                  <h2>Recommendations:</h2>
+                        </NavLink>
               <ul>
                 <li>
                   <img src={image1} alt="Description of Image" />

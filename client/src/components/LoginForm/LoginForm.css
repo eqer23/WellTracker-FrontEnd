@@ -13,6 +13,7 @@
 .wrapper-log h1 {
     font-size: 36px;
     text-align: center;
+    margin-top: 0;
 }
 
 .wrapper-log .input-box {

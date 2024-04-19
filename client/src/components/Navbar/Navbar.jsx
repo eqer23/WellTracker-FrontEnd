@@ -7,6 +7,7 @@ import { SearchResultsList } from "../Search/SearchResultsList";
 import { useCookies } from "react-cookie";
 import Logout from "../Logout/Logout";
 import logo from "../Assets/instaFitLogo1.jpg";
+// import Sidebar from "../Global/Sidebar";
 
 const Navbar = () => {
     // variables for searchBar
@@ -16,9 +17,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-sidebar">
-                <p>temp</p>
-            </div>
+            <div className="navbar-sidebar">{/* <Sidebar /> */} </div>
 
             <div className="navbar-logo">
                 <NavLink to="/dashboard">
@@ -29,7 +28,7 @@ const Navbar = () => {
             <ul className="navbar-other">
                 <li className="nav-item">
                     <SearchBar setResults={setResults} />
-                    <SearchResultsList results={results} />
+                    {/* <SearchResultsList results={results} /> */}
                 </li>
                 {isLoggedIn ? (
                     <React.Fragment>
