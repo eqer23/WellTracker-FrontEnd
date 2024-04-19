@@ -11,6 +11,7 @@ import { useCookies } from "react-cookie";
 import QRCode from "qrcode";
 let URL = import.meta.env.VITE_SERVER_URL;
 
+import SubscribeButton from "../Subscriptions/SubscribeButton";
 const Profile = () => {
   const [data, setData] = useState(null);
   const [cookies] = useCookies(["session-token"]); // Get the token cookie
@@ -18,6 +19,7 @@ const Profile = () => {
   const [userId, setUserId] = useState(null);
   const [qrCodeDataUrl, setQRCodeDataUrl] = useState("");
   const [rerenderKey, setRerenderKey] = useState(0); // State variable for triggering re-render
+  const [isSubscribed, setIsSubscribed] = useState(false); // State to manage subscription status
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +42,8 @@ const Profile = () => {
         });
         console.log("data requested");
         setData(response.data);
+
+        checkSubscriptionStatus(userId, response.data.professionalId); // check subscription status
       } catch (error) {
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
@@ -48,6 +52,19 @@ const Profile = () => {
 
     fetchData();
   }, [cookies, rerenderKey]);
+
+  const checkSubscriptionStatus = async (userId, professionalId) => {
+    try {
+      const response = await axios.get(`${URL}isSubscribed/${professionalId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("session-token")}`,
+        },
+      });
+      setIsSubscribed(response.data.isSubscribed);
+    } catch (error) {
+      console.error("Error checking subscription status: ", error);
+    }
+  };
 
   const handle2fa = async () => {
     console.log("2fa started");
@@ -95,6 +112,14 @@ const Profile = () => {
         <p>Email: {data && data.email}</p>
         <p>Change Password</p>
 
+        {/* Subscribe button for fitness professionals */}
+        {data && data.role === "professional" && (
+          <SubscribeButton
+          professionalId={data._id}
+          isSubscribed={isSubscribed}
+          onSubscriptionChange={() => setIsSubscribed(!isSubscribed)}
+          />
+        )}
         <button
           className="btn-tfa"
           onClick={handle2fa}
