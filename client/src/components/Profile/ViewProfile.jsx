@@ -53,6 +53,11 @@ const ViewProfile = () => {
         },
       });
       setIsSubscribed(response.data.isSubscribed);
+      setData(data => ({
+        ...data,
+        subscriberCount: response.data.subscriberCount
+      }));
+
     } catch (error) {
       console.error("Error checking subscription status: ", error);
     }
@@ -98,6 +103,7 @@ const ViewProfile = () => {
         {/* Subscribe button for fitness professionals */}
         {data && data.role === "professional" && (
           <>
+          <p>Subscribers: {data.subscriberCount}</p>
             <SubscribeButton
             professionalId={data._id}
             isSubscribed={isSubscribed}
