@@ -14,7 +14,8 @@ const WellnessForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const total = Number(days) + Number(rate) + Number(sleep); // + Number(nutrition);
+        const total =
+            Number(days) + Number(rate) + Number(sleep) + Number(nutrition);
         let description = "";
 
         if (total < 10) {
@@ -97,7 +98,7 @@ const WellnessForm = () => {
                             <option value="four">4</option>
                             <option value="five">5</option>
                             <option value="six">6</option>
-                            <option value="sevem">7</option>
+                            <option value="seven">7</option>
                         </select>
                     </div>
 

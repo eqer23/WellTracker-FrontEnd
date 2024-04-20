@@ -89,9 +89,9 @@ const Dashboard = () => {
                                 <div className="resume-activity">
                                     <h3>Pick up where you left off?</h3>
                                     <div className="last-used-features">
-                                        <div className="last-feature-progress">
+                                        {/* <div className="last-feature-progress">
                                             <h3>Progress</h3>
-                                        </div>
+                                        </div> */}
 
                                         <div className="last-feature-nutrition">
                                             <img
