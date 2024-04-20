@@ -13,7 +13,7 @@ const SubscribeButton =  ({ professionalId, isSubscribed, onSubscriptionChange }
 
     const toggleSubscription = async () => {
         console.log(subscribed);
-        const url = `${URL}${ subscribed ? 'unsubscribe' : 'subscribe'}/${professionalId}}`;
+        const url = `${URL}${ subscribed ? 'unsubscribe' : 'subscribe'}/${professionalId}`;
         const method = 'POST';
 
         try {

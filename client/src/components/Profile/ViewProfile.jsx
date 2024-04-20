@@ -28,7 +28,6 @@ const ViewProfile = () => {
         });
         console.log("data requested");
         setData(response.data);
-        checkSubscriptionStatus(); // check subscription status
       } catch (error) {
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
@@ -38,11 +37,17 @@ const ViewProfile = () => {
     fetchData();
   }, [userId]);
 
+  useEffect(() => {
+    if(data) {
+      checkSubscriptionStatus(); // check subscription status
+    }
+  }, [data]);
+
   const checkSubscriptionStatus = async () => {
     const me = getUserIdFromToken();
-    if(!me || !userId) return;
+    if(!me || !userId || !data) return;
     try {
-      const response = await axios.get(`${URL}isSubscribed/${me}/${professionalId}`, {
+      const response = await axios.get(`${URL}isSubscribed/${me}/${data._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("session-token")}`,
         },
@@ -56,14 +61,18 @@ const ViewProfile = () => {
 
   const getUserIdFromToken = () =>{
     const token = localStorage.getItem('session-token');
-    if (!token) return null;
-    const decoded = jwtDecode(token);
-    return decoded._id;
+    try{
+      const decoded = jwtDecode(token);
+      return decoded._id;
+    } catch (error) {
+      console.error("Failed to decode token:", error);
+      return null;
+    }
   }
 
   const handleSubscriptionChange = async () => {
     setIsSubscribed(!isSubscribed);
-    const url = `${URL}/${isSubscribed ? 'unsubscribe' : 'subscribe'}/${data._id}}`;
+    const url = `${URL}${isSubscribed ? 'unsubscribe' : 'subscribe'}/${data._id}`;
     try {
       await axios.post(url, {}, {
         headers: {
