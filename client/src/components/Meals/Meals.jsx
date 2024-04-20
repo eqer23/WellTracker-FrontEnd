@@ -103,9 +103,9 @@ const Meal = () => {
         <div className="home">
             <Navbar />
             <div className="wrapper">
-                <h1>Upload</h1>
+                <h1>Meals</h1>
                 <main>
-                    <p>Upload videos or workout plans here!</p>
+                    <p>Upload your meals here!</p>
 
 
                 <div className="input-box">
@@ -141,4 +141,4 @@ const Meal = () => {
     );
 };
 
-export default Meals;
+export default Meal;
