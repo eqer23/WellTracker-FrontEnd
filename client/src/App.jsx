@@ -17,6 +17,7 @@ import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/Calendar";
 import Upload from "./components/Upload/Upload";
 import Meals from "./components/Meals/Meals";
+import Activity from "./components/Activity/Activity";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -38,6 +39,7 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/meals" element={<Meals />} />
+            <Route path="/activity" element={<Activity />} />
             <Route
               path="/reset-password/:token"
               element={<ResetPassword />}
