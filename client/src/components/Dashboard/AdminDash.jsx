@@ -21,15 +21,6 @@ const AdminDash = () => {
       }
       const contentRetrieved = await axios.get(URL + "getAllContent");
       setContent(contentRetrieved.data);
-      // console.log("content: ", JSON.stringify(contentRetrieved.data))
-
-      // try {
-      //     const contentRetrieved = await axios.get(URL + "getAllContent");
-      //     setContent(contentRetrieved);
-      //     console.log(contentRetrieved);
-      // } catch (error) {
-      //     console.log(error);
-      // }
     };
     fetchData();
   }, []);
