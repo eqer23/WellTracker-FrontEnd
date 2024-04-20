@@ -42,7 +42,7 @@ const Profile = () => {
         });
         console.log("data requested");
         setData(response.data);
-
+        console.log(response.data)
         checkSubscriptionStatus(userId, response.data.professionalId); // check subscription status
       } catch (error) {
         console.error("Error fetching data:", error);

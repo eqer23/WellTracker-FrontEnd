@@ -13,9 +13,9 @@ export const SearchBar = ({setResults}) => {
             const response = await axios.get(`http://localhost:3001/searchUsers?query=${value}`);
             const users = response.data;
             
-            const emails = users.map(user => user.email);
+            //const userNames= users.map(user => `${user.firstName} ${user.lastName}`);
             //console.log(emails);
-            setResults(emails);
+            setResults(users);
         } catch (error) {
             console.error("Error fetching search results: ", error);
             setResults([]);

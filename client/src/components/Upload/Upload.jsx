@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+// import "../Dashboard/Dashboard";
 import "./Upload.css";
 import Navbar from "../Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
@@ -39,55 +41,61 @@ firebase.initializeApp(firebaseConfig);
     )
 }*/
 
+const Upload = ({ onSuccess }) => {
 
-
-const Upload = () => {
     const [tag, setTag] = useState()
+    const [difficulty, setDifficulty] = useState()
+    const [intensity, setIntensity] = useState()
+    const [time, setTime] = useState()
     const [title, setTitle] = useState("");
     const [creatorID, setCreatorID] = useState(undefined);
-    const {token} = useParams();
+    const { token } = useParams();
     const [ImgUrl, setImgURL] = useState();
-    const [description, setDescription] = useState("")
+    const [description, setDescription] = useState("");
+
     
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-          if (!localStorage.getItem("session-token")) {
-            navigate("/login");
-            alert("You cannot use upload if you haven't logged in.");
-          } else {
-            const decodedToken = jwtDecode(localStorage.getItem("session-token"));
-            if (decodedToken.role == "professional" || "admin") {
-                setCreatorID(decodedToken._id)
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+                alert("You cannot use upload if you haven't logged in.");
             } else {
-                console.log("you do not have permission to use this feature")
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                if (decodedToken.role == "professional" || "admin") {
+                    setCreatorID(decodedToken._id);
+                } else {
+                    console.log(
+                        "you do not have permission to use this feature"
+                    );
+                }
             }
-            
-          }
         };
-    
+
         fetchData();
-      }, [navigate]);
+    }, [navigate]);
 
-
-    const handleFileUpload = (event) => {
-        const selectedFile = event.target.files[0]
+    const handleFileUpload = async (event) => {
+        const selectedFile = event.target.files[0];
 
         if (selectedFile) {
-            const storageRef = firebase.storage().ref()
-            const fileRef = storageRef.child(selectedFile.name)
+            const storageRef = firebase.storage().ref();
+            const fileRef = storageRef.child(selectedFile.name);
 
-            fileRef.put(selectedFile).then((snapshot) => {
+            await fileRef.put(selectedFile).then((snapshot) => {
                 snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log(downloadURL);
                     setImgURL(downloadURL);
                 });
             });
         } else {
-            console.log("No file selected")
+            console.log("No file selected");
         }
-      }
+    };
 
     const handleSubmit = () => {
         if (title) {
@@ -98,7 +106,10 @@ const Upload = () => {
                 title,
                 creatorID,
                 description,
-                tag
+                tag, 
+                difficulty,
+                intensity,
+                time
                 
             })
                 .then((res) => {
@@ -106,7 +117,9 @@ const Upload = () => {
                         console.log("Content uploaded");
                         navigate("/upload");
                     }
-                    console.log(res.data)
+                    console.log(res.data);
+                    onSuccess();
+                    navigate("/dashboard");
                 })
                 .then()
                 .catch((err) => console.log(err));
@@ -145,9 +158,6 @@ const Upload = () => {
                 onChange={(e) => setImgURL(e.target.value)}/>
                 <h2>{tag}</h2>
                 <select value = {tag} onChange = {(e) => setTag(e.target.value)}>
-                    <option>Low Intensity</option>
-                    <option>Medium Intensity</option>
-                    <option>High Intensity</option>
                     <option>HIIT</option>
                     <option>Yoga</option>
                     <option>Pilates</option>
@@ -157,18 +167,32 @@ const Upload = () => {
                     <option>Upper Body</option>
                     <option>Full Body</option>
                     <option>Lower Body</option>
-                    <option>15 Minutes</option>
-                    <option>30 Minutes</option>
-                    <option>1 Hour</option>
+                    
+                </select>
+                <h2>{intensity}</h2>
+                <select value = {intensity} onChange = {(e) => setIntensity(e.target.value)}>
+                    <option>Low Intensity</option>
+                    <option>Medium Intensity</option>
+                    <option>High Intensity</option>
+                </select>
+                <h2>{difficulty}</h2>
+                <select value = {difficulty} onChange = {(e) => setDifficulty(e.target.value)}>
                     <option>Beginner</option>
                     <option>Intermediate</option>
                     <option>Advanced</option>
+                </select>
+                <h2>{time}</h2>
+                <select value = {time} onChange = {(e) => setTime(e.target.value)}>
+                    <option>15 Minutes</option>
+                    <option>30 Minutes</option>
+                    <option>1 Hour</option>
                 </select>
                 
                 <button className="push-upload-btn" onClick={handleSubmit}>
                     Submit
                 </button>
                 </div>
+
                 </main>
             </div>
         </div>

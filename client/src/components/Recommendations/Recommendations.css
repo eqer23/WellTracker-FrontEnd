@@ -1,0 +1,239 @@
+.recc-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 10px;
+    background-color: rgb(43, 27, 64);
+    color: black;
+    line-height: 1;
+    /* background-color: #fff7ddfd; */
+}
+
+@media screen and (max-width: 1250px) {
+    .recc-wrapper {
+        width: 850px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .recc-wrapper {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .recc-wrapper {
+        width: 400px;
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dash-wrapper {
+        width: 300px;
+        margin-top: 40px;
+    }
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.workout-reccs {
+    margin-bottom: 20px;
+    border: 3px solid black;
+    background-color: #fff7dd89;
+    padding: 10px;
+}
+
+.workout-reccs ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.workout-reccs li {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: black 2px solid;
+    width: 200px;
+    padding: 5px;
+    background-color: beige;
+}
+
+.workout-reccs p h3 {
+    padding-left: 5px;
+}
+
+.nutrition-reccs {
+    margin-bottom: 20px;
+    border: 3px solid black;
+    background-color: #fff7dd89;
+    padding: 10px;
+}
+
+.nutrition-reccs ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.nutrition-reccs li {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: black 2px solid;
+    width: 200px;
+    padding: 5px;
+    background-color: beige;
+}
+
+.nutrition-reccs p h3 {
+    padding-left: 5px;
+}
+
+.wellness-form {
+    margin-bottom: 20px;
+    border: 3px solid black;
+    background-color: #fff7dd89;
+    padding: 10px;
+}
+
+.wellnes-form p h3 {
+    padding-left: 5px;
+}
+
+.wellness-form .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workout-form {
+    margin-bottom: 20px;
+    border: 3px solid black;
+    background-color: #fff7dd89;
+    padding: 10px;
+}
+
+.workout-form p h3 {
+    padding-left: 5px;
+}
+
+.workout-form .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nutrition-form {
+    margin-bottom: 20px;
+    border: 3px solid black;
+    background-color: #fff7dd89;
+    padding: 10px;
+}
+
+.nutrition-form p h3 {
+    padding-left: 5px;
+}
+
+.nutrition-form .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-wellness {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 45%;
+    height: 45px;
+    background: beige;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.btn-wellness,
+.btn-wellness:visited,
+.btn-wellness:hover,
+.btn-wellness:active {
+    text-decoration: none;
+}
+
+.btn-workout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 45%;
+    height: 45px;
+    background: beige;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.btn-workout,
+.btn-workout:visited,
+.btn-workout:hover,
+.btn-workout:active {
+    text-decoration: none;
+}
+
+.btn-nutrition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 45%;
+    height: 45px;
+    background: beige;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.btn-nutrition,
+.btn-nutrition:visited,
+.btn-nutrition:hover,
+.btn-nutrition:active {
+    text-decoration: none;
+}
+
+.btn-wellness:hover {
+    background-color: #ddb9e2;
+}
+
+.btn-workout:hover {
+    background-color: #ddb9e2;
+}
+
+.btn-nutrition:hover {
+    background-color: #ddb9e2;
+}

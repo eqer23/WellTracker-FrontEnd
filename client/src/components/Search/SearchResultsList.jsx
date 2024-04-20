@@ -5,8 +5,8 @@ export const SearchResultsList = ({ results }) => {
     return (
     <div className="results-list">
         {
-            results.map((email , index) =>{
-                return <SearchResult email={email} key={index}/>
+            results.map((user , index) =>{
+                return <SearchResult user={user} key={index}/>
             })
         }
     </div>

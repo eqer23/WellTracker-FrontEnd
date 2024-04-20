@@ -14,11 +14,11 @@ const Logout = () => {
         localStorage.removeItem('temp-session-token');
         // Perform any additional logout tasks
         alert("You have been logged out.")
-        navigate("/chat"); // Redirect to this page after logout
+        navigate("/"); 
     };
 
     return (
-        <li className="nav-item logout" onClick={handleLogout}>
+        <li className="logout" onClick={handleLogout}>
             Logout
         </li>
     );
