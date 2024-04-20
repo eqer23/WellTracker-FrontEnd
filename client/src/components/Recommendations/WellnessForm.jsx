@@ -5,12 +5,15 @@ import "./Form.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 let URL = import.meta.env.VITE_SERVER_URL;
+import { useNavigate } from "react-router-dom";
 
 const WellnessForm = () => {
     const [days, setDays] = useState("");
     const [rate, setRate] = useState("");
     const [sleep, setSleep] = useState("");
     const [nutrition, setNutrition] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
