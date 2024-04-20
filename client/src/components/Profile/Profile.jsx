@@ -53,19 +53,6 @@ const Profile = () => {
     fetchData();
   }, [cookies, rerenderKey]);
 
-  const checkSubscriptionStatus = async (userId, professionalId) => {
-    try {
-      const response = await axios.get(`${URL}isSubscribed/${professionalId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("session-token")}`,
-        },
-      });
-      setIsSubscribed(response.data.isSubscribed);
-    } catch (error) {
-      console.error("Error checking subscription status: ", error);
-    }
-  };
-
   const handle2fa = async () => {
     console.log("2fa started");
     try {

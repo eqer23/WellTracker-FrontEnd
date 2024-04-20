@@ -5,6 +5,7 @@ import axios from "axios";
 import NavbarHome from "../Navbar/NavbarHome";
 import { useCookies } from "react-cookie";
 import SubscribeButton from "../Subscriptions/SubscribeButton";
+import SubscriptionList from "../Subscriptions/SubscriptionList";
 
 import { useParams } from "react-router-dom";
 
@@ -13,7 +14,6 @@ let URL = import.meta.env.VITE_SERVER_URL;
 const ViewProfile = () => {
   const {userId} = useParams();
   const [data, setData] = useState(null);
-  const [cookies] = useCookies(["session-token"]); // Get the token cookie
   const [isSubscribed, setIsSubscribed] = useState(false); // State to manage subscription status
 
 
@@ -28,7 +28,7 @@ const ViewProfile = () => {
         });
         console.log("data requested");
         setData(response.data);
-        //checkSubscriptionStatus(userId, response.data.professionalId); // check subscription status
+        checkSubscriptionStatus(); // check subscription status
       } catch (error) {
         console.error("Error fetching data:", error);
         alert(error.response.data.message);
@@ -38,9 +38,11 @@ const ViewProfile = () => {
     fetchData();
   }, [userId]);
 
-  const checkSubscriptionStatus = async (professionalId) => {
+  const checkSubscriptionStatus = async () => {
+    const me = getUserIdFromToken();
+    if(!me || !userId) return;
     try {
-      const response = await axios.get(`${URL}isSubscribed/${professionalId}`, {
+      const response = await axios.get(`${URL}isSubscribed/${me}/${professionalId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("session-token")}`,
         },
@@ -48,6 +50,29 @@ const ViewProfile = () => {
       setIsSubscribed(response.data.isSubscribed);
     } catch (error) {
       console.error("Error checking subscription status: ", error);
+    }
+
+  };
+
+  const getUserIdFromToken = () =>{
+    const token = localStorage.getItem('session-token');
+    if (!token) return null;
+    const decoded = jwtDecode(token);
+    return decoded._id;
+  }
+
+  const handleSubscriptionChange = async () => {
+    setIsSubscribed(!isSubscribed);
+    const url = `${URL}/${isSubscribed ? 'unsubscribe' : 'subscribe'}/${data._id}}`;
+    try {
+      await axios.post(url, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('session-token')}`
+        }
+      });
+    } catch (error) {
+      console.error("Error updating subscription status: ", error);
+      setIsSubscribed(!isSubscribed);
     }
   };
 
@@ -63,11 +88,13 @@ const ViewProfile = () => {
 
         {/* Subscribe button for fitness professionals */}
         {data && data.role === "professional" && (
-          <SubscribeButton
-          professionalId={data._id}
-          isSubscribed={isSubscribed}
-          onSubscriptionChange={() => setIsSubscribed(!isSubscribed)}
-          />
+          <>
+            <SubscribeButton
+            professionalId={data._id}
+            isSubscribed={isSubscribed}
+            onSubscriptionChange={handleSubscriptionChange}
+            />
+          </>
         )}
       </div>
     </div>
