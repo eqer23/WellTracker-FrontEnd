@@ -113,13 +113,7 @@ const Profile = () => {
         <p>Change Password</p>
 
         {/* Subscribe button for fitness professionals */}
-        {data && data.role === "professional" && (
-          <SubscribeButton
-          professionalId={data._id}
-          isSubscribed={isSubscribed}
-          onSubscriptionChange={() => setIsSubscribed(!isSubscribed)}
-          />
-        )}
+
         <button
           className="btn-tfa"
           onClick={handle2fa}

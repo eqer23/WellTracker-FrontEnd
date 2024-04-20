@@ -64,7 +64,7 @@ function App() {
             {/* Logic for protected routes. Routes that a user should not be able to access until login */}
             <Route path="/profile" element={<ProtectedRoute />}>
               <Route path="" element={<Profile />} />
-                            <Route path="view/:userId" element={<ViewProfile />} />
+              <Route path="view/:userId" element={<ViewProfile />} />
             </Route>
           </Routes>
         </ThemeProvider>

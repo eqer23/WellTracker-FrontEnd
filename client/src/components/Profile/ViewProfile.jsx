@@ -36,7 +36,7 @@ const ViewProfile = () => {
     };
 
     fetchData();
-  }, [cookies]);
+  }, [userId]);
 
   const checkSubscriptionStatus = async (professionalId) => {
     try {
