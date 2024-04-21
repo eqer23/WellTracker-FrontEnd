@@ -48,27 +48,6 @@ const Recommendations = () => {
         fetchWellnessScore();
     }, [navigate]);
 
-    // useEffect(() => {
-    //     const fetchWellnessScore = async () => {
-    //         const userId = "the_user_id"; // This should be dynamically set based on the logged-in user
-    //         try {
-    //             const response = await axios.get(URL + "getWellnessScore", {
-    //                 params: {
-    //                     _userId: userId,
-    //                 },
-    //             });
-    //             setWellness({
-    //                 score: response.data.score,
-    //                 description: response.data.description,
-    //             });
-    //         } catch (error) {
-    //             console.error("Error fetching wellness data", error);
-    //         }
-    //     };
-
-    //     fetchWellnessScore();
-    // }, []);
-
     return (
         <div className="recc-home">
             <Navbar />

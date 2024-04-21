@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 let URL = import.meta.env.VITE_SERVER_URL;
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const WellnessForm = () => {
     const [days, setDays] = useState("");
