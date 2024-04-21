@@ -24,7 +24,9 @@ const Recommendations = () => {
         score: 0 / 26,
         description: "",
     });
+    const [formContent, setFormContent] = useState([]);
     const [content, setContent] = useState([]);
+    const [userTag, setUserTag] = useState("");
 
     const navigate = useNavigate();
 
@@ -48,37 +50,62 @@ const Recommendations = () => {
                     console.error("Error fetching wellness data", error);
                 }
             }
-
-            try {
-                const userTagRetrieved = await axios.get(
-                    URL + "getWorkoutPreference",
-                    {
-                        params: {
-                            _userId: id,
-                        },
-                    }
-                );
-            } catch (error) {
-                console.error("Error fetching workout data", error);
-            }
-
-            try {
-                const contentRetrieved = await axios.get(
-                    URL + "getAllContent",
-                    {
-                        params: {
-                            tag: userTagRetrieved,
-                        },
-                    }
-                );
-                setContent(contentRetrieved.data);
-            } catch (error) {
-                console.error("Error fetching content data", error);
-            }
         };
 
         fetchWellnessScore();
+        getUserTag();
     }, [navigate]);
+
+    const getUserTag = async () => {
+        try {
+            const token = localStorage.getItem("session-token");
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken._id;
+            const response = await axios.get(URL + "getWorkoutPreference", {
+                params: {
+                    _userId: userId,
+                },
+            });
+            console.log(response.data);
+            setUserTag(response.data);
+
+            // setFormContent({ userTag: response.data });
+
+            console.log("getWorkoutPref success: ", userTag);
+        } catch (error) {
+            console.error("Error fetching workout data", error);
+        }
+    };
+
+    //     getUserTag();
+    //     fetchWellnessScore();
+    // }, [navigate]);
+
+    useEffect(() => {
+        if (userTag) {
+            // Ensure userTag is set before fetching content
+            const getContentTag = async () => {
+                try {
+                    const contentRetrieved = await axios.get(
+                        URL + "getAllContent",
+                        {
+                            params: {
+                                tag: userTag, // Now using the state variable
+                            },
+                        }
+                    );
+                    setContent(
+                        contentRetrieved.data.filter(
+                            (content) => content.tag === userTag
+                        )
+                    );
+                } catch (error) {
+                    console.error("Error fetching content data", error);
+                }
+            };
+            getContentTag();
+        }
+    }, [userTag]); // This useEffect runs whenever userTag changes
 
     return (
         <div className="recc-home">
@@ -90,7 +117,40 @@ const Recommendations = () => {
                         <div className="workout-reccs">
                             <h2>Workout Recommendations:</h2>
 
-                            <ul>
+                            {content.map((item, index) => (
+                                <div
+                                    className={`content-item-wrapper`}
+                                    key={index}
+                                >
+                                    <div
+                                        className={`content-item`}
+                                        onClick={() =>
+                                            handleItemClick(index, item)
+                                        }
+                                    >
+                                        <div className="content-details">
+                                            <h3>{item.contentTitle}</h3>
+                                            <p>{item.description}</p>
+                                        </div>
+                                        <a
+                                            href={item.contentContents}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                src={item.contentContents}
+                                                alt={item.contentTitle}
+                                                style={{
+                                                    maxWidth: "200px",
+                                                    maxHeight: "200px",
+                                                }}
+                                            />
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {/* <ul>
                                 <li>
                                     <img
                                         src={image1}
@@ -136,7 +196,7 @@ const Recommendations = () => {
                                     <p>Taught By: Coach D</p>
                                     <p>description</p>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </div>
 
                         <div className="nutrition-reccs">
@@ -155,7 +215,7 @@ const Recommendations = () => {
                                 </p>
                             </div>
                             <div className="form-result">
-                                <h2>Youre wellness form results: </h2>
+                                <h3>Youre wellness form results: </h3>
                                 <p>Wellness Score: {wellness.score} / 26</p>
                                 <p>{wellness.description}</p>
                             </div>

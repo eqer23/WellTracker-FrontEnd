@@ -131,7 +131,7 @@ const Upload = ({ onSuccess }) => {
             <Sidebar />
             <div className="wrapper-up">
                 <main>
-                    <div className="input-box">
+                    <div className="input-box-up">
                         <h1>Upload</h1>
                         <p>Upload videos or workout plans here!</p>
 
