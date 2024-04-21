@@ -9,8 +9,8 @@ import "./NutritionForm";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-let URL = import.meta.env.VITE_SERVER_URL;
 import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
 
 //temp images for testing frond view:
 import image1 from "../Assets/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg";
@@ -124,10 +124,8 @@ const Recommendations = () => {
                             </div>
                             <div className="form-result">
                                 <h2>Youre wellness form results: </h2>
-                                <p>
-                                    Wellness Score: {wellness.score}{" "}
-                                    {wellness.description}
-                                </p>
+                                <p>Wellness Score: {wellness.score} / 26</p>
+                                <p>{wellness.description}</p>
                             </div>
                             <div className="btn">
                                 {/* <div className="btn-wellness">
