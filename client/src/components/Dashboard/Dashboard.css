@@ -47,17 +47,28 @@
     line-height: 1.5;
 }
 
-.calendar h2 {
+.recommendations-link,
+.recommendations-link:visited,
+.recommendations-link:hover,
+.recommendations-link:active {
     color: #fff;
-    /* font-family: Source Sans Pro, sans-serif; */
-    /* font-weight: 400; */
-    line-height: 1;
-    font-size: 2em;
     text-decoration: none;
+    line-height: 0.5;
+    font-size: 20px;
 }
 
-.calendar h2:hover {
-    text-decoration: underline;
+.calendar-link,
+.calendar-link:visited,
+.calendar-link:hover,
+.calendar-link:active {
+    color: #fff;
+    text-decoration: none;
+    line-height: 0.5;
+    font-size: 20px;
+}
+
+.calendar h2:hover,
+.recommendations-link:hover {
     color: rgb(255, 239, 187);
     cursor: pointer;
 }
@@ -85,14 +96,6 @@ ul {
     background-color: #fff7dd89;
     padding: 10px;
     color: black;
-}
-
-.recommendations h2,
-.recommendations:visited,
-.recommendations:hover,
-.recommendations:active {
-    color: #fff;
-    text-decoration: none;
 }
 
 .recommendations ul {

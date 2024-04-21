@@ -19,7 +19,9 @@ const Recommendations = () => {
                 <div className="cal-wrapper">
                     <div className="more-style">
                         <h1>Calendar</h1>
-                        <Calendar />
+                        <div className="content-calendar">
+                            <Calendar />
+                        </div>
                     </div>
                 </div>
             </div>

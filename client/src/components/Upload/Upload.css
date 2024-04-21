@@ -1,0 +1,98 @@
+.wrapper-up {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 10px 20px, 20px, 50px;
+    background-color: rgb(43, 27, 64);
+    color: black;
+    line-height: 1;
+    /* background-color: #fff7ddfd; */
+}
+
+@media screen and (max-width: 1300px) {
+    .wrapper-up {
+        width: 850px;
+        padding: 10px 20px, 20px, 50px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .wrapper-up {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper-up {
+        width: 400px;
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper-up {
+        width: 300px;
+        margin-top: 40px;
+    }
+}
+
+.input-box-up {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    background-color: #fff7dd89;
+    border: black 2px solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.form-input {
+    width: 99%;
+    margin: 5px 0;
+}
+
+.form-click {
+    width: 275px;
+    height: 30px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    padding: 0 20px;
+    margin: 0 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.drop-label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.btn-submit-up {
+    width: 40%;
+    height: 45px;
+    background: beige;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 7px;
+    margin-top: 45px;
+}
+
+.btn-submit-up:hover {
+    background-color: #ddb9e2;
+}
+
+.btn-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
