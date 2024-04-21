@@ -54,7 +54,7 @@ const AdminDash = () => {
     };
 
     return (
-        <div className="home">
+        <div className="home-admin">
             <div className="content">
                 <div className="dash-wrapper">
                     <div className="dash-greeting-calendar">
@@ -83,43 +83,47 @@ const AdminDash = () => {
 
                         <div className="calendar">
                             <h1>All Uploaded Content</h1>
-                            {content.map((item, index) => (
-                                <div
-                                    className={`content-item-wrapper`}
-                                    key={index}
-                                >
+                            <div className="color">
+                                {content.map((item, index) => (
                                     <div
-                                        className={`content-item`}
-                                        onClick={() =>
-                                            handleItemClick(index, item)
-                                        }
+                                        className={`content-item-wrapper`}
+                                        key={index}
                                     >
-                                        <div className="content-details">
-                                            <h3>{item.contentTitle}</h3>
-                                            <p>{item.description}</p>
-                                        </div>
-                                        <a
-                                            href={item.contentContents}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                        <div
+                                            className={`content-item`}
+                                            onClick={() =>
+                                                handleItemClick(index, item)
+                                            }
                                         >
-                                            <img
-                                                src={item.contentContents}
-                                                alt={item.contentTitle}
-                                                style={{
-                                                    maxWidth: "200px",
-                                                    maxHeight: "200px",
-                                                }}
-                                            />
-                                        </a>
+                                            <div className="content-details">
+                                                <h3>{item.contentTitle}</h3>
+                                                <p>{item.description}</p>
+                                            </div>
+                                            <a
+                                                href={item.contentContents}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={item.contentContents}
+                                                    alt={item.contentTitle}
+                                                    style={{
+                                                        maxWidth: "200px",
+                                                        maxHeight: "200px",
+                                                    }}
+                                                />
+                                            </a>
+                                        </div>
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(item._id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
-                                    <button
-                                        onClick={() => handleDelete(item._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
