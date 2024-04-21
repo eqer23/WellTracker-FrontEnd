@@ -20,7 +20,12 @@ import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 
 const Recommendations = () => {
-    const [wellness, setWellness] = useState({ score: 0, description: "" });
+    const [wellness, setWellness] = useState({
+        score: 0 / 26,
+        description: "",
+    });
+    const [content, setContent] = useState([]);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,6 +47,33 @@ const Recommendations = () => {
                 } catch (error) {
                     console.error("Error fetching wellness data", error);
                 }
+            }
+
+            try {
+                const userTagRetrieved = await axios.get(
+                    URL + "getWorkoutPreference",
+                    {
+                        params: {
+                            _userId: id,
+                        },
+                    }
+                );
+            } catch (error) {
+                console.error("Error fetching workout data", error);
+            }
+
+            try {
+                const contentRetrieved = await axios.get(
+                    URL + "getAllContent",
+                    {
+                        params: {
+                            tag: userTagRetrieved,
+                        },
+                    }
+                );
+                setContent(contentRetrieved.data);
+            } catch (error) {
+                console.error("Error fetching content data", error);
             }
         };
 

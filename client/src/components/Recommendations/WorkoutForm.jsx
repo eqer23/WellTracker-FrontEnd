@@ -28,7 +28,7 @@ const WorkoutForm = () => {
             });
 
             if (response.status === 200) {
-                console.log("form filled out susccessfully!!!");
+                console.log("workout form filled out susccessfully!!!");
                 navigate("/recommendations");
             }
         } catch (error) {
