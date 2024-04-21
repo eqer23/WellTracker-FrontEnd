@@ -42,6 +42,9 @@ const Recommendations = () => {
                     const response = await axios.get(URL + "getWellnessScore", {
                         params: { _userId: userId },
                     });
+
+                    console.log("in fetch wellness score");
+
                     setWellness({
                         score: response.data.score,
                         description: response.data.description,
@@ -65,9 +68,7 @@ const Recommendations = () => {
                 console.log(response.data);
                 setUserTag(response.data);
 
-                // setFormContent({ userTag: response.data });
-
-                console.log("getWorkoutPref success: ", userTag);
+                console.log("getWorkoutPre success: ", userTag);
             } catch (error) {
                 console.error("Error fetching workout data", error);
             }
@@ -78,7 +79,7 @@ const Recommendations = () => {
     }, [navigate]);
 
     useEffect(() => {
-        if (userTag) {
+        if (userTag.tag) {
             // Ensure userTag is set before fetching content
             const getContentTag = async () => {
                 try {
@@ -86,13 +87,13 @@ const Recommendations = () => {
                         URL + "getAllContent",
                         {
                             params: {
-                                tag: userTag, // Now using the state variable
+                                tag: userTag.tag, // Now using the state variable
                             },
                         }
                     );
                     setContent(
                         contentRetrieved.data.filter(
-                            (content) => content.tag === userTag
+                            (content) => content.tag === userTag.tag
                         )
                     );
                 } catch (error) {
