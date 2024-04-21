@@ -70,7 +70,7 @@ const Dashboard = () => {
       <Sidebar />
       {data && data.role == "admin" ? (
         <AdminDash />
-      ) : data && data.role === "user" ? (
+      ) : data && data.role == "user" ? (
         <div className="content">
           <div className="dash-wrapper">
             <div className="dash-greeting-calendar">
@@ -164,7 +164,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      ) : data && data.role === "Professional" ? (
+      ) : data && data.role === "professional" ? (
         <ProDash />
       ) :
       (
