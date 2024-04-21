@@ -17,6 +17,7 @@ const ResetPassword = () => {
 
     axios.defaults.withCredentials = true;
     const handleSubmit = () => {
+        console.log(token)
         if (password) {
             event.preventDefault();
             axios
