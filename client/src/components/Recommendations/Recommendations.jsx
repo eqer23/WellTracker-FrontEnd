@@ -148,54 +148,6 @@ const Recommendations = () => {
                                     </div>
                                 ))}
                             </div>
-
-                            {/* <ul>
-                                <li>
-                                    <img
-                                        src={image1}
-                                        alt="Description of Image"
-                                    />
-                                    <h3>15 Minute Core</h3>
-                                    <p>Taught By: Coach A</p>
-                                    <p>description</p>
-                                </li>
-                                <li>
-                                    <img
-                                        src={image2}
-                                        alt="Description of Image"
-                                    />
-                                    <h3>Yoga A</h3>
-                                    <p>Taught By: Coach A</p>
-                                    <p>description</p>
-                                </li>
-                                <li>
-                                    <img
-                                        src={image3}
-                                        alt="Description of Image"
-                                    />
-                                    <h3>Yoga B</h3>
-                                    <p>Taught By: Coach B</p>
-                                    <p>description</p>
-                                </li>
-                                <li>
-                                    <img
-                                        src={image4}
-                                        alt="Description of Image"
-                                    />
-                                    <h3>30 Minute Full Body Workout</h3>
-                                    <p>Taught By: Coach C</p>
-                                    <p>description</p>
-                                </li>
-                                <li>
-                                    <img
-                                        src={image5}
-                                        alt="Description of Image"
-                                    />
-                                    <h3>Strength A</h3>
-                                    <p>Taught By: Coach D</p>
-                                    <p>description</p>
-                                </li>
-                            </ul> */}
                         </div>
 
                         <div className="nutrition-reccs">
