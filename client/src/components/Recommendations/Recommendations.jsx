@@ -7,6 +7,9 @@ import "./WorkoutForm";
 import "./NutritionForm";
 
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+let URL = import.meta.env.VITE_SERVER_URL;
 import axios from "axios";
 
 //temp images for testing frond view:
@@ -17,6 +20,55 @@ import image4 from "../Assets/scott-broome-cuOHHP5tx5g-unsplash.jpg";
 import image5 from "../Assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg";
 
 const Recommendations = () => {
+    const [wellness, setWellness] = useState({ score: 0, description: "" });
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchWellnessScore = async () => {
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+            } else {
+                const token = localStorage.getItem("session-token");
+                const decodedToken = jwtDecode(token);
+                const userId = decodedToken._id;
+                try {
+                    const response = await axios.get(URL + "getWellnessScore", {
+                        params: { _userId: userId },
+                    });
+                    setWellness({
+                        score: response.data.score,
+                        description: response.data.description,
+                    });
+                } catch (error) {
+                    console.error("Error fetching wellness data", error);
+                }
+            }
+        };
+
+        fetchWellnessScore();
+    }, [navigate]);
+
+    // useEffect(() => {
+    //     const fetchWellnessScore = async () => {
+    //         const userId = "the_user_id"; // This should be dynamically set based on the logged-in user
+    //         try {
+    //             const response = await axios.get(URL + "getWellnessScore", {
+    //                 params: {
+    //                     _userId: userId,
+    //                 },
+    //             });
+    //             setWellness({
+    //                 score: response.data.score,
+    //                 description: response.data.description,
+    //             });
+    //         } catch (error) {
+    //             console.error("Error fetching wellness data", error);
+    //         }
+    //     };
+
+    //     fetchWellnessScore();
+    // }, []);
+
     return (
         <div className="recc-home">
             <Navbar />
@@ -89,6 +141,13 @@ const Recommendations = () => {
                                     wellness questions, and return you overall
                                     wellness score along with provided
                                     recommendations to imporve your health!
+                                </p>
+                            </div>
+                            <div className="form-result">
+                                <h2>Youre wellness form results: </h2>
+                                <p>
+                                    Wellness Score: {wellness.score}{" "}
+                                    {wellness.description}
                                 </p>
                             </div>
                             <div className="btn">

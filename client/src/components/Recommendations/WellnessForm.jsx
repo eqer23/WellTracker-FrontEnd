@@ -12,8 +12,10 @@ const WellnessForm = () => {
     const [rate, setRate] = useState("");
     const [sleep, setSleep] = useState("");
     const [nutrition, setNutrition] = useState("");
+    const [currentUser, setCurrentUser] = useState(undefined);
 
     const navigate = useNavigate();
+    // const userId = getCurrentUserId();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,6 +36,7 @@ const WellnessForm = () => {
 
         try {
             const response = await axios.post(URL + "wellnessScore", {
+                _userId: currentUser,
                 totalScore: total,
                 description: description,
             });
@@ -72,6 +75,21 @@ const WellnessForm = () => {
             }
         }
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+            } else {
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                setCurrentUser(decodedToken);
+            }
+        };
+
+        fetchData();
+    }, [navigate]);
 
     return (
         <div className="home">
