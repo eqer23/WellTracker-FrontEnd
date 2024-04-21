@@ -52,34 +52,30 @@ const Recommendations = () => {
             }
         };
 
+        const getUserTag = async () => {
+            try {
+                const token = localStorage.getItem("session-token");
+                const decodedToken = jwtDecode(token);
+                const userId = decodedToken._id;
+                const response = await axios.get(URL + "getWorkoutPreference", {
+                    params: {
+                        _userId: userId,
+                    },
+                });
+                console.log(response.data);
+                setUserTag(response.data);
+
+                // setFormContent({ userTag: response.data });
+
+                console.log("getWorkoutPref success: ", userTag);
+            } catch (error) {
+                console.error("Error fetching workout data", error);
+            }
+        };
+
         fetchWellnessScore();
         getUserTag();
     }, [navigate]);
-
-    const getUserTag = async () => {
-        try {
-            const token = localStorage.getItem("session-token");
-            const decodedToken = jwtDecode(token);
-            const userId = decodedToken._id;
-            const response = await axios.get(URL + "getWorkoutPreference", {
-                params: {
-                    _userId: userId,
-                },
-            });
-            console.log(response.data);
-            setUserTag(response.data);
-
-            // setFormContent({ userTag: response.data });
-
-            console.log("getWorkoutPref success: ", userTag);
-        } catch (error) {
-            console.error("Error fetching workout data", error);
-        }
-    };
-
-    //     getUserTag();
-    //     fetchWellnessScore();
-    // }, [navigate]);
 
     useEffect(() => {
         if (userTag) {
