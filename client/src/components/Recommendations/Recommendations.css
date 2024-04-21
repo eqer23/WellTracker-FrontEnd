@@ -35,10 +35,10 @@
     }
 }
 
-ul {
+/* ul {
     list-style-type: none;
     padding-left: 0;
-}
+} */
 
 .workout-reccs {
     margin-bottom: 20px;
@@ -47,18 +47,19 @@ ul {
     padding: 10px;
 }
 
-.workout-reccs ul {
+.content-flex {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.workout-reccs li {
+
+.content-item-wrapper {
     display: flex;
     flex-direction: column;
     margin: 5px;
     border: black 2px solid;
-    width: 200px;
+    width: 214px;
     padding: 5px;
     background-color: beige;
 }
