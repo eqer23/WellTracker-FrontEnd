@@ -128,6 +128,8 @@ const Dashboard = () => {
             </div>
 
             <div className="recommendations">
+
+
               <h2>All Content:</h2>
               <div className="content-flex">
                 {content.map((item, index) => (
@@ -162,8 +164,11 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      ) : (
+      ) : data && data.role === "Professional" ? (
         <ProDash />
+      ) :
+      (
+        null
       )}
     </div>
   );
