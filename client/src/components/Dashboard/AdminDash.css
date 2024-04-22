@@ -1,5 +1,8 @@
 .content-item-wrapper {
     border: 1px solid #ccc; /* Define border style */
-    margin-bottom: 10px; /* Add spacing between items */
     padding: 10px; /* Add padding within the border */
-  }
+}
+
+.color {
+    color: black;
+}

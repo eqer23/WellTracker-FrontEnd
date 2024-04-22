@@ -4,8 +4,53 @@ import React, { useEffect, useState } from "react";
 import "./Form.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+let URL = import.meta.env.VITE_SERVER_URL;
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const WorkoutForm = () => {
+    const [tag, setTag] = useState("");
+    const [level, setLevel] = useState("");
+    const [intensity, setIntensity] = useState("");
+    const [time, setTime] = useState("");
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    const navigate = useNavigate();
+    // const userId = getCurrentUserId();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post(URL + "workoutPreference", {
+                _userId: currentUser,
+                tag: tag,
+            });
+
+            if (response.status === 200) {
+                console.log("workout form filled out susccessfully!!!");
+                navigate("/recommendations");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (!localStorage.getItem("session-token")) {
+                navigate("/login");
+            } else {
+                const decodedToken = jwtDecode(
+                    localStorage.getItem("session-token")
+                );
+                setCurrentUser(decodedToken);
+            }
+        };
+
+        fetchData();
+    }, [navigate]);
+
     return (
         <div className="workout">
             <div className="form-wrapper-form">
@@ -23,15 +68,20 @@ const WorkoutForm = () => {
                         </div>
                         <select
                             className="dropdown"
-                            name="focus"
-                            id="focus"
-                            onChange={(e) => setFocus(e.target.value)}
+                            name="tag"
+                            id="tag"
+                            onChange={(e) => setTag(e.target.value)}
                         >
                             <option value=""></option>
                             <option value="Weights">Strength</option>
                             <option value="Yoga">Flexiability</option>
                             <option value="HIIT">Endurance</option>
                             <option value="Pilates">Loose Fat</option>
+                            <option value="Upper Body">Upper Body</option>
+                            <option value="Lower Body">Lower Body</option>
+                            <option value="Full Body">Full Body</option>
+                            <option value="No Equipment">No Equipment</option>
+                            <option value="Low Impact">Low Impact</option>
                         </select>
                     </div>
 
@@ -92,40 +142,17 @@ const WorkoutForm = () => {
                             onChange={(e) => setTime(e.target.value)}
                         >
                             <option value=""></option>
-                            <option value="15 Minute">15 Minute</option>
-                            <option value="30 Minute">30 Minute</option>
+                            <option value="15 Minutes">15 Minutes</option>
+                            <option value="30 Minutes">30 Minutes</option>
                             <option value="1 Hour">1 Hour</option>
                         </select>
                     </div>
-
-                    <div className="form-group-form">
-                        <div className="area">
-                            <p>
-                                4. Which muscle groups would you like to work?
-                            </p>
-                        </div>
-                        <select
-                            className="dropdown"
-                            name="area"
-                            id="area"
-                            onChange={(e) => setArea(e.target.value)}
-                        >
-                            <option value=""></option>
-                            <option value="Upper Body">Upper Body</option>
-                            <option value="Lower Body">Lower Body</option>
-                            <option value="Full Body">Full Body</option>
-                        </select>
-                    </div>
-
-                    {/* check boxes */}
-
-                    {/*  */}
 
                     {/* submit button */}
                     <button
                         className="btn-submit-form"
                         type="submit"
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                     >
                         Submit
                     </button>

@@ -22,7 +22,6 @@ const Dashboard = () => {
   const [content, setContent] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,8 +70,8 @@ const Dashboard = () => {
       <Sidebar />
       {data && data.role == "admin" ? (
         <AdminDash />
-      ) : data && data.role === "user" ? (
-        <div className="content" style={{ paddingTop: "100px" }}>
+      ) : data && data.role == "user" ? (
+        <div className="content">
           <div className="dash-wrapper">
             <div className="dash-greeting-calendar">
               <div className="dash-greeting">
@@ -86,9 +85,9 @@ const Dashboard = () => {
                 <div className="resume-activity">
                   <h3>Pick up where you left off?</h3>
                   <div className="last-used-features">
-                    <div className="last-feature-progress">
-                      <h3>Progress</h3>
-                    </div>
+                    {/* <div className="last-feature-progress">
+                                            <h3>Progress</h3>
+                                        </div> */}
 
                     <div className="last-feature-nutrition">
                       <img
@@ -129,40 +128,47 @@ const Dashboard = () => {
             </div>
 
             <div className="recommendations">
-              <NavLink to="/Recommendations" className="recommendations-link">
-                {" "}
-                <h2>Recommendations:</h2>
-              </NavLink>
-              <h1>All Uploaded Content</h1>
-              {content.map((item, index) => (
-                <div className={`content-item-wrapper`} key={index}>
-                  <div
-                    className={`content-item`}
-                    onClick={() => handleItemClick(index, item)}
-                  >
-                    <div className="content-details">
-                      <h3>{item.contentTitle}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                    <a
-                      href={item.contentContents}
-                      target="_blank"
-                      rel="noopener noreferrer"
+
+
+              <h2>All Content:</h2>
+              <div className="content-flex">
+                {content.map((item, index) => (
+                  <div className={`content-item-wrapper`} key={index}>
+                    <div
+                      className={`content-item`}
+                      onClick={() => handleItemClick(index, item)}
                     >
-                      <img
-                        src={item.contentContents}
-                        alt={item.contentTitle}
-                        style={{ maxWidth: "200px", maxHeight: "200px" }}
-                      />
-                    </a>
+                      <a
+                        href={item.contentContents}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          src={item.contentContents}
+                          alt={item.contentTitle}
+                          style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                          }}
+                        />
+                      </a>
+
+                      <div className="content-details">
+                        <h3>{item.contentTitle}</h3>
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      ) : (
+      ) : data && data.role === "professional" ? (
         <ProDash />
+      ) :
+      (
+        null
       )}
     </div>
   );
