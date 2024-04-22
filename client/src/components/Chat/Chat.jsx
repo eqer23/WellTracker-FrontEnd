@@ -9,6 +9,7 @@ import Welcome from "./Welcome";
 import "./Chat.css";
 import ChattingBox from "./ChattingBox";
 import io from "socket.io-client";
+import Sidebar from "../Global/Sidebar";
 let URL = import.meta.env.VITE_SERVER_URL;
 
 const Chat = () => {
@@ -79,6 +80,7 @@ const Chat = () => {
   return (
     <>
       <div>
+      <Sidebar />
         <div className="conversationContainer">
           <Contacts
             contacts={contacts}
