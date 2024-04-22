@@ -13,6 +13,7 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Global/Sidebar";
 let URL = import.meta.env.VITE_SERVER_URL;
 
+import SubscribeButton from "../Subscriptions/SubscribeButton";
 const Profile = () => {
     const [data, setData] = useState(null);
     const [cookies] = useCookies(["session-token"]); // Get the token cookie

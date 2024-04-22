@@ -17,9 +17,11 @@ import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/CalendarPage";
 import Upload from "./components/Upload/Upload";
 import Recommendations from "./components/Recommendations/Recommendations";
+import Progress from "./components/MyProgress/Progress";
 import WellnessForm from "./components/Recommendations/WellnessForm";
 import WorkoutForm from "./components/Recommendations/WorkoutForm";
 import NutritionForm from "./components/Recommendations/NutritionForm";
+import ViewProfile from "./components/Profile/ViewProfile";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -48,6 +50,7 @@ function App() {
             <Route path="/recommendations" element={<ProtectedRoute />}>
               <Route path="" element={<Recommendations />} />
             </Route>
+            <Route path="/Progress" element={<Progress />} />
             <Route
               path="/reset-password/:token"
               element={<ResetPassword />}
@@ -63,6 +66,7 @@ function App() {
             {/* Logic for protected routes. Routes that a user should not be able to access until login */}
             <Route path="/profile" element={<ProtectedRoute />}>
               <Route path="" element={<Profile />} />
+              <Route path="view/:userId" element={<ViewProfile />} />
             </Route>
           </Routes>
         </ThemeProvider>
