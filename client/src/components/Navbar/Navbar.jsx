@@ -28,6 +28,7 @@ const Navbar = () => {
             <ul className="navbar-other">
                 <li className="nav-item">
                     <SearchBar setResults={setResults} />
+                    <SearchResultsList results={results} />
                     {/* <SearchResultsList results={results} /> */}
                 </li>
                 {isLoggedIn ? (

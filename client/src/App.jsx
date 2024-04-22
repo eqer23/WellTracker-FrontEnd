@@ -21,6 +21,7 @@ import Progress from "./components/MyProgress/Progress";
 import WellnessForm from "./components/Recommendations/WellnessForm";
 import WorkoutForm from "./components/Recommendations/WorkoutForm";
 import NutritionForm from "./components/Recommendations/NutritionForm";
+import ViewProfile from "./components/Profile/ViewProfile";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -65,6 +66,7 @@ function App() {
             {/* Logic for protected routes. Routes that a user should not be able to access until login */}
             <Route path="/profile" element={<ProtectedRoute />}>
               <Route path="" element={<Profile />} />
+              <Route path="view/:userId" element={<ViewProfile />} />
             </Route>
           </Routes>
         </ThemeProvider>
