@@ -469,7 +469,7 @@ const Sidebar = () => {
               </Typography>
               <Item
                 title="Profile Form"
-                to="/Form"
+                to="/profile"
                 icon={<PersonOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
