@@ -15,6 +15,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
 import RecommendOutlinedIcon from "@mui/icons-material/RecommendOutlined";
+import DirectionsWalkOutlinedIcon from '@mui/icons-material/DirectionsWalkOutlined';
 
 // Inside your component
 <FitnessCenterOutlinedIcon />
@@ -446,6 +447,14 @@ const Sidebar = () => {
                 title="Recommendations"
                 to="/Recommendations"
                 icon={<RecommendOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              
+              <Item
+                title="My Progress"
+                to="/Progress"
+                icon={<DirectionsWalkOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />

@@ -17,6 +17,7 @@ import Chat from "./components/Chat/Chat";
 import Calendar from "./components/Calendar/CalendarPage";
 import Upload from "./components/Upload/Upload";
 import Recommendations from "./components/Recommendations/Recommendations";
+import Progress from "./components/MyProgress/Progress";
 import WellnessForm from "./components/Recommendations/WellnessForm";
 import WorkoutForm from "./components/Recommendations/WorkoutForm";
 import NutritionForm from "./components/Recommendations/NutritionForm";
@@ -48,6 +49,7 @@ function App() {
             <Route path="/recommendations" element={<ProtectedRoute />}>
               <Route path="" element={<Recommendations />} />
             </Route>
+            <Route path="/Progress" element={<Progress />} />
             <Route
               path="/reset-password/:token"
               element={<ResetPassword />}
